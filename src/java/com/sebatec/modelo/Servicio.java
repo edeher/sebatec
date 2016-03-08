@@ -20,7 +20,7 @@ public class Servicio {
     private Date fechaEmimsion;
     private Date fechaGestion;
     private double monto;
-    private boolean estado;
+    private Estados estado;
 
     /**
      * @return the idServicio
@@ -123,18 +123,18 @@ public class Servicio {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
-    public Servicio(int idServicio, int idSolicitud, int idTecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, boolean estado) {
+    public Servicio(int idServicio, int idSolicitud, int idTecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, Estados estado) {
         this.idServicio = idServicio;
         this.idSolicitud = idSolicitud;
         this.idTecnico = idTecnico;
@@ -152,6 +152,7 @@ public class Servicio {
     public String toString() {
         return "Servicio{" + "idServicio=" + idServicio + ", idSolicitud=" + idSolicitud + ", idTecnico=" + idTecnico + ", descripcion=" + descripcion + ", fechaEmimsion=" + fechaEmimsion + ", fechaGestion=" + fechaGestion + ", monto=" + monto + ", estado=" + estado + '}';
     }
+
     
     
     

@@ -9,8 +9,9 @@ import com.sebatec.dao.DAOException;
 
 import com.sebatec.dao.TecnicoDAO;
 import com.sebatec.dao.TecnicoDAOFactory;
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Tecnico;
-
+import com.sebatec.modelo.Persona;
 
 
 /**
@@ -36,10 +37,21 @@ public class TecnicoTest {
 		 TecnicoDAO daote= fabricate.metodoDAO();
                   
 		Tecnico tec= new Tecnico();
-		tec.setIdPersona(1);
+                 Persona per=new Persona();
+                 per.setIdPersona(1);
+                 per.setNombre("edeher");
+		 per.setApellido("nuevo ponce");
+		 per.setDni("46546545");
+		 per.setRazon("sdffsd");
+		 per.setRuc("6546545");
+		 per.setDireccion("dfdgfdg");
+		 per.setTelefono("546546");
+		 per.setEmail("fsdfdfsdsdf");
+		 per.setEstado(Estados.A);
+		tec.setPersona (per);
                 tec.setProfesion("ing. Sistemas ");
                 tec.setEspecialidad("programador");
-                tec.setEstado(true);
+                tec.setEstado(Estados.A);
                 
 		 
 		 daote.crear(tec);
@@ -52,11 +64,22 @@ public class TecnicoTest {
 		 TecnicoDAO daote= fabricate.metodoDAO();
                   
 		Tecnico tec= new Tecnico();
-                tec.setIdTecnico(1);
-                tec.setIdPersona(1);
-                tec.setProfesion("ing. Sistemas y civil ");
+                Persona per=new Persona();
+                 per.setIdPersona(1);
+                 per.setNombre("edeher ");
+		 per.setApellido("nuevo ponce");
+		 per.setDni("46546545");
+		 per.setRazon("sdffsd");
+		 per.setRuc("6546545");
+		 per.setDireccion("dfdgfdg");
+		 per.setTelefono("546546");
+		 per.setEmail("fsdfdfsdsdf");
+		 per.setEstado(Estados.A);
+                tec.setIdTecnico(7);
+                tec.setPersona(per);
+                tec.setProfesion("ing. Sistemas y civil tecnico");
                 tec.setEspecialidad("programador");
-                tec.setEstado(true);
+                tec.setEstado(Estados.A);
                 
 		 
 		 daote.modificar(tec);
@@ -95,10 +118,10 @@ public class TecnicoTest {
 	 
 	  Tecnico[] tecv=daote.leertodo();
 	  
-	  for(int i=0; i<tecv.length;i++)
+	  for(Tecnico tecv1:tecv)
 	  {
 	      
-	      System.out.println(" "+tecv[i].toString());
+	      System.out.println(" "+tecv1.toString());
 	  
 	  }
 	 

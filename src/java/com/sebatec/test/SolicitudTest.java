@@ -9,6 +9,7 @@ import com.sebatec.dao.DAOException;
 
 import com.sebatec.dao.SolicitudDAO;
 import com.sebatec.dao.SolicitudDAOFactory;
+import com.sebatec.modelo.Estados;
 
 import com.sebatec.modelo.Solicitud;
 
@@ -25,10 +26,10 @@ public class SolicitudTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-    //    crearsolicitud();
-  //      modificarsolicitud();
+//        crearsolicitud();
+//        modificarsolicitud();
       //  eliminarsolicitud();
-   //     leersolicitud();
+//        leersolicitud();
         leertodo();
     }
     public static void crearsolicitud() throws DAOException
@@ -40,7 +41,7 @@ public class SolicitudTest {
 		soli.setIdPersona(1);
                 soli.setDescripcion("aca pes ");
                 soli.setObservacion("ddfgdfg");
-                soli.setEstado(true);
+                soli.setEstado(Estados.A);
                 
 		 
 		 daote.crear(soli);
@@ -53,11 +54,11 @@ public class SolicitudTest {
 		 SolicitudDAO daote= fabricate.metodoDAO();
 		 
 		 Solicitud soli= new Solicitud();
-                 soli.setIdSolicitud(1);
+                 soli.setIdSolicitud(10);
 		soli.setIdPersona(1);
                 soli.setDescripcion("aca pes pes");
                 soli.setObservacion("ddfgdfg");
-                soli.setEstado(true);
+                soli.setEstado(Estados.A);
 		 
 		 daote.modificar(soli);
                  
@@ -93,12 +94,12 @@ public class SolicitudTest {
 		SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
 		 SolicitudDAO daote= fabricate.metodoDAO();
 	 
-	  Solicitud[] perv=daote.leertodo();
+	  Solicitud[] solv=daote.leertodo();
 	  
-	  for(int i=0; i<perv.length;i++)
+	  for(Solicitud solv1:solv )
 	  {
 	      
-	      System.out.println(" "+perv[i].toString());
+	      System.out.println(" "+solv1.toString());
 	  
 	  }
 	 

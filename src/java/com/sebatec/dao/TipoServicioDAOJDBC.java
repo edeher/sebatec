@@ -5,12 +5,15 @@
  */
 package com.sebatec.dao;
 
+
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.TipoServicio;
+import java.sql.CallableStatement;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
 /**
@@ -26,44 +29,48 @@ public class TipoServicioDAOJDBC implements TipoServicioDAO{
     ///coneccion
     @Override
     public boolean crear(TipoServicio objser)throws DAOException  {
-        try (Statement stmt = con.createStatement()) 
+        try 
         {
-            String query = "INSERT INTO tiposervicio (descripcion,estado) VALUES ('"
-                    + objser.getDescripcion()+ "'," 
-                    + objser.isEstado()+ ")";
+           CallableStatement st=con.prepareCall("{call sp_tipoServicio_n(?,?)}");
+	                   
+	                    st.setString(1,objser.getDescripcion());
+                            st.setString(2,objser.getEstado().name());
+            
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando tipo servicio");
+            }
+            st.close();
             
             
-            System.out.println(query);
-            if (stmt.executeUpdate(query) != 1) {
-                throw new DAOException("Error añadiendo tipo");
-               
-            }  
-            
-            
-        } catch (SQLException se) {            
-            //se.printStackTrace();
-            throw new DAOException("Error añadiendo tipo en DAO", se);
-            
-        }   
-        return true;
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tipo servicio en DAO", se);
+        }
+        return (true);
     }
 
     @Override
     public boolean modificar(TipoServicio objser) throws DAOException
     {
         
-        try (Statement stmt = con.createStatement()) {
-            String query = "UPDATE tiposervicio "
-                    + "SET descripcion='" + objser.getDescripcion() + "',"
-                    + "estado=" + objser.isEstado()+" "
-                    + "WHERE idTipoServicio=" + objser.getIdTipoServicio();
-            if (stmt.executeUpdate(query) != 1) {
-                throw new DAOException("Error actualizando datos del tiposervicio");
+        try  {
+             CallableStatement st=con.prepareCall("{call sp_tipoServicio_m(?,?,?)}");
+                            
+                            st.setInt(1, objser.getIdTipoServicio());
+	                    st.setString(2,objser.getDescripcion());
+                            st.setString(3,objser.getEstado().name());
+            
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error modificando tiposervicio");
             }
+            st.close();
+            
+            
         } catch (SQLException se) {
-            throw new DAOException("Error actualizando datos del tributo en DAO", se);
-        }    
-        return true;
+            throw new DAOException("Error añadiendo tiposervicio en DAO", se);
+        }
+        return (true);
     }
 
     @Override
@@ -71,28 +78,33 @@ public class TipoServicioDAOJDBC implements TipoServicioDAO{
         
        
         
-        try (Statement stmt = con.createStatement()) {
-            String query = "DELETE FROM tiposervicio WHERE idTipoServicio=" + idtipoServicio;
-            if (stmt.executeUpdate(query) != 1) {
-                throw new DAOException("Error eliminando tributo");
+        try  {
+            CallableStatement st=con.prepareCall("{call sp_tipoServicio_e(?) }");
+            
+            st.setInt(1,idtipoServicio);
+
+
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error modificando tiposervicio");
             }
+            st.close();
+            
         } catch (SQLException se) {
-            //se.printStackTrace();
-            throw new DAOException("Error eliminando tributo en DAO", se);
-        } 
-   return true;
+            throw new DAOException("Error añadiendo tiposervicio en DAO", se);
+        }
+        return true; 
     }
 
     @Override
     public TipoServicio leerxid(int idTipoServicio) throws DAOException{
-        try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM tiposervicio WHERE idTipoServicio=" + idTipoServicio;
-            ResultSet rs = stmt.executeQuery(query);
+        try  {
+            CallableStatement st=con.prepareCall("{call sp_tipoServicio_bco(?)}");
+            st.setInt(1,idTipoServicio);
+              ResultSet rs = st.executeQuery();
             if (!rs.next()) {
                 return null;
             }
-            TipoServicioDAOFactory tiposer = new TipoServicioDAOFactory();
-            TipoServicioDAO daote = tiposer.crearTiposervicioDAO();
            
             return (
                     new TipoServicio(
@@ -100,41 +112,43 @@ public class TipoServicioDAOJDBC implements TipoServicioDAO{
                             
                             rs.getString("descripcion"),
                              
-                            rs.getBoolean("estado"))
+                            Estados.valueOf(rs.getString("estado")))
                     );
         } catch (SQLException se) {
-            //se.printStackTrace();
-            throw new DAOException("Error buscando tributi en DAO", se);
+            
+            throw new DAOException("Error buscando tiposervicio en DAO", se);
+        
         }}
 
     @Override
     public TipoServicio[] leertodo() throws DAOException
     {
-         try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM tiposervicio";
-            ResultSet rs = stmt.executeQuery(query);            
+         try  {
+            CallableStatement stm=con.prepareCall("{call sp_tipoServicio_all}");
+            ResultSet rs=stm.executeQuery();
+                      
             ArrayList<TipoServicio> tribs = new ArrayList<>(); 
-            TipoServicioDAOFactory fabrica = new TipoServicioDAOFactory ();
-            TipoServicioDAO daoEmp = fabrica.crearTiposervicioDAO();
-           
+            
             while (rs.next()) {
                 tribs.add(
+                        
                         
                         new TipoServicio(
                             rs.getInt("idTiposervicio"),
                             
                             rs.getString("descripcion"),
                              
-                            rs.getBoolean("estado")
+                            Estados.valueOf(rs.getString("estado"))
                         )
                         
                 
-                );
+              );
             }
             return tribs.toArray(new TipoServicio[0]);
         } catch (SQLException se) {
             //se.printStackTrace();
-            throw new DAOException("Error obteniedo todos los tiposervicio en DAO: " + se.getMessage(), se);
+            throw new DAOException("Error obteniedo todos los tiposervicio en DAO: " 
+                    + se.getMessage(), se);
         }   
     
     

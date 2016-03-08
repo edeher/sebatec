@@ -8,6 +8,7 @@ package com.sebatec.test;
 import com.sebatec.dao.DAOException;
 import com.sebatec.dao.TipoServicioDAO;
 import com.sebatec.dao.TipoServicioDAOFactory;
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.TipoServicio;
 
 
@@ -36,7 +37,7 @@ public class TipoServicioTest {
         
         TipoServicio tiposer= new TipoServicio();
         tiposer.setDescripcion("mantenimiento");
-        tiposer.setEstado(true);
+        tiposer.setEstado(Estados.A);
         
         daote.crear(tiposer);
         
@@ -47,8 +48,8 @@ public class TipoServicioTest {
         TipoServicioDAO daote= fabricate.crearTiposervicioDAO();
         TipoServicio tiposer=new TipoServicio();
         tiposer.setDescripcion("correcionn");
-        tiposer.setEstado(true);
-        tiposer.setIdTipoServicio(3);
+        tiposer.setEstado(Estados.A);
+        tiposer.setIdTipoServicio(12);
         daote.modificar(tiposer);
            
     }
@@ -76,7 +77,7 @@ public class TipoServicioTest {
         
         System.out.println("codigo "+tiposer.getIdTipoServicio());
         System.out.println("descripcion "+tiposer.getDescripcion());
-        System.out.println("estado "+tiposer.isEstado());
+        System.out.println("estado "+tiposer.getEstado().name());
            
     }
     public static void leertodo()throws DAOException
@@ -86,10 +87,10 @@ public class TipoServicioTest {
         
          TipoServicio[] tiposerv=daote.leertodo();
          
-         for(int i=0; i<tiposerv.length;i++)
+         for(TipoServicio tiposerv1:tiposerv)
          {
              
-             System.out.println(" "+tiposerv[i].toString());
+             System.out.println(" "+tiposerv1.toString());
          
          }
         

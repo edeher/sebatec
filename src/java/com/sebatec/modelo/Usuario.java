@@ -15,7 +15,7 @@ public class Usuario {
    private String usuario;
    private String password;
    private String tipo;
-   private boolean estado;
+   private Estados estado;
 
     /**
      * @return the idUsuario
@@ -90,18 +90,18 @@ public class Usuario {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
-    public Usuario(int idUsuario, int idTecnico, String usuario, String password, String tipo, boolean estado) {
+    public Usuario(int idUsuario, int idTecnico, String usuario, String password, String tipo, Estados estado) {
         this.idUsuario = idUsuario;
         this.idTecnico = idTecnico;
         this.usuario = usuario;
@@ -117,8 +117,7 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "idUsuario=" + idUsuario + ", idTecnico=" + idTecnico + ", usuario=" + usuario + ", password=" + password + ", tipo=" + tipo + ", estado=" + estado + '}';
     }
-   
-    
+
    
     
 }

@@ -5,11 +5,14 @@
  */
 package com.sebatec.dao;
 
+import com.sebatec.modelo.Estados;
+import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Tecnico;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 /**
  *
@@ -24,113 +27,146 @@ public class TecnicoDAOJDBC implements TecnicoDAO{
 	    ///coneccion
     @Override
     public boolean crear(Tecnico objtec) throws DAOException {
-        try (Statement stmt = con.createStatement()) 
+        try  
 	        {
-	            String query = "INSERT INTO Tecnico (idPersona,profesion,especialidad,estado) VALUES ("
+	           CallableStatement st=con.prepareCall("{call sp_tecnico_n(?,?,?,?)}");
 	                   
-	                    +objtec.getIdPersona()+",'"
-	                    + objtec.getProfesion()+"','"
-	                    +objtec.getEspecialidad()+"',"
-	                    +objtec.isEstado()+")";
+	                    st.setInt(1,objtec.getPersona().getIdPersona());
+	                    st.setString(2, objtec.getProfesion());
+	                     st.setString(3,objtec.getEspecialidad());
+	                    st.setString(4,objtec.getEstado().name());
 	            
 	            
-	            System.out.println(query);
-	            if (stmt.executeUpdate(query) != 1) {
-	                throw new DAOException("Error añadiendo tecnicod");
-	               
-	            }  
-	            
-	            
-	        } catch (SQLException se) {            
-	            //se.printStackTrace();
-	            throw new DAOException("Error añadiendo tecnico en DAO", se);
-	            
-	        }   
-	        return true;
+	           if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando tecnico");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tecnico en DAO", se);
+        }
+        return (true);
     }
 
     @Override
     public boolean modificar(Tecnico objtec) throws DAOException {
-        try (Statement stmt = con.createStatement()) {
-	            String query = "UPDATE Tecnico "
-	                    + "SET idPersona="+objtec.getIdPersona()+ ","
-                        + "profesion='"+objtec.getProfesion() + "',"
-                        + "especialidad='"+objtec.getEspecialidad()+"',"
-                        + "estado="+objtec.isEstado()+" "
-	                + "WHERE idTecnico=" + objtec.getIdTecnico();
-	            if (stmt.executeUpdate(query) != 1) {
-	                throw new DAOException("Error actualizando datos del tecnico");
-	            }
-	        } catch (SQLException se) {
-	            throw new DAOException("Error actualizando datos del tecnico en DAO", se);
-	        }    
-	        return true;
+        try  {
+	           
+	           CallableStatement st=con.prepareCall("{call sp_tecnico_m(?,?,?,?,?)}");
+	                   st.setInt(1,objtec.getIdTecnico());
+	                    st.setInt(2,objtec.getPersona().getIdPersona());
+	                    st.setString(3, objtec.getProfesion());
+	                     st.setString(4,objtec.getEspecialidad());
+	                    st.setString(5,objtec.getEstado().name());
+	            
+	           if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando tecnico");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tecnico en DAO", se);
+        }
+        return true;
+    
     }
 
     @Override
     public boolean eliminar(int idTecnico) throws DAOException {
-        try (Statement stmt = con.createStatement()) {
-	            String query = "DELETE FROM tecnico WHERE idTecnico=" + idTecnico;
-	            if (stmt.executeUpdate(query) != 1) {
-	                throw new DAOException("Error eliminando tecnico");
-	            }
-	        } catch (SQLException se) {
-	            //se.printStackTrace();
-	            throw new DAOException("Error eliminando tecnico en DAO", se);
-	        } 
-	   return true;  
+        try  {
+	               CallableStatement st=con.prepareCall("{call sp_tecnico_e(?) }");
+            
+            st.setInt(1,idTecnico);
+
+
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error modificando tecnico");
+            }
+            st.close();
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tecnico en DAO", se);
+        }
+        return true; 
     }
 
     @Override
     public Tecnico leerxid(int idTecnico) throws DAOException {
-         try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM tecnico WHERE idTecnico=" + idTecnico;
-            ResultSet rs = stmt.executeQuery(query);
+         try  {
+            CallableStatement st=con.prepareCall("{call sp_tecnico_bco(?)}");
+            st.setInt(1,idTecnico);
+              ResultSet rs = st.executeQuery();
             if (!rs.next()) {
                 return null;
             }
-            
+           
             return (
                     new Tecnico(
                             rs.getInt("idTecnico"),
-                            rs.getInt("idPersona"),
+                            new Persona(
+                            
+                                    rs.getString("nombre"),
+                                    rs.getString("apellido"),
+                                    rs.getString("dni"),
+                                     rs.getString("razon"),
+                                    rs.getString("ruc"),
+                                     rs.getString("direccion"),
+                                    rs.getString("telefono"),
+                                    rs.getString("email"),
+                                   Estados.valueOf(rs.getString("estado_persona"))
+                            ),
                             rs.getString("profesion"),
                             rs.getString("especialidad"),
-                            rs.getBoolean("estado"))
-                    );
+                            Estados.valueOf(rs.getString("estado_tecnico")))
+                     );
         } catch (SQLException se) {
-            //se.printStackTrace();
-            throw new DAOException("Error buscando solicitud en DAO", se);
-        }   
+            
+            throw new DAOException("Error buscando tecnico en DAO", se);
+        }
     }
 
     @Override
     public Tecnico[] leertodo() throws DAOException {
-         try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM tecnico";
-            ResultSet rs = stmt.executeQuery(query);            
+         try  {
+            CallableStatement stm=con.prepareCall("{call sp_tecnico_all}");
+            ResultSet rs=stm.executeQuery();
+                      
             ArrayList<Tecnico> tribs = new ArrayList<>(); 
             
-           
             while (rs.next()) {
                 tribs.add(
                         
                        new Tecnico(
                             rs.getInt("idTecnico"),
-                            rs.getInt("idPersona"),
+                            new Persona(
+                            
+                                    rs.getString("nombre"),
+                                    rs.getString("apellido"),
+                                    rs.getString("dni"),
+                                     rs.getString("razon"),
+                                    rs.getString("ruc"),
+                                     rs.getString("direccion"),
+                                    rs.getString("telefono"),
+                                    rs.getString("email"),
+                                   Estados.valueOf(rs.getString("estado_persona"))
+                            ),
                             rs.getString("profesion"),
                             rs.getString("especialidad"),
-                            rs.getBoolean("estado"))
+                            Estados.valueOf(rs.getString("estado_tecnico")))
                         
-                
                 );
             }
             return tribs.toArray(new Tecnico[0]);
         } catch (SQLException se) {
             //se.printStackTrace();
-            throw new DAOException("Error obteniedo todos las persona en DAO: " + se.getMessage(), se);
-        }       
-    
+            throw new DAOException("Error obteniedo todos las tecnicos en DAO: " 
+                    + se.getMessage(), se);
+        }   
     }
     
 }

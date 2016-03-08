@@ -11,10 +11,26 @@ package com.sebatec.modelo;
  */
 public class Tecnico {
     private int idTecnico;
-    private int idPersona;
+    private Persona persona;
     private String profesion;
     private String especialidad;
-    private boolean estado;
+    private Estados estado;
+
+    public Tecnico(int idTecnico, Persona persona, String profesion, String especialidad, Estados estado) {
+        this.idTecnico = idTecnico;
+        this.persona = persona;
+        this.profesion = profesion;
+        this.especialidad = especialidad;
+        this.estado = estado;
+    }
+
+    public Tecnico() {
+    }
+
+    @Override
+    public String toString() {
+        return "Tecnico{" + "idTecnico=" + getIdTecnico() + ", persona=" + getPersona() + ", profesion=" + getProfesion() + ", especialidad=" + getEspecialidad() + ", estado=" + getEstado() + '}';
+    }
 
     /**
      * @return the idTecnico
@@ -31,17 +47,17 @@ public class Tecnico {
     }
 
     /**
-     * @return the idPersona
+     * @return the persona
      */
-    public int getIdPersona() {
-        return idPersona;
+    public Persona getPersona() {
+        return persona;
     }
 
     /**
-     * @param idPersona the idPersona to set
+     * @param persona the persona to set
      */
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     /**
@@ -75,31 +91,18 @@ public class Tecnico {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
-    public Tecnico(int idTecnico, int idPersona, String profesion, String especialidad, boolean estado) {
-        this.idTecnico = idTecnico;
-        this.idPersona = idPersona;
-        this.profesion = profesion;
-        this.especialidad = especialidad;
-        this.estado = estado;
-    }
-
-    public Tecnico() {
-    }
-
-    @Override
-    public String toString() {
-        return "Tecnico{" + "idTecnico=" + idTecnico + ", idPersona=" + idPersona + ", profesion=" + profesion + ", especialidad=" + especialidad + ", estado=" + estado + '}';
-    }
+   
+    
     
 }

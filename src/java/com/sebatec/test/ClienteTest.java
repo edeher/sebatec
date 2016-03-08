@@ -6,10 +6,13 @@
 package com.sebatec.test;
 
 import com.sebatec.dao.ClienteDAO;
+import com.sebatec.dao.PersonaDAO;
 import com.sebatec.dao.ClienteDAOFactory;
 import com.sebatec.dao.DAOException;
-
+import com.sebatec.dao.PersonaDAOFactory;
+import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Cliente;
+import com.sebatec.modelo.Estados;
 
 
 /**
@@ -34,11 +37,25 @@ public class ClienteTest {
     {
         ClienteDAOFactory fabricate= new ClienteDAOFactory();
         ClienteDAO daote= fabricate.metodoDAO();
+       
         
+        Persona per=new Persona();
+       
         Cliente cli= new Cliente();
-        cli.setIdPersona(2);
-        cli.setEstado(true);
+                 per.setIdPersona(1);
+                 per.setNombre("edeher");
+		 per.setApellido("nuevo ponce");
+		 per.setDni("46546545");
+		 per.setRazon("sdffsd");
+		 per.setRuc("6546545");
+		 per.setDireccion("dfdgfdg");
+		 per.setTelefono("546546");
+		 per.setEmail("fsdfdfsdsdf");
+		 per.setEstado(Estados.A);
+		 
         
+        cli.setPersona(per);
+        cli.setEstado(Estados.A);
         daote.crear(cli);
         
     }
@@ -46,10 +63,25 @@ public class ClienteTest {
     {
         ClienteDAOFactory fabricate= new ClienteDAOFactory();
          ClienteDAO daote= fabricate.metodoDAO();
-         Cliente cli=new Cliente();
-        cli.setIdPersona(3);
-        cli.setEstado(true);
-        cli.setIdCliente(1);
+         
+        
+        Persona per=new Persona();
+        Cliente cli=new Cliente();
+                per.setIdPersona(1);
+                 per.setNombre("edeher");
+		 per.setApellido("modificado");
+		 per.setDni("modificado");
+		 per.setRazon("modificado");
+		 per.setRuc("modificado");
+		 per.setDireccion("modificado");
+		 per.setTelefono("modificado");
+		 per.setEmail("modificado");
+		 per.setEstado(Estados.A);
+		 
+       
+        cli.setPersona(per);
+        cli.setEstado(Estados.A);
+        cli.setIdCliente(20);
         daote.modificar(cli);
            
     }
@@ -73,7 +105,7 @@ public class ClienteTest {
         ClienteDAOFactory fabricate= new ClienteDAOFactory();
          ClienteDAO daote= fabricate.metodoDAO();
         
-          Cliente cli=daote.leerxid(3);
+          Cliente cli=daote.leerxid(1);
         System.out.println(" "+cli.toString());
            
     }
@@ -84,10 +116,10 @@ public class ClienteTest {
         
          Cliente[] cliv=daote.leertodo();
          
-         for(int i=0; i<cliv.length;i++)
+         for(Cliente cliv1:cliv)
          {
              
-             System.out.println(" "+cliv[i].toString());
+             System.out.println(" "+cliv1.toString());
          
          }
         

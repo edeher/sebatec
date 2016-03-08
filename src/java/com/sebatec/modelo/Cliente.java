@@ -12,12 +12,54 @@ package com.sebatec.modelo;
 public class Cliente {
     
     private int idCliente;
-    private int idPersona;
-    private boolean estado;
+    private Persona persona;
+    private Estados estado;
 
-    public Cliente(int idCliente, int idPersona, boolean estado) {
+    /**
+     * @return the idCliente
+     */
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    /**
+     * @param idCliente the idCliente to set
+     */
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-        this.idPersona = idPersona;
+    }
+
+    /**
+     * @return the persona
+     */
+    public Persona getPersona() {
+        return persona;
+    }
+
+    /**
+     * @param persona the persona to set
+     */
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    /**
+     * @return the estado
+     */
+    public Estados getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(Estados estado) {
+        this.estado = estado;
+    }
+
+    public Cliente(int idCliente, Persona persona, Estados estado) {
+        this.idCliente = idCliente;
+        this.persona = persona;
         this.estado = estado;
     }
 
@@ -26,58 +68,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", idPersona=" + idPersona + ", estado=" + estado + '}';
-    }
-    
-    
-
-    /**
-     * Get the value of idCliente
-     *
-     * @return the value of idCliente
-     */
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    /**
-     * Set the value of idCliente
-     *
-     * @param idCliente new value of idCliente
-     */
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    /**
-     * @return the idPersona
-     */
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    /**
-     * @param idPersona the idPersona to set
-     */
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
-    }
-
-    /**
-     * @return the estado
-     */
-    public boolean isEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+        return "Cliente{" + "idCliente=" + idCliente + ", persona=" + persona + ", estado=" + estado + '}';
     }
 
     
-
     
 }

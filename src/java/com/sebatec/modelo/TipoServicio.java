@@ -12,23 +12,7 @@ package com.sebatec.modelo;
 public class TipoServicio {
     private int idTipoServicio;
     private String descripcion;
-    private boolean estado;
-
-    public TipoServicio(int idTipoServicio, String descripcion, boolean estado) {
-        this.idTipoServicio = idTipoServicio;
-        this.descripcion = descripcion;
-        this.estado = estado;
-    }
-
-    public TipoServicio() {
-    }
-
-    @Override
-    public String toString() {
-        return "TipoServicio{" + "idTipoServicio=" + idTipoServicio + ", descripcion=" + descripcion + ", estado=" + estado + '}';
-    }
-
-    
+    private Estados estado;
 
     /**
      * @return the idTipoServicio
@@ -61,15 +45,30 @@ public class TipoServicio {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
+
+    public TipoServicio(int idTipoServicio, String descripcion, Estados estado) {
+        this.idTipoServicio = idTipoServicio;
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
+
+    public TipoServicio() {
+    }
+
+    @Override
+    public String toString() {
+        return "TipoServicio{" + "idTipoServicio=" + idTipoServicio + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+    }
+
     
 }

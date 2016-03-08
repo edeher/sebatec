@@ -8,6 +8,7 @@ package com.sebatec.test;
 import com.sebatec.dao.DAOException;
 import com.sebatec.dao.ServicioDAO;
 import com.sebatec.dao.ServicioDAOFactory;
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Servicio;
 
 import java.text.ParseException;
@@ -28,9 +29,9 @@ public class ServicioTest {
      */
     public static void main(String[] args) throws DAOException{
 //        crearservicio();
-       // modificarservicio();
-      //  eliminarservicio();
-    //    leerservicio();
+//        modificarservicio();
+//        eliminarservicio();
+//        leerservicio();
         leertodo();
     }
     public static void crearservicio() throws DAOException
@@ -54,7 +55,7 @@ public class ServicioTest {
                 servi.setFechaEmimsion(fec);
                 servi.setFechaGestion(fec1);
                 servi.setMonto(25.25);
-                servi.setEstado(true);
+                servi.setEstado(Estados.A);
                 
 		 
 		 daote.crear(servi);
@@ -75,14 +76,14 @@ public class ServicioTest {
                                 Date fec1 = new Date(fe.parse("30-02-2016").getTime());
                  
 		 Servicio servi= new Servicio();
-                 servi.setIdServicio(1);
+                 servi.setIdServicio(9);
 		 servi.setIdSolicitud(1);
                  servi.setIdTecnico(1);
                  servi.setDescripcion("se arreglo porrr ");
                  servi.setFechaEmimsion(fec);
                  servi.setFechaGestion(fec1);
                  servi.setMonto(25.25);
-                 servi.setEstado(true);
+                 servi.setEstado(Estados.A);
 		 
 		 daote.modificar(servi);
                  } 
@@ -123,10 +124,10 @@ public class ServicioTest {
 	 
 	  Servicio[] perv=daote.leertodo();
 	  
-	  for(int i=0; i<perv.length;i++)
+	  for(Servicio perv1:perv)
 	  {
 	      
-	      System.out.println(" "+perv[i].toString());
+	      System.out.println(" "+perv1.toString());
 	  
 	  }
 	 

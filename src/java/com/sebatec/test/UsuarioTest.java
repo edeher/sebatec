@@ -9,6 +9,7 @@ import com.sebatec.dao.DAOException;
 
 import com.sebatec.dao.UsuarioDAO;
 import com.sebatec.dao.UsuarioDAOFactory;
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Usuario;
 
 
@@ -20,10 +21,10 @@ public class UsuarioTest {
      */
     public static void main(String[] args)throws DAOException {
         // TODO code application logic here
-      //  crearusuario();
-      //  modificarusuario();
+//        crearusuario();
+//        modificarusuario();
       //  eliminarusuario();
-       // leerusuario();
+//        leerusuario();
         leertodo();
         
     }
@@ -37,7 +38,7 @@ public class UsuarioTest {
                 usu.setUsuario("edeher");
                 usu.setPassword("1234");
                 usu.setTipo("assd");
-                usu.setEstado(true);           
+                usu.setEstado(Estados.A);           
 		 
 		 daote.crear(usu);
 		   
@@ -49,12 +50,12 @@ public class UsuarioTest {
 		 UsuarioDAO daote= fabricate.metodoDAO();
                   
 		Usuario usu= new Usuario();
-                usu.setIdUsuario(1);
+                usu.setIdUsuario(7);
                 usu.setIdTecnico(1);
                 usu.setUsuario("edeher ponce");
                 usu.setPassword("1234");
                 usu.setTipo("assd");
-                usu.setEstado(true);
+                usu.setEstado(Estados.A);
                 		 
 		 daote.modificar(usu);
                 
@@ -97,10 +98,10 @@ public class UsuarioTest {
 	 
 	  Usuario[] usuv=daote.leertodo();
 	  
-	  for(int i=0; i<usuv.length;i++)
+	  for(Usuario usuv1:usuv)
 	  {
 	      
-	      System.out.println(" "+usuv[i].toString());
+	      System.out.println(" "+usuv1.toString());
 	  
 	  }
 	 

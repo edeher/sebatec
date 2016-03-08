@@ -9,6 +9,7 @@ package com.sebatec.test;
 import com.sebatec.dao.DAOException;
 import com.sebatec.dao.PersonaDAO;
 import com.sebatec.dao.PersonaDAOFactory;
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Persona;
 /**
  *
@@ -21,8 +22,8 @@ public class PersonaTest {
      * @throws com.sebatec.dao.DAOException
      */
     public static void main(String[] args) throws DAOException{
-      //		crearpersona();
-  //   modificarpersona();
+//      		crearpersona();
+//     modificarpersona();
 //eliminarpersona();
 //leerpersona();
  leertodo();
@@ -43,7 +44,7 @@ public class PersonaTest {
 		 per.setDireccion("dfdgfdg");
 		 per.setTelefono("546546");
 		 per.setEmail("fsdfdfsdsdf");
-		 per.setEstado(true);
+		 per.setEstado(Estados.A);
 		 
 		 daote.crear(per);
 		 
@@ -53,7 +54,7 @@ public class PersonaTest {
 		PersonaDAOFactory fabricate= new PersonaDAOFactory();
 		 PersonaDAO daote= fabricate.metodoDAO();
 		 Persona per= new Persona();
-		 per.setIdPersona(3);
+		 per.setIdPersona(2);
 		 per.setNombre("edeher");
 		 per.setApellido("ponce morales");
 		 per.setDni("46546545");
@@ -62,7 +63,7 @@ public class PersonaTest {
 		 per.setDireccion("dfdgfdg");
 		 per.setTelefono("546546");
 		 per.setEmail("fsdfdfsdsdf");
-		 per.setEstado(true);
+		 per.setEstado(Estados.A);
 		 
 		 daote.modificar(per);
 	    
@@ -99,10 +100,10 @@ public class PersonaTest {
 	 
 	  Persona[] perv=daote.leertodo();
 	  
-	  for(int i=0; i<perv.length;i++)
+	  for(Persona perv1:perv)
 	  {
 	      
-	      System.out.println(" "+perv[i].toString());
+	      System.out.println(" "+perv1.toString());
 	  
 	  }
 	 

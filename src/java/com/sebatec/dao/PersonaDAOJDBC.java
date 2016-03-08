@@ -5,11 +5,13 @@
  */
 package com.sebatec.dao;
 
+import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Persona;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
 /**
@@ -25,85 +27,99 @@ public class PersonaDAOJDBC implements PersonaDAO{
 	    ///coneccion
 	@Override
 	public boolean crear(Persona objper) throws DAOException {
-		 try (Statement stmt = con.createStatement()) 
+		 try 
 	        {
-	            String query = "INSERT INTO persona (nombre,apellido,dni,razon,ruc,direccion,telefono,email,estado) VALUES ('"
-	                   
-	                    +objper.getNombre()+ "','"
-	                    + objper.getApellido()+ "','"
-	                    +objper.getDni()+"','"
-	                    +objper.getRazon()+"','"
-	                    +objper.getRuc()+"','"
-	                    +objper.getDireccion()+"','"
-	                    +objper.getTelefono()+"','"
-	                    +objper.getEmail()+"',"
-	                    +objper.isEstado()+""
-	                    		+ ")";
 	            
+            CallableStatement st=con.prepareCall("{call sp_persona_n(?,?,?,?,?,?,?,?,?)}");
+            
+           
+                            st.setString(1,objper.getNombre());
+                            st.setString(2,objper.getApellido());
+	                    st.setString(3,objper.getDni());
+	                    st.setString(4,objper.getRazon());
+	                    st.setString(5,objper.getRuc());
+	                    st.setString(6,objper.getDireccion());
+	                    st.setString(7,objper.getTelefono());
+	                    st.setString(8,objper.getEmail());
+	                    st.setString(9,objper.getEstado().name());
+	                    		
 	            
-	            System.out.println(query);
-	            if (stmt.executeUpdate(query) != 1) {
-	                throw new DAOException("Error añadiendo tipo");
-	               
-	            }  
-	            
-	            
-	        } catch (SQLException se) {            
-	            //se.printStackTrace();
-	            throw new DAOException("Error añadiendo tipo en DAO", se);
-	            
-	        }   
-	        return true;
+	            if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando persona");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo persona en DAO", se);
+        }
+        return true;
 	}
 
 	@Override
 	public boolean modificar(Persona objper) throws DAOException {
-		  try (Statement stmt = con.createStatement()) {
-	            String query = "UPDATE persona "
-	                    + "SET nombre='"+objper.getNombre()+ "',"
-                        + "apellido='"+ objper.getApellido()+ "',"
-                        + "dni='"+objper.getDni()+"',"
-                        + "razon='"+objper.getRazon()+"',"
-                        + "ruc='"+objper.getRuc()+"',"
-                        + "direccion='"+objper.getDireccion()+"',"
-                        + "telefono='"+objper.getTelefono()+"',"
-                        + "email='"+objper.getEmail()+"',"
-                        + "estado="+objper.isEstado()+" "
+		  try {
+
+            
+            CallableStatement st=con.prepareCall("{call sp_persona_m(?,?,?,?,?,?,?,?,?,?)}");
+            
+	                     st.setInt(1,objper.getIdPersona());
+                             st.setString(2,objper.getNombre());
+                            st.setString(3,objper.getApellido());
+	                    st.setString(4,objper.getDni());
+	                    st.setString(5,objper.getRazon());
+	                    st.setString(6,objper.getRuc());
+	                    st.setString(7,objper.getDireccion());
+	                    st.setString(8,objper.getTelefono());
+	                    st.setString(9,objper.getEmail());
+	                    st.setString(10,objper.getEstado().name());
 	                    
-	                    
-	                    + "WHERE idPersona=" + objper.getIdPersona();
-	            if (stmt.executeUpdate(query) != 1) {
-	                throw new DAOException("Error actualizando datos del tiposervicio");
-	            }
-	        } catch (SQLException se) {
-	            throw new DAOException("Error actualizando datos del tributo en DAO", se);
-	        }    
-	        return true;
+	                if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error modificando persona");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo persona en DAO", se);
+        }
+        return (true);
 	}
 
 	@Override
 	public boolean eliminar(int idPersona) throws DAOException {
-		 try (Statement stmt = con.createStatement()) {
-	            String query = "DELETE FROM persona WHERE idPersona=" + idPersona;
-	            if (stmt.executeUpdate(query) != 1) {
-	                throw new DAOException("Error eliminando persona");
-	            }
-	        } catch (SQLException se) {
-	            //se.printStackTrace();
-	            throw new DAOException("Error eliminando tributo en DAO", se);
-	        } 
-	   return true;
+		  try {
+
+            
+            CallableStatement st=con.prepareCall("{call sp_persona_e(?) }");
+            
+            st.setInt(1,idPersona);
+
+
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error modificando persona");
+            }
+            st.close();
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo persona en DAO", se);
+        }
+        return true;
+   
 	}
 
 	@Override
 	public Persona leerxid(int idPersona) throws DAOException {
-		try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM persona WHERE idPersona=" + idPersona;
-            ResultSet rs = stmt.executeQuery(query);
+            try{
+	CallableStatement st=con.prepareCall("{call sp_persona_bco(?)}");
+            st.setInt(1,idPersona);
+              ResultSet rs = st.executeQuery();
             if (!rs.next()) {
                 return null;
             }
-            
             return (
                     new Persona(
                             rs.getInt("idPersona"),
@@ -115,22 +131,22 @@ public class PersonaDAOJDBC implements PersonaDAO{
                             rs.getString("direccion"),
                             rs.getString("telefono"),
                             rs.getString("email"),
-                            rs.getBoolean("estado"))
+                            Estados.valueOf(rs.getString("estado")))
                     );
         } catch (SQLException se) {
-            //se.printStackTrace();
-            throw new DAOException("Error buscando tributi en DAO", se);
+            
+            throw new DAOException("Error buscando persona en DAO", se);
         }
 	}
 
 	@Override
 	public Persona[] leertodo() throws DAOException {
-		try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM persona";
-            ResultSet rs = stmt.executeQuery(query);            
+		try  {
+            CallableStatement stm=con.prepareCall("{call sp_persona_all}");
+            ResultSet rs=stm.executeQuery();
+                      
             ArrayList<Persona> tribs = new ArrayList<>(); 
             
-           
             while (rs.next()) {
                 tribs.add(
                         
@@ -144,7 +160,7 @@ public class PersonaDAOJDBC implements PersonaDAO{
                                  rs.getString("direccion"),
                                  rs.getString("telefono"),
                                  rs.getString("email"),
-                                 rs.getBoolean("estado"))
+                                 Estados.valueOf(rs.getString("estado")))
                         
                 
                 );
@@ -152,7 +168,8 @@ public class PersonaDAOJDBC implements PersonaDAO{
             return tribs.toArray(new Persona[0]);
         } catch (SQLException se) {
             //se.printStackTrace();
-            throw new DAOException("Error obteniedo todos las persona en DAO: " + se.getMessage(), se);
+            throw new DAOException("Error obteniedo todos los persona en DAO: " 
+                    + se.getMessage(), se);
         }   
 	}
 

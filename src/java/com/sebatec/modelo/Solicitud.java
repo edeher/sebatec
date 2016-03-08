@@ -15,7 +15,7 @@ public class Solicitud
    private int idPersona;
    private String descripcion;
    private String observacion;
-   private boolean estado;
+   private Estados estado;
 
     /**
      * @return the idSolicitud
@@ -60,14 +60,14 @@ public class Solicitud
     }
 
     /**
-     * @return the observaciones
+     * @return the observacion
      */
     public String getObservacion() {
         return observacion;
     }
 
     /**
-     * @param observaciones the observaciones to set
+     * @param observacion the observacion to set
      */
     public void setObservacion(String observacion) {
         this.observacion = observacion;
@@ -76,22 +76,22 @@ public class Solicitud
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
-    public Solicitud(int idSolicitud, int idPersona, String descripcion, String observacions, boolean estado) {
+    public Solicitud(int idSolicitud, int idPersona, String descripcion, String observacion, Estados estado) {
         this.idSolicitud = idSolicitud;
         this.idPersona = idPersona;
         this.descripcion = descripcion;
-        this.observacion= observacion;
+        this.observacion = observacion;
         this.estado = estado;
     }
 
@@ -103,6 +103,7 @@ public class Solicitud
         return "Solicitud{" + "idSolicitud=" + idSolicitud + ", idPersona=" + idPersona + ", descripcion=" + descripcion + ", observacion=" + observacion + ", estado=" + estado + '}';
     }
 
+    
     
     }
     

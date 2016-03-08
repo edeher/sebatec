@@ -19,7 +19,7 @@ public class Persona {
     private String direccion;
     private String telefono;
     private String email;
-    private boolean estado;
+    private Estados estado;
 
     /**
      * @return the idPersona
@@ -150,18 +150,18 @@ public class Persona {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
-    public Persona(int idPersona, String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email, boolean estado) {
+    public Persona(int idPersona, String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email, Estados estado) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -182,14 +182,32 @@ public class Persona {
         return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", razon=" + razon + ", ruc=" + ruc + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + ", estado=" + estado + '}';
     }
 
-    /**
-     * @return the estado
-     */
+    public Persona(String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.razon = razon;
+        this.ruc = ruc;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+    }
+
+    public Persona(String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email, Estados estado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.razon = razon;
+        this.ruc = ruc;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.estado = estado;
+    }
+
     
+
     
-    
-    
-    
-            
+
     
 }

@@ -6,11 +6,14 @@
 package com.sebatec.dao;
 
 import com.sebatec.modelo.Cliente;
-import com.sebatec.modelo.TipoServicio;
+
+import com.sebatec.modelo.Estados;
+import com.sebatec.modelo.Persona;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
 /**
@@ -26,112 +29,154 @@ public class ClienteDAOJDBC implements ClienteDAO{
     }
     ///coneccion
     @Override
-    public boolean crear(Cliente objcli) throws DAOException {
-        try (Statement stmt = con.createStatement()) 
-        {
-            String query = "INSERT INTO cliente (idPersona,estado) VALUES ("
-                   
-                    + objcli.getIdPersona()+ ","
-                    + objcli.isEstado()+ ")";
-            
-            
-            System.out.println(query);
-            if (stmt.executeUpdate(query) != 1) {
-                throw new DAOException("Error añadiendo tipo");
-               
-            }  
-            
-            
-        } catch (SQLException se) {            
-            //se.printStackTrace();
-            throw new DAOException("Error añadiendo tipo en DAO", se);
-            
-        }   
-        return true;}
 
-    @Override
-    public boolean modificar(Cliente objcli) throws DAOException {
-        
-        try (Statement stmt = con.createStatement()) {
-            String query = "UPDATE cliente "
-                    + "SET idPersona='" + objcli.getIdPersona() + "',"
-                    + "estado=" + objcli.isEstado()+" "
-                    + "WHERE idCliente=" + objcli.getIdCliente();
-            if (stmt.executeUpdate(query) != 1) {
-                throw new DAOException("Error actualizando datos del tiposervicio");
-            }
-        } catch (SQLException se) {
-            throw new DAOException("Error actualizando datos del tributo en DAO", se);
-        }    
-        return true;
-    }
+    public boolean crear(Cliente objcli)throws DAOException
+    { 
+        try {
 
-    @Override
-    public boolean eliminar(int idCliente) throws DAOException {  
-        try (Statement stmt = con.createStatement()) {
-            String query = "DELETE FROM cliente WHERE idCliente=" + idCliente;
-            if (stmt.executeUpdate(query) != 1) {
-                throw new DAOException("Error eliminando tributo");
-            }
-        } catch (SQLException se) {
-            //se.printStackTrace();
-            throw new DAOException("Error eliminando tributo en DAO", se);
-        } 
-   return true;}
-
-    @Override
-    public Cliente leerxid(int idCliente) throws DAOException {
-    try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM cliente WHERE idCliente=" + idCliente;
-            ResultSet rs = stmt.executeQuery(query);
-            if (!rs.next()) {
-                return null;
-            }
-            ClienteDAOFactory cli = new ClienteDAOFactory();
-            ClienteDAO daote = cli.metodoDAO();
+            
+            CallableStatement st=con.prepareCall("{call sp_cliente_n(?,?)}");
+            
            
-            return (
-                    new Cliente(
-                            rs.getInt("idCliente"),
-                            
-                            rs.getInt("idPersona"),
-                             
-                            rs.getBoolean("estado"))
-                    );
+            st.setInt(1,objcli.getPersona().getIdPersona());
+            st.setString(2,objcli.getEstado().name());
+            
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando cliente");
+            }
+            st.close();
+            
+            
         } catch (SQLException se) {
-            //se.printStackTrace();
-            throw new DAOException("Error buscando tributi en DAO", se);
+            throw new DAOException("Error añadiendo cliente en DAO", se);
         }
+        return (true);
     
     }
 
     @Override
-    public Cliente[] leertodo() throws DAOException {
-     try (Statement stmt = con.createStatement()) {
-            String query = "SELECT * FROM cliente";
-            ResultSet rs = stmt.executeQuery(query);            
-            ArrayList<Cliente> tribs = new ArrayList<>(); 
-            ClienteDAOFactory cli = new ClienteDAOFactory();
-            ClienteDAO daote = cli.metodoDAO();
+
+public boolean modificar(Cliente objcli) throws DAOException {
+        
+       
+        try {
+
+            
+            CallableStatement st=con.prepareCall("{call sp_cliente_m(?,?,?)}");
+            
+           st.setInt(1,objcli.getIdCliente());
+            st.setInt(2,objcli.getPersona().getIdPersona());
+            st.setString(3,objcli.getEstado().name());
+            
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error modificando cliente");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tipo en DAO", se);
+        }
+        return (true);
+    }
+
+    @Override
+
+   public boolean eliminar(int idCliente) throws DAOException {  
+       
+        try {
+
+            
+            CallableStatement st=con.prepareCall("{call sp_cliente_e(?) }");
+            
+            st.setInt(1,idCliente);
+
+
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error modificando cliente");
+            }
+            st.close();
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tipo en DAO", se);
+        }
+        return true;
+   
+   }
+    @Override
+
+    
+     public Cliente leerxid(int idCliente) throws DAOException {
+    try  {
+        
+            CallableStatement st=con.prepareCall("{call sp_cliente_bco(?)}");
+            st.setInt(1,idCliente);
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
            
-            while (rs.next()) {
-                tribs.add(
-                        
-                        new Cliente(
+            return (
+                    new Cliente(
                             rs.getInt("idCliente"),
+                            new Persona(
                             
-                            rs.getInt("idPersona"),
-                             
-                            rs.getBoolean("estado")
-                        )
-                        
+                                    rs.getString("nombre"),
+                                    rs.getString("apellido"),
+                                    rs.getString("dni"),
+                                     rs.getString("razon"),
+                                    rs.getString("ruc"),
+                                     rs.getString("direccion"),
+                                    rs.getString("telefono"),
+                                    rs.getString("email"),
+                                   Estados.valueOf(rs.getString("estado_persona"))
+                            ),
+                            Estados.valueOf(rs.getString("estado_cliente")))
+                            
+                    );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando cliente en DAO", se);
+        }
+    
+    }
+     
+    @Override
+
+    public Cliente[] leertodo() throws DAOException {
+     try  {
+            CallableStatement stm=con.prepareCall("{call sp_cliente_all}");
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Cliente> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(new Cliente(
+                            rs.getInt("idCliente"),
+                            new Persona(
+                            
+                                    rs.getString("nombre"),
+                                    rs.getString("apellido"),
+                                    rs.getString("dni"),
+                                     rs.getString("razon"),
+                                    rs.getString("ruc"),
+                                     rs.getString("direccion"),
+                                    rs.getString("telefono"),
+                                    rs.getString("email"),
+                           Estados.valueOf(rs.getString("estado_persona"))
+                            ),
+                            Estados.valueOf(rs.getString("estado_cliente")))
                 
                 );
             }
             return tribs.toArray(new Cliente[0]);
         } catch (SQLException se) {
             //se.printStackTrace();
-            throw new DAOException("Error obteniedo todos los tiposervicio en DAO: " + se.getMessage(), se);
+            throw new DAOException("Error obteniedo todos los clientes en DAO: " 
+                    + se.getMessage(), se);
         }   
     
     }
