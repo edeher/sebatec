@@ -29,12 +29,19 @@ public class TecnicoDAOJDBC implements TecnicoDAO{
     public boolean crear(Tecnico objtec) throws DAOException {
         try  
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_tecnico_n(?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_tecnico_n(?,?,?,?,?,?,?,?,?,?)}");
 	                   
-	                    st.setInt(1,objtec.getPersona().getIdPersona());
-	                    st.setString(2, objtec.getProfesion());
-	                     st.setString(3,objtec.getEspecialidad());
-	                    st.setString(4,objtec.getEstado().name());
+	                    st.setString(1,objtec.getNombre());
+                            st.setString(2,objtec.getApellido());
+                            st.setString(3,objtec.getDni());
+                            st.setString(4, objtec.getRazon());
+                            st.setString(5, objtec.getRuc());
+                            st.setString(6, objtec.getDireccion());
+                            st.setString(7, objtec.getTelefono());
+	                    st.setString(8, objtec.getEmail());
+                            st.setString(9, objtec.getProfesion());
+	                     st.setString(10,objtec.getEspecialidad());
+	                    
 	            
 	            
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -54,12 +61,18 @@ public class TecnicoDAOJDBC implements TecnicoDAO{
     public boolean modificar(Tecnico objtec) throws DAOException {
         try  {
 	           
-	           CallableStatement st=con.prepareCall("{call sp_tecnico_m(?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_tecnico_m(?,?,?,?,?,?,?,?,?,?,?)}");
 	                   st.setInt(1,objtec.getIdTecnico());
-	                    st.setInt(2,objtec.getPersona().getIdPersona());
-	                    st.setString(3, objtec.getProfesion());
-	                     st.setString(4,objtec.getEspecialidad());
-	                    st.setString(5,objtec.getEstado().name());
+	                    st.setString(2,objtec.getNombre());
+                            st.setString(3,objtec.getApellido());
+                            st.setString(4,objtec.getDni());
+                            st.setString(5, objtec.getRazon());
+                            st.setString(6, objtec.getRuc());
+                            st.setString(7, objtec.getDireccion());
+                            st.setString(8, objtec.getTelefono());
+	                    st.setString(9, objtec.getEmail());
+                            st.setString(10, objtec.getProfesion());
+	                     st.setString(11,objtec.getEspecialidad());
 	            
 	           if (st.execute()) //devuelve verdadero si fallo
             {
@@ -107,22 +120,20 @@ public class TecnicoDAOJDBC implements TecnicoDAO{
            
             return (
                     new Tecnico(
-                            rs.getInt("idTecnico"),
-                            new Persona(
-                            
-                                    rs.getString("nombre"),
-                                    rs.getString("apellido"),
-                                    rs.getString("dni"),
-                                     rs.getString("razon"),
-                                    rs.getString("ruc"),
-                                     rs.getString("direccion"),
-                                    rs.getString("telefono"),
-                                    rs.getString("email"),
-                                   Estados.valueOf(rs.getString("estado_persona"))
-                            ),
+                             rs.getInt("idTecnico"),
                             rs.getString("profesion"),
-                            rs.getString("especialidad"),
-                            Estados.valueOf(rs.getString("estado_tecnico")))
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("razon"),
+                             rs.getString("ruc"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                             
+                             )
+                           
                      );
         } catch (SQLException se) {
             
@@ -142,22 +153,19 @@ public class TecnicoDAOJDBC implements TecnicoDAO{
                 tribs.add(
                         
                        new Tecnico(
-                            rs.getInt("idTecnico"),
-                            new Persona(
-                            
-                                    rs.getString("nombre"),
-                                    rs.getString("apellido"),
-                                    rs.getString("dni"),
-                                     rs.getString("razon"),
-                                    rs.getString("ruc"),
-                                     rs.getString("direccion"),
-                                    rs.getString("telefono"),
-                                    rs.getString("email"),
-                                   Estados.valueOf(rs.getString("estado_persona"))
-                            ),
+                             rs.getInt("idTecnico"),
                             rs.getString("profesion"),
-                            rs.getString("especialidad"),
-                            Estados.valueOf(rs.getString("estado_tecnico")))
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("razon"),
+                             rs.getString("ruc"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                             
+                             )
                         
                 );
             }

@@ -37,21 +37,21 @@ public class TecnicoTest {
 		 TecnicoDAO daote= fabricate.metodoDAO();
                   
 		Tecnico tec= new Tecnico();
-                 Persona per=new Persona();
-                 per.setIdPersona(1);
-                 per.setNombre("edeher");
-		 per.setApellido("nuevo ponce");
-		 per.setDni("46546545");
-		 per.setRazon("sdffsd");
-		 per.setRuc("6546545");
-		 per.setDireccion("dfdgfdg");
-		 per.setTelefono("546546");
-		 per.setEmail("fsdfdfsdsdf");
-		 per.setEstado(Estados.A);
-		tec.setPersona (per);
+                 
+                 
+                 tec.setNombre("edeher");
+		 tec.setApellido("nuevo ponce");
+		 tec.setDni("46546545");
+		 tec.setRazon("sdffsd");
+		tec.setRuc("6546545");
+		 tec.setDireccion("dfdgfdg");
+		tec.setTelefono("546546");
+		 tec.setEmail("fsdfdfsdsdf");
+		
+		
                 tec.setProfesion("ing. Sistemas ");
                 tec.setEspecialidad("programador");
-                tec.setEstado(Estados.A);
+                
                 
 		 
 		 daote.crear(tec);
@@ -64,22 +64,22 @@ public class TecnicoTest {
 		 TecnicoDAO daote= fabricate.metodoDAO();
                   
 		Tecnico tec= new Tecnico();
-                Persona per=new Persona();
-                 per.setIdPersona(1);
-                 per.setNombre("edeher ");
-		 per.setApellido("nuevo ponce");
-		 per.setDni("46546545");
-		 per.setRazon("sdffsd");
-		 per.setRuc("6546545");
-		 per.setDireccion("dfdgfdg");
-		 per.setTelefono("546546");
-		 per.setEmail("fsdfdfsdsdf");
-		 per.setEstado(Estados.A);
+                
+                
+                 tec.setNombre("eeeeee ");
+		 tec.setApellido("nuevo ponce");
+		tec.setDni("46546545");
+		 tec.setRazon("sdffsd");
+		 tec.setRuc("6546545");
+		 tec.setDireccion("dfdgfdg");
+		 tec.setTelefono("546546");
+		 tec.setEmail("fsdfdfsdsdf");
+		 
                 tec.setIdTecnico(7);
-                tec.setPersona(per);
-                tec.setProfesion("ing. Sistemas y civil tecnico");
+                
+                tec.setProfesion("eeeee");
                 tec.setEspecialidad("programador");
-                tec.setEstado(Estados.A);
+                
                 
 		 
 		 daote.modificar(tec);

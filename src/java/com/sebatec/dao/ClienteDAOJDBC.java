@@ -35,11 +35,17 @@ public class ClienteDAOJDBC implements ClienteDAO{
         try {
 
             
-            CallableStatement st=con.prepareCall("{call sp_cliente_n(?,?)}");
+            CallableStatement st=con.prepareCall("{call sp_cliente_n(?,?,?,?,?,?,?,?)}");
             
            
-            st.setInt(1,objcli.getPersona().getIdPersona());
-            st.setString(2,objcli.getEstado().name());
+                            st.setString(1,objcli.getNombre());
+                            st.setString(2,objcli.getApellido());
+                            st.setString(3,objcli.getDni());
+                            st.setString(4, objcli.getRazon());
+                            st.setString(5, objcli.getRuc());
+                            st.setString(6, objcli.getDireccion());
+                            st.setString(7, objcli.getTelefono());
+	                    st.setString(8, objcli.getEmail());
             
             if (st.execute()) //devuelve verdadero si fallo
             {
@@ -63,11 +69,17 @@ public boolean modificar(Cliente objcli) throws DAOException {
         try {
 
             
-            CallableStatement st=con.prepareCall("{call sp_cliente_m(?,?,?)}");
+            CallableStatement st=con.prepareCall("{call sp_cliente_m(?,?,?,?,?,?,?,?,?)}");
             
            st.setInt(1,objcli.getIdCliente());
-            st.setInt(2,objcli.getPersona().getIdPersona());
-            st.setString(3,objcli.getEstado().name());
+           st.setString(2,objcli.getNombre());
+                            st.setString(3,objcli.getApellido());
+                            st.setString(4,objcli.getDni());
+                            st.setString(5, objcli.getRazon());
+                            st.setString(6, objcli.getRuc());
+                            st.setString(7, objcli.getDireccion());
+                            st.setString(8, objcli.getTelefono());
+	                    st.setString(9, objcli.getEmail());
             
             if (st.execute()) //devuelve verdadero si fallo
             {
@@ -122,19 +134,16 @@ public boolean modificar(Cliente objcli) throws DAOException {
             return (
                     new Cliente(
                             rs.getInt("idCliente"),
-                            new Persona(
+                           
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("razon"),
+                             rs.getString("ruc"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email"))
                             
-                                    rs.getString("nombre"),
-                                    rs.getString("apellido"),
-                                    rs.getString("dni"),
-                                     rs.getString("razon"),
-                                    rs.getString("ruc"),
-                                     rs.getString("direccion"),
-                                    rs.getString("telefono"),
-                                    rs.getString("email"),
-                                   Estados.valueOf(rs.getString("estado_persona"))
-                            ),
-                            Estados.valueOf(rs.getString("estado_cliente")))
                             
                     );
         } catch (SQLException se) {
@@ -156,19 +165,15 @@ public boolean modificar(Cliente objcli) throws DAOException {
             while (rs.next()) {
                 tribs.add(new Cliente(
                             rs.getInt("idCliente"),
-                            new Persona(
-                            
-                                    rs.getString("nombre"),
-                                    rs.getString("apellido"),
-                                    rs.getString("dni"),
-                                     rs.getString("razon"),
-                                    rs.getString("ruc"),
-                                     rs.getString("direccion"),
-                                    rs.getString("telefono"),
-                                    rs.getString("email"),
-                           Estados.valueOf(rs.getString("estado_persona"))
-                            ),
-                            Estados.valueOf(rs.getString("estado_cliente")))
+                           
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("razon"),
+                             rs.getString("ruc"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email"))
                 
                 );
             }

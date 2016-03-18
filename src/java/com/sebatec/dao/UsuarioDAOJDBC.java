@@ -6,6 +6,7 @@
 package com.sebatec.dao;
 
 import com.sebatec.modelo.Estados;
+import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Solicitud;
 import com.sebatec.modelo.Usuario;
 import java.sql.CallableStatement;
@@ -27,16 +28,46 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
 	    }
 	    ///coneccion
     @Override
-    public boolean crear(Usuario objusu) throws DAOException {
+    public boolean crear(Usuario objusu, int idPersona) throws DAOException {
         try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_usuario_n(?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_usuario_n(?,?,?,?)}");
 	                   
-	                    st.setInt(1,objusu.getIdTecnico());
+	                    st.setInt(1,idPersona);
 	                    st.setString(2,objusu.getUsuario());
 	                    st.setString(3,objusu.getPassword());
                             st.setString(4,objusu.getTipo());
-	                    st.setString(5,objusu.getEstado().name());
+	                   
+	           if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando usuario");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo usuario en DAO", se);
+        }
+        return true;
+    }
+@Override
+    public boolean crear(Usuario objusu, Persona objper) throws DAOException {
+        try 
+	        {
+	           CallableStatement st=con.prepareCall("{call sp_usuario_n1(?,?,?,?,?,?,?,?,?,?,?)}");
+	                   
+	                     st.setString(1,objper.getNombre());
+                            st.setString(2,objper.getApellido());
+                            st.setString(3,objper.getDni());
+                            st.setString(4, objper.getRazon());
+                            st.setString(5, objper.getRuc());
+                            st.setString(6, objper.getDireccion());
+                            st.setString(7, objper.getTelefono());
+	                    st.setString(8, objper.getEmail());
+	                    st.setString(9,objusu.getUsuario());
+	                    st.setString(10,objusu.getPassword());
+                            st.setString(11,objusu.getTipo());
+	                    
 	            
 	            
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -51,18 +82,22 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
         }
         return true;
     }
-
     @Override
-    public boolean modificar(Usuario objusu) throws DAOException {
+    public boolean modificar(Usuario objusu,Persona objper) throws DAOException {
        try  {
-	              CallableStatement st=con.prepareCall("{call sp_usuario_m(?,?,?,?,?,?)}");
-	                   
-                            st.setInt(1,objusu.getIdUsuario());
-	                    st.setInt(2,objusu.getIdTecnico());
-	                    st.setString(3,objusu.getUsuario());
-	                    st.setString(4,objusu.getPassword());
-                            st.setString(5,objusu.getTipo());
-	                    st.setString(6,objusu.getEstado().name());
+	              CallableStatement st=con.prepareCall("{call sp_usuario_m(?,?,?,?,?,?,?,?,?,?,?,?)}");
+	                   st.setInt(1,objusu.getIdUsuario());
+                            st.setString(2,objper.getNombre());
+                            st.setString(3,objper.getApellido());
+                            st.setString(4,objper.getDni());
+                            st.setString(5, objper.getRazon());
+                            st.setString(6, objper.getRuc());
+                            st.setString(7, objper.getDireccion());
+                            st.setString(8, objper.getTelefono());
+	                    st.setString(9, objper.getEmail());
+	                    st.setString(10,objusu.getUsuario());
+	                    st.setString(11,objusu.getPassword());
+                             st.setString(12,objusu.getTipo());
 	            
 	            
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -111,11 +146,19 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
             return (
                     new Usuario(
                             rs.getInt("idUsuario"),
-                            rs.getInt("idTecnico"),
+                           new Persona(
+                                   rs.getString("nombre"),
+                                    rs.getString("apellido"),
+                                    rs.getString("dni"),
+                                     rs.getString("razon"),
+                                    rs.getString("ruc"),
+                                     rs.getString("direccion"),
+                                    rs.getString("telefono"),
+                                    rs.getString("email")                           
+                           ),
                             rs.getString("usuario"),
                             rs.getString("clave"),
-                            rs.getString("tipo"),
-                            Estados.valueOf(rs.getString("estado")))
+                            rs.getString("tipo"))
                    );
         } catch (SQLException se) {
             
@@ -137,11 +180,19 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
                         
                       new Usuario(
                             rs.getInt("idUsuario"),
-                            rs.getInt("idTecnico"),
+                             new Persona(
+                                   rs.getString("nombre"),
+                                    rs.getString("apellido"),
+                                    rs.getString("dni"),
+                                     rs.getString("razon"),
+                                    rs.getString("ruc"),
+                                     rs.getString("direccion"),
+                                    rs.getString("telefono"),
+                                    rs.getString("email")                           
+                           ),
                             rs.getString("usuario"),
                             rs.getString("clave"),
-                            rs.getString("tipo"),
-                            Estados.valueOf(rs.getString("estado")))
+                            rs.getString("tipo"))
                         
                 
                   );

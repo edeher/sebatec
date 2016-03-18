@@ -9,12 +9,24 @@ package com.sebatec.modelo;
  *
  * @author Mi Laptop
  */
-public class Cliente {
+public class Cliente extends Persona{
     
     private int idCliente;
-    private Persona persona;
-    private Estados estado;
 
+    public Cliente(int idCliente, int idPersona, String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email, Estados estado) {
+        super(idPersona, nombre, apellido, dni, razon, ruc, direccion, telefono, email, estado);
+        this.idCliente = idCliente;
+    }
+
+    public Cliente(int idCliente, String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email) {
+        super(nombre, apellido, dni, razon, ruc, direccion, telefono, email);
+        this.idCliente = idCliente;
+    }
+
+    public Cliente() {
+    }
+
+    
     /**
      * @return the idCliente
      */
@@ -29,48 +41,12 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    /**
-     * @return the persona
-     */
-    public Persona getPersona() {
-        return persona;
-    }
-
-    /**
-     * @param persona the persona to set
-     */
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
-    /**
-     * @return the estado
-     */
-    public Estados getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public Cliente(int idCliente, Persona persona, Estados estado) {
-        this.idCliente = idCliente;
-        this.persona = persona;
-        this.estado = estado;
-    }
-
-    public Cliente() {
-    }
-
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", persona=" + persona + ", estado=" + estado + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", razon=" + razon + ", ruc=" + ruc + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email  +'}';
+ 
     }
-
     
+   
     
 }

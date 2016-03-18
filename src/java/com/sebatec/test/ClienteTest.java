@@ -6,10 +6,10 @@
 package com.sebatec.test;
 
 import com.sebatec.dao.ClienteDAO;
-import com.sebatec.dao.PersonaDAO;
+
 import com.sebatec.dao.ClienteDAOFactory;
 import com.sebatec.dao.DAOException;
-import com.sebatec.dao.PersonaDAOFactory;
+
 import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Cliente;
 import com.sebatec.modelo.Estados;
@@ -39,23 +39,22 @@ public class ClienteTest {
         ClienteDAO daote= fabricate.metodoDAO();
        
         
-        Persona per=new Persona();
+        
        
         Cliente cli= new Cliente();
-                 per.setIdPersona(1);
-                 per.setNombre("edeher");
-		 per.setApellido("nuevo ponce");
-		 per.setDni("46546545");
-		 per.setRazon("sdffsd");
-		 per.setRuc("6546545");
-		 per.setDireccion("dfdgfdg");
-		 per.setTelefono("546546");
-		 per.setEmail("fsdfdfsdsdf");
-		 per.setEstado(Estados.A);
+                
+                 cli.setNombre("edeher cliente");
+		cli.setApellido("nuevo ponce");
+		 cli.setDni("46546545");
+		cli.setRazon("sdffsd");
+		 cli.setRuc("6546545");
+		 cli.setDireccion("dfdgfdg");
+		 cli.setTelefono("546546");
+		cli.setEmail("fsdfdfsdsdf");
+		 
 		 
         
-        cli.setPersona(per);
-        cli.setEstado(Estados.A);
+      
         daote.crear(cli);
         
     }
@@ -65,23 +64,19 @@ public class ClienteTest {
          ClienteDAO daote= fabricate.metodoDAO();
          
         
-        Persona per=new Persona();
-        Cliente cli=new Cliente();
-                per.setIdPersona(1);
-                 per.setNombre("edeher");
-		 per.setApellido("modificado");
-		 per.setDni("modificado");
-		 per.setRazon("modificado");
-		 per.setRuc("modificado");
-		 per.setDireccion("modificado");
-		 per.setTelefono("modificado");
-		 per.setEmail("modificado");
-		 per.setEstado(Estados.A);
-		 
        
-        cli.setPersona(per);
-        cli.setEstado(Estados.A);
-        cli.setIdCliente(20);
+        Cliente cli=new Cliente();
+               
+                 cli.setNombre("edeher modifficando");
+		 cli.setApellido("modificado");
+		 cli.setDni("43056714");
+		 cli.setRazon("modificado");
+		 cli.setRuc("modificado");
+		 cli.setDireccion("modificado");
+		 cli.setTelefono("modificado");
+		 cli.setEmail("modificado");
+		 
+        cli.setIdCliente(1);
         daote.modificar(cli);
            
     }

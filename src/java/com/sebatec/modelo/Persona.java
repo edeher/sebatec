@@ -10,16 +10,16 @@ package com.sebatec.modelo;
  * @author Mi Laptop
  */
 public class Persona {
-    private int idPersona;
-    private String nombre;
-    private String apellido;
-    private String dni;
-    private String razon;
-    private String ruc;
-    private String direccion;
-    private String telefono;
-    private String email;
-    private Estados estado;
+    protected int idPersona;
+    protected String nombre;
+    protected String apellido;
+    protected String dni;
+    protected String razon;
+    protected String ruc;
+    protected String direccion;
+    protected String telefono;
+    protected String email;
+    protected Estados estado;
 
     /**
      * @return the idPersona
@@ -179,7 +179,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", razon=" + razon + ", ruc=" + ruc + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + ", estado=" + estado + '}';
+        return "Persona{" + " nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", razon=" + razon + ", ruc=" + ruc + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email  + '}';
     }
 
     public Persona(String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email) {

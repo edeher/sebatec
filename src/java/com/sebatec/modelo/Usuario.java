@@ -11,12 +11,11 @@ package com.sebatec.modelo;
  */
 public class Usuario {
    private int  idUsuario;
-   private int idTecnico;
+   private Persona persona;
    private String usuario;
    private String password;
    private String tipo;
-   private Estados estado;
-
+   
     /**
      * @return the idUsuario
      */
@@ -32,17 +31,17 @@ public class Usuario {
     }
 
     /**
-     * @return the idTecnico
+     * @return the persona
      */
-    public int getIdTecnico() {
-        return idTecnico;
+    public Persona getPersona() {
+        return persona;
     }
 
     /**
-     * @param idTecnico the idTecnico to set
+     * @param persona the persona to set
      */
-    public void setIdTecnico(int idTecnico) {
-        this.idTecnico = idTecnico;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     /**
@@ -90,34 +89,26 @@ public class Usuario {
     /**
      * @return the estado
      */
-    public Estados getEstado() {
-        return estado;
+    
+
+    
+    public Usuario() {
     }
 
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public Usuario(int idUsuario, int idTecnico, String usuario, String password, String tipo, Estados estado) {
+    public Usuario(int idUsuario, Persona persona, String usuario, String password, String tipo) {
         this.idUsuario = idUsuario;
-        this.idTecnico = idTecnico;
+        this.persona = persona;
         this.usuario = usuario;
         this.password = password;
         this.tipo = tipo;
-        this.estado = estado;
-    }
-
-    public Usuario() {
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", idTecnico=" + idTecnico + ", usuario=" + usuario + ", password=" + password + ", tipo=" + tipo + ", estado=" + estado + '}';
+        return "Usuario{" + "idUsuario=" + idUsuario + ", persona=" + persona + ", usuario=" + usuario + ", password=" + password + ", tipo=" + tipo  + '}';
     }
 
    
+    
     
 }

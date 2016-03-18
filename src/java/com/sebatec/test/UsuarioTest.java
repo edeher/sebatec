@@ -10,6 +10,7 @@ import com.sebatec.dao.DAOException;
 import com.sebatec.dao.UsuarioDAO;
 import com.sebatec.dao.UsuarioDAOFactory;
 import com.sebatec.modelo.Estados;
+import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Usuario;
 
 
@@ -22,6 +23,7 @@ public class UsuarioTest {
     public static void main(String[] args)throws DAOException {
         // TODO code application logic here
 //        crearusuario();
+//        crearusuario2();
 //        modificarusuario();
       //  eliminarusuario();
 //        leerusuario();
@@ -34,13 +36,38 @@ public class UsuarioTest {
 		 UsuarioDAO daote= fabricate.metodoDAO();
                   
 		Usuario usu= new Usuario();
-		usu.setIdTecnico(1);
+		int codigo=1;
                 usu.setUsuario("edeher");
                 usu.setPassword("1234");
                 usu.setTipo("assd");
-                usu.setEstado(Estados.A);           
+                        
 		 
-		 daote.crear(usu);
+		 daote.crear(usu,codigo);
+		   
+		
+		}
+    public static void crearusuario2() throws DAOException
+	{
+		 UsuarioDAOFactory fabricate= new UsuarioDAOFactory();
+		 UsuarioDAO daote= fabricate.metodoDAO();
+                  
+		Usuario usu= new Usuario();
+                Persona per=new Persona();
+                per.setNombre("yoni");
+                per.setApellido("farfan");
+                per.setDni("43056714");
+                per.setRazon("softponce");
+                per.setRuc("10430567140");
+                per.setDireccion("aca");
+                per.setTelefono("942154007");
+                per.setEmail("edercin@gmail.com");
+		
+                usu.setUsuario("edeher");
+                usu.setPassword("1234");
+                usu.setTipo("assd");
+                        
+		 
+		 daote.crear(usu,per);
 		   
 		
 		}
@@ -50,14 +77,21 @@ public class UsuarioTest {
 		 UsuarioDAO daote= fabricate.metodoDAO();
                   
 		Usuario usu= new Usuario();
-                usu.setIdUsuario(7);
-                usu.setIdTecnico(1);
-                usu.setUsuario("edeher ponce");
+                Persona per=new Persona();
+                usu.setIdUsuario(2);
+                per.setNombre("xxxxxx");
+                per.setApellido("farfan");
+                per.setDni("43056714");
+                per.setRazon("softponce");
+                per.setRuc("10430567140");
+                per.setDireccion("aca");
+                per.setTelefono("942154007");
+                per.setEmail("edercin@gmail.com");
+		usu.setUsuario("xxxxxx");
                 usu.setPassword("1234");
                 usu.setTipo("assd");
-                usu.setEstado(Estados.A);
                 		 
-		 daote.modificar(usu);
+		 daote.modificar(usu,per);
                 
 	    
 	}
