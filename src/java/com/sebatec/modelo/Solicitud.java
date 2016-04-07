@@ -15,7 +15,7 @@ public class Solicitud
    private int idPersona;
    private String descripcion;
    private String observacion;
-   private Estados estado;
+   private EstadoSo estado;
 
     /**
      * @return the idSolicitud
@@ -76,18 +76,18 @@ public class Solicitud
     /**
      * @return the estado
      */
-    public Estados getEstado() {
+    public EstadoSo getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(Estados estado) {
+    public void setEstado(EstadoSo estado) {
         this.estado = estado;
     }
 
-    public Solicitud(int idSolicitud, int idPersona, String descripcion, String observacion, Estados estado) {
+    public Solicitud(int idSolicitud, int idPersona, String descripcion, String observacion, EstadoSo estado) {
         this.idSolicitud = idSolicitud;
         this.idPersona = idPersona;
         this.descripcion = descripcion;

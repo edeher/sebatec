@@ -8,6 +8,7 @@ package com.sebatec.test;
 import com.sebatec.dao.DAOException;
 import com.sebatec.dao.ServicioDAO;
 import com.sebatec.dao.ServicioDAOFactory;
+import com.sebatec.modelo.EstadoSev;
 import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Servicio;
 
@@ -55,7 +56,7 @@ public class ServicioTest {
                 servi.setFechaEmimsion(fec);
                 servi.setFechaGestion(fec1);
                 servi.setMonto(25.25);
-                servi.setEstado(Estados.A);
+                servi.setEstado(EstadoSev.A);
                 
 		 
 		 daote.crear(servi);
@@ -83,7 +84,7 @@ public class ServicioTest {
                  servi.setFechaEmimsion(fec);
                  servi.setFechaGestion(fec1);
                  servi.setMonto(25.25);
-                 servi.setEstado(Estados.A);
+                 servi.setEstado(EstadoSev.C);
 		 
 		 daote.modificar(servi);
                  } 

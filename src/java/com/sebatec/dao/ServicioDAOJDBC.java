@@ -5,6 +5,7 @@
  */
 package com.sebatec.dao;
 
+import com.sebatec.modelo.EstadoSev;
 import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Servicio;
@@ -114,7 +115,7 @@ private final Connection con;
                             rs.getDate("fechaEmision"),
                             rs.getDate("fechaGestion"),
                             rs.getDouble("monto"),
-                            Estados.valueOf(rs.getString("estado"))
+                            EstadoSev.valueOf(rs.getString("estado"))
                     )
                      );
         } catch (SQLException se) {
@@ -142,7 +143,7 @@ private final Connection con;
                             rs.getDate("fechaEmision"),
                             rs.getDate("fechaGestion"),
                             rs.getDouble("monto"),
-                            Estados.valueOf(rs.getString("estado"))
+                            EstadoSev.valueOf(rs.getString("estado"))
                     )
                         
                 

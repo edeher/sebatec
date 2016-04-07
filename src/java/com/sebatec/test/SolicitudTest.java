@@ -9,6 +9,7 @@ import com.sebatec.dao.DAOException;
 
 import com.sebatec.dao.SolicitudDAO;
 import com.sebatec.dao.SolicitudDAOFactory;
+import com.sebatec.modelo.EstadoSo;
 import com.sebatec.modelo.Estados;
 
 import com.sebatec.modelo.Solicitud;
@@ -41,7 +42,7 @@ public class SolicitudTest {
 		soli.setIdPersona(1);
                 soli.setDescripcion("aca pes ");
                 soli.setObservacion("ddfgdfg");
-                soli.setEstado(Estados.A);
+                soli.setEstado(EstadoSo.A);
                 
 		 
 		 daote.crear(soli);
@@ -58,7 +59,7 @@ public class SolicitudTest {
 		soli.setIdPersona(1);
                 soli.setDescripcion("aca pes pes");
                 soli.setObservacion("ddfgdfg");
-                soli.setEstado(Estados.A);
+                soli.setEstado(EstadoSo.A);
 		 
 		 daote.modificar(soli);
                  

@@ -20,7 +20,7 @@ public class Servicio {
     private Date fechaEmimsion;
     private Date fechaGestion;
     private double monto;
-    private Estados estado;
+    private EstadoSev estado;
 
     /**
      * @return the idServicio
@@ -123,18 +123,18 @@ public class Servicio {
     /**
      * @return the estado
      */
-    public Estados getEstado() {
+    public EstadoSev getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(Estados estado) {
+    public void setEstado(EstadoSev estado) {
         this.estado = estado;
     }
 
-    public Servicio(int idServicio, int idSolicitud, int idTecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, Estados estado) {
+    public Servicio(int idServicio, int idSolicitud, int idTecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, EstadoSev estado) {
         this.idServicio = idServicio;
         this.idSolicitud = idSolicitud;
         this.idTecnico = idTecnico;

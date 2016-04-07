@@ -7,6 +7,7 @@ package com.sebatec.dao;
 
 
 import com.sebatec.modelo.Cliente;
+import com.sebatec.modelo.EstadoSo;
 import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Solicitud;
 import java.sql.CallableStatement;
@@ -110,7 +111,7 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                             rs.getInt("idPersona"),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
-                            Estados.valueOf(rs.getString("estado")))
+                            EstadoSo.valueOf(rs.getString("estado")))
                     );
         } catch (SQLException se) {
             
@@ -135,7 +136,7 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                             rs.getInt("idPersona"),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
-                            Estados.valueOf(rs.getString("estado"))
+                            EstadoSo.valueOf(rs.getString("estado"))
                         
                         )
                 );
