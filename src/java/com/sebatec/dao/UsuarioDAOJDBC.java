@@ -54,16 +54,16 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
     public boolean crear(Usuario objusu, Persona objper) throws DAOException {
         try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_usuario_n1(?,?,?,?,?,?,?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_usuario_n1(?,?,?,?,?,?,?,?,?)}");
 	                   
 	                     st.setString(1,objper.getNombre());
                             st.setString(2,objper.getApellido());
                             st.setString(3,objper.getDni());
-                            st.setString(4, objper.getRazon());
-                            st.setString(5, objper.getRuc());
                             st.setString(6, objper.getDireccion());
                             st.setString(7, objper.getTelefono());
 	                    st.setString(8, objper.getEmail());
+                            
+                            
 	                    st.setString(9,objusu.getUsuario());
 	                    st.setString(10,objusu.getPassword());
                             st.setString(11,objusu.getTipo());
@@ -85,16 +85,15 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
     @Override
     public boolean modificar(Usuario objusu,Persona objper) throws DAOException {
        try  {
-	              CallableStatement st=con.prepareCall("{call sp_usuario_m(?,?,?,?,?,?,?,?,?,?,?,?)}");
+	              CallableStatement st=con.prepareCall("{call sp_usuario_m(?,?,?,?,?,?,?,?,?,?)}");
 	                   st.setInt(1,objusu.getIdUsuario());
                             st.setString(2,objper.getNombre());
                             st.setString(3,objper.getApellido());
                             st.setString(4,objper.getDni());
-                            st.setString(5, objper.getRazon());
-                            st.setString(6, objper.getRuc());
                             st.setString(7, objper.getDireccion());
                             st.setString(8, objper.getTelefono());
 	                    st.setString(9, objper.getEmail());
+                            
 	                    st.setString(10,objusu.getUsuario());
 	                    st.setString(11,objusu.getPassword());
                              st.setString(12,objusu.getTipo());
@@ -150,8 +149,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
                                    rs.getString("nombre"),
                                     rs.getString("apellido"),
                                     rs.getString("dni"),
-                                     rs.getString("razon"),
-                                    rs.getString("ruc"),
+                                    
                                      rs.getString("direccion"),
                                     rs.getString("telefono"),
                                     rs.getString("email")                           
@@ -184,8 +182,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
                                    rs.getString("nombre"),
                                     rs.getString("apellido"),
                                     rs.getString("dni"),
-                                     rs.getString("razon"),
-                                    rs.getString("ruc"),
+                                   
                                      rs.getString("direccion"),
                                     rs.getString("telefono"),
                                     rs.getString("email")                           

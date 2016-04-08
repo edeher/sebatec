@@ -41,16 +41,17 @@ public class ClienteTest {
         
         
        
-        Cliente cli= new Cliente();
+           Cliente cli= new Cliente();
                 
                  cli.setNombre("edeher cliente");
 		cli.setApellido("nuevo ponce");
 		 cli.setDni("46546545");
-		cli.setRazon("sdffsd");
-		 cli.setRuc("6546545");
-		 cli.setDireccion("dfdgfdg");
+		cli.setDireccion("dfdgfdg");
 		 cli.setTelefono("546546");
 		cli.setEmail("fsdfdfsdsdf");
+                
+                cli.setRazonSocial("sdffsd");
+		 cli.setRuc("6546545");
 		 
 		 
         
@@ -67,16 +68,18 @@ public class ClienteTest {
        
         Cliente cli=new Cliente();
                
-                 cli.setNombre("edeher modifficando");
+                 cli.setNombre("edeher modifficandoxxxxxxx");
 		 cli.setApellido("modificado");
 		 cli.setDni("43056714");
-		 cli.setRazon("modificado");
-		 cli.setRuc("modificado");
 		 cli.setDireccion("modificado");
 		 cli.setTelefono("modificado");
 		 cli.setEmail("modificado");
+                 
+                 cli.setRuc("12345678978");
+                 cli.setRazonSocial("modificadoxxxxxx");
 		 
-        cli.setIdCliente(1);
+		 
+        cli.setIdCliente(22);
         daote.modificar(cli);
            
     }

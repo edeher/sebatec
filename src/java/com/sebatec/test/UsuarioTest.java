@@ -56,8 +56,7 @@ public class UsuarioTest {
                 per.setNombre("yoni");
                 per.setApellido("farfan");
                 per.setDni("43056714");
-                per.setRazon("softponce");
-                per.setRuc("10430567140");
+              
                 per.setDireccion("aca");
                 per.setTelefono("942154007");
                 per.setEmail("edercin@gmail.com");
@@ -82,8 +81,7 @@ public class UsuarioTest {
                 per.setNombre("xxxxxx");
                 per.setApellido("farfan");
                 per.setDni("43056714");
-                per.setRazon("softponce");
-                per.setRuc("10430567140");
+               
                 per.setDireccion("aca");
                 per.setTelefono("942154007");
                 per.setEmail("edercin@gmail.com");

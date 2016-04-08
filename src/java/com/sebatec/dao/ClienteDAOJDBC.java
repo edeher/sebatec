@@ -41,11 +41,13 @@ public class ClienteDAOJDBC implements ClienteDAO{
                             st.setString(1,objcli.getNombre());
                             st.setString(2,objcli.getApellido());
                             st.setString(3,objcli.getDni());
-                            st.setString(4, objcli.getRazon());
-                            st.setString(5, objcli.getRuc());
-                            st.setString(6, objcli.getDireccion());
-                            st.setString(7, objcli.getTelefono());
-	                    st.setString(8, objcli.getEmail());
+                            st.setString(4, objcli.getDireccion());
+                            st.setString(5, objcli.getTelefono());
+	                    st.setString(6, objcli.getEmail());
+                            
+                            st.setString(7, objcli.getRuc());
+                            st.setString(8, objcli.getRazonSocial());
+                            
             
             if (st.execute()) //devuelve verdadero si fallo
             {
@@ -71,15 +73,17 @@ public boolean modificar(Cliente objcli) throws DAOException {
             
             CallableStatement st=con.prepareCall("{call sp_cliente_m(?,?,?,?,?,?,?,?,?)}");
             
-           st.setInt(1,objcli.getIdCliente());
-           st.setString(2,objcli.getNombre());
+                            st.setInt(1,objcli.getIdCliente());
+                            st.setString(2,objcli.getNombre());
                             st.setString(3,objcli.getApellido());
                             st.setString(4,objcli.getDni());
-                            st.setString(5, objcli.getRazon());
-                            st.setString(6, objcli.getRuc());
-                            st.setString(7, objcli.getDireccion());
-                            st.setString(8, objcli.getTelefono());
-	                    st.setString(9, objcli.getEmail());
+                            st.setString(5, objcli.getDireccion());
+                            st.setString(6, objcli.getTelefono());
+	                    st.setString(7, objcli.getEmail());
+                            
+                            st.setString(8, objcli.getRuc());
+                            st.setString(9, objcli.getRazonSocial());
+                            
             
             if (st.execute()) //devuelve verdadero si fallo
             {
@@ -133,16 +137,17 @@ public boolean modificar(Cliente objcli) throws DAOException {
            
             return (
                     new Cliente(
-                            rs.getInt("idCliente"),
-                           
+                              rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
                              rs.getString("nombre"),
                              rs.getString("apellido"),
                              rs.getString("dni"),
-                             rs.getString("razon"),
-                             rs.getString("ruc"),
                              rs.getString("direccion"),
                              rs.getString("telefono"),
                              rs.getString("email"))
+                             
                             
                             
                     );
@@ -163,19 +168,22 @@ public boolean modificar(Cliente objcli) throws DAOException {
             ArrayList<Cliente> tribs = new ArrayList<>(); 
             
             while (rs.next()) {
-                tribs.add(new Cliente(
-                            rs.getInt("idCliente"),
-                           
+                tribs.add(
+                         new Cliente(
+                              rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
                              rs.getString("nombre"),
                              rs.getString("apellido"),
                              rs.getString("dni"),
-                             rs.getString("razon"),
-                             rs.getString("ruc"),
                              rs.getString("direccion"),
                              rs.getString("telefono"),
                              rs.getString("email"))
-                
-                );
+                             
+                            
+                            
+                    );
             }
             return tribs.toArray(new Cliente[0]);
         } catch (SQLException se) {

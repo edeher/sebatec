@@ -35,11 +35,12 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                             st.setString(1,objsoli.getCliente().getNombre());
                             st.setString(2,objsoli.getCliente().getApellido());
                             st.setString(3,objsoli.getCliente().getDni());
-                            st.setString(4, objsoli.getCliente().getRazon());
-                            st.setString(5, objsoli.getCliente().getRuc());
-                            st.setString(6, objsoli.getCliente().getDireccion());
-                            st.setString(7, objsoli.getCliente().getTelefono());
-	                    st.setString(8, objsoli.getCliente().getEmail());
+                            st.setString(4, objsoli.getCliente().getDireccion());
+                            st.setString(5, objsoli.getCliente().getTelefono());
+	                    st.setString(6, objsoli.getCliente().getEmail());
+                            
+                             st.setString(7, objsoli.getCliente().getRuc());
+                             st.setString(8, objsoli.getCliente().getRazonSocial());
 	                   
 	                     st.setString(9 ,objsoli.getDescripcion());
 	                     st.setString(10,objsoli.getObservacion());

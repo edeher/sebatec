@@ -42,8 +42,7 @@ public class TecnicoTest {
                  tec.setNombre("edeher");
 		 tec.setApellido("nuevo ponce");
 		 tec.setDni("46546545");
-		 tec.setRazon("sdffsd");
-		tec.setRuc("6546545");
+		
 		 tec.setDireccion("dfdgfdg");
 		tec.setTelefono("546546");
 		 tec.setEmail("fsdfdfsdsdf");
@@ -67,10 +66,9 @@ public class TecnicoTest {
                 
                 
                  tec.setNombre("eeeeee ");
-		 tec.setApellido("nuevo ponce");
+		 tec.setApellido("nuevo ponceccccccc");
 		tec.setDni("46546545");
-		 tec.setRazon("sdffsd");
-		 tec.setRuc("6546545");
+		 
 		 tec.setDireccion("dfdgfdg");
 		 tec.setTelefono("546546");
 		 tec.setEmail("fsdfdfsdsdf");
@@ -78,7 +76,7 @@ public class TecnicoTest {
                 tec.setIdTecnico(7);
                 
                 tec.setProfesion("eeeee");
-                tec.setEspecialidad("programador");
+                tec.setEspecialidad("programadorccccccc");
                 
                 
 		 

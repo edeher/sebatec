@@ -14,8 +14,15 @@ public class Tecnico extends Persona{
     private String profesion;
     private String especialidad;
 
-    public Tecnico(int idTecnico, String profesion, String especialidad, String nombre, String apellido, String dni, String razon, String ruc, String direccion, String telefono, String email) {
-        super(nombre, apellido, dni, razon, ruc, direccion, telefono, email);
+    public Tecnico(int idTecnico, String profesion, String especialidad, int idPersona, String nombre, String apellido, String dni, String direccion, String telefono, String email) {
+        super(idPersona, nombre, apellido, dni, direccion, telefono, email);
+        this.idTecnico = idTecnico;
+        this.profesion = profesion;
+        this.especialidad = especialidad;
+    }
+
+    public Tecnico(int idTecnico, String profesion, String especialidad, String nombre, String apellido, String dni, String direccion, String telefono, String email) {
+        super(nombre, apellido, dni, direccion, telefono, email);
         this.idTecnico = idTecnico;
         this.profesion = profesion;
         this.especialidad = especialidad;
@@ -24,15 +31,16 @@ public class Tecnico extends Persona{
     public Tecnico() {
     }
 
-    public Tecnico(int idTecnico) {
-        this.idTecnico = idTecnico;
+    @Override
+    public String toString() {
+        return "Tecnico{" + "idTecnico=" + idTecnico + ", profesion=" + profesion + ", especialidad=" + especialidad + ", nombre=" + nombre + '}';
     }
+
+  
 
     public Tecnico(String nombre) {
         super(nombre);
     }
-    
-    
 
     public int getIdTecnico() {
         return idTecnico;
@@ -58,5 +66,5 @@ public class Tecnico extends Persona{
         this.especialidad = especialidad;
     }
 
-      
+    
 }

@@ -46,7 +46,7 @@ public class SolicitudTest {
                 objCli.setNombre("pancracio");
                 objCli.setApellido("telesforo");
                 objCli.setDni("45632112");
-                objCli.setRazon("softponce");
+                objCli.setRazonSocial("softponce");
                 objCli.setRuc("12345678978");
                 objCli.setDireccion("mi casita");
                 objCli.setTelefono("942154007");
@@ -69,9 +69,9 @@ public class SolicitudTest {
 		 
 		 Solicitud soli= new Solicitud();
                  Cliente objCli= new Cliente();
-                 objCli.setIdCliente(10);
+                 objCli.setIdCliente(14);
                  
-                soli.setIdSolicitud(10);
+                soli.setIdSolicitud(14);
 		soli.setCliente(objCli);
                 soli.setDescripcion("aca pes pes");
                 soli.setObservacion("ddfgdfg");
