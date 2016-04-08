@@ -28,12 +28,12 @@ public class SolicitudTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-//        crearsolicitud();
+        crearsolicitud();
 //        modificarsolicitud();
       //  eliminarsolicitud();
 //        leersolicitud();
 //        leertodo();
-        leertodo2();
+//        leertodo2();
     }
     public static void crearsolicitud() throws DAOException
 	{
@@ -41,18 +41,20 @@ public class SolicitudTest {
 		 SolicitudDAO daote= fabricate.metodoDAO();
                 
 		Solicitud soli= new Solicitud();
-		Cliente objCli=new Cliente();
+		
                 
-                objCli.setNombre("pancracio");
-                objCli.setApellido("telesforo");
-                objCli.setDni("45632112");
-                objCli.setRazonSocial("softponce");
-                objCli.setRuc("12345678978");
-                objCli.setDireccion("mi casita");
-                objCli.setTelefono("942154007");
-                objCli.setEmail("vpisistemas@unia.pe");
+                soli.getCliente().setNombre("pancracio");
+                 soli.getCliente().setApellido("telesforo");
+                soli.getCliente().setDni("45632112");
+                 soli.getCliente().setRazonSocial("softponce");
+                 soli.getCliente().setRuc("12345678978");
+                 soli.getCliente().setDireccion("mi casita");
+                 soli.getCliente().setTelefono("942154007");
+                 soli.getCliente().setEmail("vpisistemas@unia.pe");
                 
-                soli.setCliente(objCli);
+                
+                
+               
                 soli.setDescripcion("aca pes ");
                 soli.setObservacion("ddfgdfg");
                 

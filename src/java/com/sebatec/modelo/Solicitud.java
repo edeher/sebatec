@@ -33,6 +33,7 @@ public class Solicitud
     }
     
     public Solicitud() {
+        this.cliente=new Cliente();
     }
 
     public Solicitud(int idSolicitud) {

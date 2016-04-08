@@ -35,7 +35,16 @@
               <![endif]-->
 
     </head>
-
+    <script language="javaScript">
+ function accionar(f)
+        {
+                    
+                 f.action = "SolicitudController?accion=clienteSolicitud";
+                    f.target = "";
+                    f.submit();
+                    return true;
+            }
+    </script>
     <body class="nav-sm" style="background:#F7F7F7;">
         <div class="">  
             <div class="container">
@@ -171,20 +180,20 @@
                                     </div>
                                     <div class="x_content">
                                         <br />
-                                        <form id="form-solicitud" data-parsley-validate class="form-horizontal form-label-left">
+                                        <form name="f" method="post" id="form-solicitud" data-parsley-validate class="form-horizontal form-label-left">
 
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">DNI <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="dni" required="required" class="form-control col-md-7 col-xs-12">
+                                                    <input type="text" id="dni" name="dni"required="required" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombres">Nombres <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="nombres" required="required" class="form-control col-md-7 col-xs-12">
+                                                    <input type="text" name="nombres" id="nombres" required="required" class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -229,7 +238,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea data-parsley-id="3564" id="message" required="required"
+                                                    <textarea data-parsley-id="3564" id="descripcion" required="required"
                                                               class="form-control" name="message" data-parsley-trigger="keyup"
                                                               data-parsley-minlength="20" data-parsley-maxlength="100"
                                                               data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." 
@@ -240,8 +249,8 @@
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                    <button type="submit" class="btn btn-primary">Limpiar</button>
-                                                    <button type="submit" class="btn btn-success">Enviar</button>
+                                                    <button type="" class="btn btn-primary">Limpiar</button>
+                                                    <input type="button" value="Grabar6 " class="btn btn-success" onclick="accionar(this.form)">
                                                 </div>
                                             </div>
 
