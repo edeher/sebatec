@@ -32,65 +32,49 @@ public class ServicioTest {
 //        crearservicio();
 //        modificarservicio();
 //        eliminarservicio();
-//        leerservicio();
-        leertodo();
+        leerservicio();
+//        leertodo();
     }
     public static void crearservicio() throws DAOException
 	{
 		 ServicioDAOFactory fabricate= new ServicioDAOFactory();
 		 ServicioDAO daote= fabricate.metodoDAO();
-                  try {
-		          SimpleDateFormat fe=new SimpleDateFormat("dd-MM-yyyy");
                   
-                                Date fec = new Date(fe.parse("20-02-2016").getTime());
-                                Date fec1 = new Date(fe.parse("30-02-2016").getTime());
-                          
 
-                          
+                    int idSolicitud=1;
+                    int idTecnico=1;
                           
                  
 		Servicio servi= new Servicio();
-		servi.setIdSolicitud(1);
-                servi.setIdTecnico(1);
+		
                 servi.setDescripcion("se arreglo por eso ja");
-                servi.setFechaEmimsion(fec);
-                servi.setFechaGestion(fec1);
+                
                 servi.setMonto(25.25);
-                servi.setEstado(EstadoSev.A);
+               
                 
 		 
-		 daote.crear(servi);
-		   } 
-                          catch (ParseException e) {
-			System.out.println("Fecha invalida: " + e.getMessage());
-                        }
+		 daote.crear(servi,idSolicitud,idTecnico);
+		  
 		
 		}
 	public static void modificarservicio()throws DAOException
 	{
 		ServicioDAOFactory fabricate= new ServicioDAOFactory();
 		 ServicioDAO daote= fabricate.metodoDAO();
-		   try {
-                  SimpleDateFormat fe=new SimpleDateFormat("dd-MM-yyyy");
-                  
-                                Date fec = new Date(fe.parse("20-02-2016").getTime());
-                                Date fec1 = new Date(fe.parse("30-02-2016").getTime());
+		  
                  
+                      int idSolicitud=1;
+                    int idTecnico=1;            
 		 Servicio servi= new Servicio();
                  servi.setIdServicio(9);
-		 servi.setIdSolicitud(1);
-                 servi.setIdTecnico(1);
+		 
                  servi.setDescripcion("se arreglo porrr ");
-                 servi.setFechaEmimsion(fec);
-                 servi.setFechaGestion(fec1);
+                 
                  servi.setMonto(25.25);
                  servi.setEstado(EstadoSev.C);
 		 
-		 daote.modificar(servi);
-                 } 
-                          catch (ParseException e) {
-			System.out.println("Fecha invalida: " + e.getMessage());
-                        }
+		 daote.modificar(servi,idSolicitud,idTecnico);
+                
 	    
 	}
 	public static void eliminarservicio()throws DAOException

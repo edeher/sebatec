@@ -9,6 +9,7 @@ import com.sebatec.dao.DAOException;
 
 import com.sebatec.dao.SolicitudDAO;
 import com.sebatec.dao.SolicitudDAOFactory;
+import com.sebatec.modelo.Cliente;
 import com.sebatec.modelo.EstadoSo;
 import com.sebatec.modelo.Estados;
 
@@ -39,10 +40,21 @@ public class SolicitudTest {
 		 SolicitudDAO daote= fabricate.metodoDAO();
                 
 		Solicitud soli= new Solicitud();
-		soli.setIdPersona(1);
+		Cliente objCli=new Cliente();
+                
+                objCli.setNombre("pancracio");
+                objCli.setApellido("telesforo");
+                objCli.setDni("45632112");
+                objCli.setRazon("softponce");
+                objCli.setRuc("12345678978");
+                objCli.setDireccion("mi casita");
+                objCli.setTelefono("942154007");
+                objCli.setEmail("vpisistemas@unia.pe");
+                
+                soli.setCliente(objCli);
                 soli.setDescripcion("aca pes ");
                 soli.setObservacion("ddfgdfg");
-                soli.setEstado(EstadoSo.A);
+                
                 
 		 
 		 daote.crear(soli);
@@ -55,11 +67,14 @@ public class SolicitudTest {
 		 SolicitudDAO daote= fabricate.metodoDAO();
 		 
 		 Solicitud soli= new Solicitud();
-                 soli.setIdSolicitud(10);
-		soli.setIdPersona(1);
+                 Cliente objCli= new Cliente();
+                 objCli.setIdCliente(10);
+                 
+                soli.setIdSolicitud(10);
+		soli.setCliente(objCli);
                 soli.setDescripcion("aca pes pes");
                 soli.setObservacion("ddfgdfg");
-                soli.setEstado(EstadoSo.A);
+               
 		 
 		 daote.modificar(soli);
                  

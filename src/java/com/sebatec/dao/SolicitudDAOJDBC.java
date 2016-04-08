@@ -30,12 +30,20 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
     public boolean crear(Solicitud objsoli) throws DAOException {
         try  
 	        {
-	          CallableStatement st=con.prepareCall("{call sp_solicitud_n(?,?,?,?)}");
+	          CallableStatement st=con.prepareCall("{call sp_solicitud_n(?,?,?,?,?,?,?,?,?,?)}");
 	                   
-	                    st.setInt(1,objsoli.getIdPersona());
-	                     st.setString(2 ,objsoli.getDescripcion());
-	                     st.setString(3,objsoli.getObservacion());
-	                     st.setString(4,objsoli.getEstado().name());
+                            st.setString(1,objsoli.getCliente().getNombre());
+                            st.setString(2,objsoli.getCliente().getApellido());
+                            st.setString(3,objsoli.getCliente().getDni());
+                            st.setString(4, objsoli.getCliente().getRazon());
+                            st.setString(5, objsoli.getCliente().getRuc());
+                            st.setString(6, objsoli.getCliente().getDireccion());
+                            st.setString(7, objsoli.getCliente().getTelefono());
+	                    st.setString(8, objsoli.getCliente().getEmail());
+	                   
+	                     st.setString(9 ,objsoli.getDescripcion());
+	                     st.setString(10,objsoli.getObservacion());
+	                     
 	            
 	            if (st.execute()) //devuelve verdadero si fallo
             {
@@ -55,12 +63,12 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
     public boolean modificar(Solicitud objsoli) throws DAOException {
         try  {
 	            
-	          CallableStatement st=con.prepareCall("{call sp_solicitud_m(?,?,?,?,?)}");
+	          CallableStatement st=con.prepareCall("{call sp_solicitud_m(?,?,?,?)}");
 	                   st.setInt(1,objsoli.getIdSolicitud());
-	                    st.setInt(2,objsoli.getIdPersona());
+	                    st.setInt(2,objsoli.getCliente().getIdCliente());
 	                     st.setString(3 ,objsoli.getDescripcion());
 	                     st.setString(4,objsoli.getObservacion());
-	                     st.setString(5,objsoli.getEstado().name());
+	                    
 	            
 	            if (st.execute()) //devuelve verdadero si fallo
             {
@@ -108,10 +116,12 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             return (
                     new Solicitud(
                             rs.getInt("idSolicitud"),
-                            rs.getInt("idPersona"),
+                            new Cliente(
+                            rs.getString("nombre")),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
-                            EstadoSo.valueOf(rs.getString("estado")))
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            )
                     );
         } catch (SQLException se) {
             
@@ -133,13 +143,13 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                         
                         new Solicitud(
                             rs.getInt("idSolicitud"),
-                            rs.getInt("idPersona"),
+                            new Cliente(
+                            rs.getString("nombre")),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
-                        
-                        )
-                );
+                            )
+                    );
             }
             return tribs.toArray(new Solicitud[0]);
         } catch (SQLException se) {
@@ -147,6 +157,32 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             throw new DAOException("Error obteniedo todos las solicitudes en DAO: " 
                     + se.getMessage(), se);
         }   
+    }
+
+    @Override
+    public boolean crear(Solicitud objsoli, int idCliente) throws DAOException {
+     try  
+	        {
+	          CallableStatement st=con.prepareCall("{call sp_solicitud_n(?,?,?,?)}");
+	                   
+                            st.setInt(1, idCliente);
+	                   
+                             
+	                     st.setString(2 ,objsoli.getDescripcion());
+	                     st.setString(3,objsoli.getObservacion());
+	                     st.setString(4,objsoli.getEstado().name());
+	            
+	            if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando solicitud");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo solicitud en DAO", se);
+        }
+        return true;     
     }
     
 }

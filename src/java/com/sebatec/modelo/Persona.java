@@ -205,9 +205,9 @@ public class Persona {
         this.estado = estado;
     }
 
-    
-
-    
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
 
     
 }

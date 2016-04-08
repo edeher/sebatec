@@ -14,146 +14,108 @@ import java.util.Date;
  */
 public class Servicio {
     private int idServicio;
-    private int idSolicitud;
-    private int idTecnico;
+    private Solicitud solicitud;
+    private Tecnico tecnico;
     private String descripcion;
     private Date fechaEmimsion;
     private Date fechaGestion;
     private double monto;
     private EstadoSev estado;
 
-    /**
-     * @return the idServicio
-     */
-    public int getIdServicio() {
-        return idServicio;
-    }
-
-    /**
-     * @param idServicio the idServicio to set
-     */
-    public void setIdServicio(int idServicio) {
+    public Servicio(int idServicio, Solicitud solicitud, Tecnico tecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto) {
         this.idServicio = idServicio;
-    }
-
-    /**
-     * @return the idSolicitud
-     */
-    public int getIdSolicitud() {
-        return idSolicitud;
-    }
-
-    /**
-     * @param idSolicitud the idSolicitud to set
-     */
-    public void setIdSolicitud(int idSolicitud) {
-        this.idSolicitud = idSolicitud;
-    }
-
-    /**
-     * @return the idTecnico
-     */
-    public int getIdTecnico() {
-        return idTecnico;
-    }
-
-    /**
-     * @param idTecnico the idTecnico to set
-     */
-    public void setIdTecnico(int idTecnico) {
-        this.idTecnico = idTecnico;
-    }
-
-    /**
-     * @return the descripcion
-     */
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    /**
-     * @param descripcion the descripcion to set
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    /**
-     * @return the fechaEmimsion
-     */
-    public Date getFechaEmimsion() {
-        return fechaEmimsion;
-    }
-
-    /**
-     * @param fechaEmimsion the fechaEmimsion to set
-     */
-    public void setFechaEmimsion(Date fechaEmimsion) {
-        this.fechaEmimsion = fechaEmimsion;
-    }
-
-    /**
-     * @return the fechaGestion
-     */
-    public Date getFechaGestion() {
-        return fechaGestion;
-    }
-
-    /**
-     * @param fechaGestion the fechaGestion to set
-     */
-    public void setFechaGestion(Date fechaGestion) {
-        this.fechaGestion = fechaGestion;
-    }
-
-    /**
-     * @return the monto
-     */
-    public double getMonto() {
-        return monto;
-    }
-
-    /**
-     * @param monto the monto to set
-     */
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    /**
-     * @return the estado
-     */
-    public EstadoSev getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(EstadoSev estado) {
-        this.estado = estado;
-    }
-
-    public Servicio(int idServicio, int idSolicitud, int idTecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, EstadoSev estado) {
-        this.idServicio = idServicio;
-        this.idSolicitud = idSolicitud;
-        this.idTecnico = idTecnico;
+        this.solicitud = solicitud;
+        this.tecnico = tecnico;
         this.descripcion = descripcion;
         this.fechaEmimsion = fechaEmimsion;
         this.fechaGestion = fechaGestion;
         this.monto = monto;
-        this.estado = estado;
     }
 
     public Servicio() {
     }
 
-    @Override
-    public String toString() {
-        return "Servicio{" + "idServicio=" + idServicio + ", idSolicitud=" + idSolicitud + ", idTecnico=" + idTecnico + ", descripcion=" + descripcion + ", fechaEmimsion=" + fechaEmimsion + ", fechaGestion=" + fechaGestion + ", monto=" + monto + ", estado=" + estado + '}';
+    public Servicio(int idServicio, Solicitud solicitud, Tecnico tecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, EstadoSev estado) {
+        this.idServicio = idServicio;
+        this.solicitud = solicitud;
+        this.tecnico = tecnico;
+        this.descripcion = descripcion;
+        this.fechaEmimsion = fechaEmimsion;
+        this.fechaGestion = fechaGestion;
+        this.monto = monto;
+        this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "Servicio{" + "idServicio=" + idServicio + ", solicitud=" + solicitud + ", tecnico=" + tecnico + ", descripcion=" + descripcion + ", fechaEmimsion=" + fechaEmimsion + ", fechaGestion=" + fechaGestion + ", monto=" + monto + ", estado=" + estado.getNom() + '}';
+    }
     
     
+
+    public int getIdServicio() {
+        return idServicio;
+    }
+
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
+    }
+
+    public Solicitud getSolicitud() {
+        return solicitud;
+    }
+
+    public void setSolicitud(Solicitud solicitud) {
+        this.solicitud = solicitud;
+    }
+
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Date getFechaEmimsion() {
+        return fechaEmimsion;
+    }
+
+    public void setFechaEmimsion(Date fechaEmimsion) {
+        this.fechaEmimsion = fechaEmimsion;
+    }
+
+    public Date getFechaGestion() {
+        return fechaGestion;
+    }
+
+    public void setFechaGestion(Date fechaGestion) {
+        this.fechaGestion = fechaGestion;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
+    public EstadoSev getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoSev estado) {
+        this.estado = estado;
+    }
+
     
 }

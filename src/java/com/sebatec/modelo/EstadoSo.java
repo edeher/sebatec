@@ -10,7 +10,7 @@ package com.sebatec.modelo;
  * @author Mi Laptop
  */
 public enum EstadoSo {
-     A("Atendido"),
+    A("Atendido"),
     N("No Atendido"),
     E("En espera");
     

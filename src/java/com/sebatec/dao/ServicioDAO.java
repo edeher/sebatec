@@ -13,8 +13,8 @@ import com.sebatec.modelo.Servicio;
  * @author Mi Laptop
  */
 public interface ServicioDAO {
-    public boolean crear( Servicio objservi) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(Servicio objservi)throws DAOException;
+    public boolean crear( Servicio objservi,int idSolicitud, int idTecnico) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean modificar(Servicio objservi,int idSolicitud, int idTecnico)throws DAOException;
     public boolean eliminar(int idServicio)throws DAOException;
     public Servicio leerxid(int idServicio)throws DAOException;
     public Servicio[] leertodo()throws DAOException;

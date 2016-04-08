@@ -9,6 +9,8 @@ import com.sebatec.modelo.EstadoSev;
 import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Servicio;
+import com.sebatec.modelo.Solicitud;
+import com.sebatec.modelo.Tecnico;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,17 +29,16 @@ private final Connection con;
 	    }
 	    ///coneccion
     @Override
-    public boolean crear(Servicio objservi) throws DAOException {
+    public boolean crear(Servicio objservi,int idSolicitud,int idTecnico) throws DAOException {
         try 
 	        {
-                            CallableStatement st=con.prepareCall("{call sp_servicio_n(?,?,?,?,?,?,?)}");
-                            st.setInt(1,objservi.getIdSolicitud());
-	                    st.setInt(2,objservi.getIdTecnico());
+                            CallableStatement st=con.prepareCall("{call sp_servicio_n(?,?,?,?)}");
+                            st.setInt(1,idSolicitud);
+	                    st.setInt(2, idTecnico);
 	                    st.setString(3,objservi.getDescripcion());
-	                    st.setDate(4,new java.sql.Date(objservi.getFechaEmimsion().getTime()));
-	                    st.setDate(5,new java.sql.Date(objservi.getFechaGestion().getTime()));
-	                    st.setDouble(6,objservi.getMonto());
-	                    st.setString(7,objservi.getEstado().name());
+	                    
+	                    st.setDouble(4,objservi.getMonto());
+	                    
 	            
 	            if (st.execute()) //devuelve verdadero si fallo
             {
@@ -53,17 +54,16 @@ private final Connection con;
     }
 
     @Override
-    public boolean modificar(Servicio objservi) throws DAOException {
+    public boolean modificar(Servicio objservi,int idSolicitud, int idTecnico) throws DAOException {
        try  {
-	           CallableStatement st=con.prepareCall("{call sp_servicio_m(?,?,?,?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_servicio_m(?,?,?,?,?,?)}");
 	                    st.setInt(1,objservi.getIdServicio());
-                            st.setInt(2,objservi.getIdSolicitud());
-	                    st.setInt(3,objservi.getIdTecnico());
+                            st.setInt(2,idSolicitud);
+	                    st.setInt(3,idTecnico);
 	                    st.setString(4,objservi.getDescripcion());
-	                    st.setDate(5,new java.sql.Date(objservi.getFechaEmimsion().getTime()));
-	                    st.setDate(6,new java.sql.Date(objservi.getFechaGestion().getTime()));
-	                    st.setDouble(7,objservi.getMonto());
-	                    st.setString(8,objservi.getEstado().name());
+	                   
+	                    st.setDouble(5,objservi.getMonto());
+	                    st.setString(6,objservi.getEstado().name());
 	            if (st.execute()) //devuelve verdadero si fallo
             {
                 throw new DAOException("Error modificando servicio");
@@ -109,8 +109,10 @@ private final Connection con;
             return (
                     new Servicio(
                             rs.getInt("idServicio"),
-                            rs.getInt("idSolicitud"),
-                            rs.getInt("idTecnico"),
+                            new Solicitud(
+                            rs.getInt("idSolicitud")),
+                            new Tecnico(
+                            rs.getString("nombre")),
                             rs.getString("descripcion"),
                             rs.getDate("fechaEmision"),
                             rs.getDate("fechaGestion"),
@@ -135,20 +137,19 @@ private final Connection con;
             while (rs.next()) {
                 tribs.add(
                         
-                        new Servicio(
+                         new Servicio(
                             rs.getInt("idServicio"),
-                            rs.getInt("idSolicitud"),
-                            rs.getInt("idTecnico"),
+                            new Solicitud(
+                            rs.getInt("idSolicitud")),
+                            new Tecnico(
+                            rs.getString("nombre")),
                             rs.getString("descripcion"),
                             rs.getDate("fechaEmision"),
                             rs.getDate("fechaGestion"),
                             rs.getDouble("monto"),
                             EstadoSev.valueOf(rs.getString("estado"))
                     )
-                        
-                
-                  
-                );
+                     );
             }
             return tribs.toArray(new Servicio[0]);
         } catch (SQLException se) {
