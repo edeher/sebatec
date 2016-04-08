@@ -21,4 +21,5 @@ public interface SolicitudDAO {
     public boolean eliminar(int idSolicitud)throws DAOException;
     public Solicitud leerxid(int idSolicitud)throws DAOException;
     public Solicitud[] leertodo()throws DAOException;
+    public Solicitud[] leertodo(int idCliente)throws DAOException;
 }

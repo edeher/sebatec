@@ -32,7 +32,8 @@ public class SolicitudTest {
 //        modificarsolicitud();
       //  eliminarsolicitud();
 //        leersolicitud();
-        leertodo();
+//        leertodo();
+        leertodo2();
     }
     public static void crearsolicitud() throws DAOException
 	{
@@ -111,6 +112,23 @@ public class SolicitudTest {
 		 SolicitudDAO daote= fabricate.metodoDAO();
 	 
 	  Solicitud[] solv=daote.leertodo();
+	  
+	  for(Solicitud solv1:solv )
+	  {
+	      
+	      System.out.println(" "+solv1.toString());
+	  
+	  }
+	 
+	 
+	    
+	}
+        public static void leertodo2()throws DAOException
+	{
+		SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
+		 SolicitudDAO daote= fabricate.metodoDAO();
+	 
+	  Solicitud[] solv=daote.leertodo(1);
 	  
 	  for(Solicitud solv1:solv )
 	  {
