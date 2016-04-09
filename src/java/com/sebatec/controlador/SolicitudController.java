@@ -5,9 +5,8 @@
  */
 package com.sebatec.controlador;
 
-import com.sebatec.dao.DAOException;
-import com.sebatec.dao.SolicitudDAO;
-import com.sebatec.dao.SolicitudDAOFactory;
+
+import com.sebatec.dao.*;
 import com.sebatec.modelo.Solicitud;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SolicitudController extends HttpServlet {
 
 private Solicitud objSo; 
-private SolicitudDAOFactory fabricate;//= new SolicitudDAOFactory();
-private SolicitudDAO daote;//= fabricate.metodoDAO();
+private SolicitudDAOFactory fabricate;
+private SolicitudDAO daote;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,20 +40,18 @@ private SolicitudDAO daote;//= fabricate.metodoDAO();
             throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
-        
-        switch(accion)
-        {
+        fabricate=new SolicitudDAOFactory();
+        System.out.println(".....1");
+        daote=fabricate.metodoDAO();
+        System.out.println(".....2");
+        switch(accion){
             case "clienteSolicitud": 
-                clienteSolictud(request,response);
-                
+                clienteSolicitud(request,response);                
                 break;
             case "idClienteSolicitud":
                 idclienteSolicitud(request,response);
-                break;
-            
-        }
-        
-        //response.sendRedirect("http://www.google.com.pe");
+                break;            
+        }        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -104,7 +101,7 @@ private SolicitudDAO daote;//= fabricate.metodoDAO();
         return "Short description";
     }// </editor-fold>
 
-    private void clienteSolictud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+    private void clienteSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
        
         objSo = new Solicitud();
 

@@ -8,13 +8,11 @@ package com.sebatec.dao;
 
 import com.sebatec.modelo.Cliente;
 import com.sebatec.modelo.EstadoSo;
-import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Solicitud;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 /**
  *
