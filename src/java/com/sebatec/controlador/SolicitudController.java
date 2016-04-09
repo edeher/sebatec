@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sebatec.controlador;
 
 
-import com.sebatec.dao.*;
+import com.sebatec.dao.DAOException;
+import com.sebatec.dao.SolicitudDAO;
+import com.sebatec.dao.SolicitudDAOFactory;
 import com.sebatec.modelo.Solicitud;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -26,33 +23,23 @@ public class SolicitudController extends HttpServlet {
 
 private Solicitud objSo; 
 private SolicitudDAOFactory fabricate;
-private SolicitudDAO daote;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, DAOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String accion=request.getParameter("accion");
-        fabricate=new SolicitudDAOFactory();
-        System.out.println(".....1");
-        daote=fabricate.metodoDAO();
-        System.out.println(".....2");
-        switch(accion){
-            case "clienteSolicitud": 
-                clienteSolicitud(request,response);                
-                break;
-            case "idClienteSolicitud":
-                idclienteSolicitud(request,response);
-                break;            
-        }        
-    }
+private SolicitudDAO daote;    
+
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException, DAOException {
+    response.setContentType("text/html;charset=UTF-8");
+    String accion=request.getParameter("accion");
+    fabricate=new SolicitudDAOFactory();
+    daote=fabricate.metodoDAO();
+    switch(accion){
+        case "clienteSolicitud": 
+            clienteSolicitud(request,response);                
+            break;
+        case "idClienteSolicitud":
+            idclienteSolicitud(request,response);
+            break;            
+    }        
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -102,9 +89,7 @@ private SolicitudDAO daote;
     }// </editor-fold>
 
     private void clienteSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
-       
         objSo = new Solicitud();
-
         objSo.getCliente().setNombre(request.getParameter("nombres"));
         objSo.getCliente().setApellido(request.getParameter("apellidos"));
         objSo.getCliente().setDni(request.getParameter("dni"));
@@ -113,15 +98,12 @@ private SolicitudDAO daote;
         objSo.getCliente().setDireccion(request.getParameter("direccion"));
         objSo.getCliente().setTelefono(request.getParameter("telefono"));
         objSo.getCliente().setEmail(request.getParameter("email"));
-
         objSo.setDescripcion(request.getParameter("descripcion"));
-
-        daote.crear(objSo);
-    
+        daote.crear(objSo);    
     }
 
     private void idclienteSolicitud(HttpServletRequest request, HttpServletResponse response) throws IOException {
-         response.sendRedirect("http://www.google.com.pe");
+         
     }
 
 }

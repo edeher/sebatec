@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Gentallela Alela! | </title>
+        <title>SEBATEC! | </title>
 
         <!-- Bootstrap core CSS -->
 
@@ -42,9 +42,11 @@
                     <div class="top_nav">
                         <div class="nav_menu">
                             <nav class="" role="navigation">
-                                <div class="nav toggle">
-                                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                                </div>
+                                <ul class="nav navbar-nav" style="width:30%">
+                                    <li class="pull-right">
+                                        <a><spam>SEBATEC</spam></a>
+                                    </li>
+                                </ul>
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="">
                                         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -67,7 +69,6 @@
                                             </li>
                                         </ul>
                                     </li>
-
                                     <li role="presentation" class="dropdown">
                                         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                             <i class="fa fa-envelope-o"></i>
@@ -140,14 +141,13 @@
                                             </li>
                                         </ul>
                                     </li>
-
                                 </ul>
                             </nav>
                         </div>
                     </div> 
-                    <div style="min-height: 264px;" class="right_col" role="main">
+                    <div class="right_col" role="main" style="min-height: 264px;" >
                         <div class="">
-                            <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="pull-right col-md-6 col-sm-6 col-xs-6">
                                 <div class="x_panel">
                                     <div class="x_title">
                                         <h2>Solicitud de Servicio</h2>
@@ -226,13 +226,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción </label>
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción <span class="required">*</span>
+                                                </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea data-parsley-id="3564" id="descripcion" required="required"
-                                                              class="form-control" name="message" data-parsley-trigger="keyup"
-                                                              data-parsley-minlength="20" data-parsley-maxlength="100"
-                                                              data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." 
-                                                              data-parsley-validation-threshold="10">                                                  
+                                                    <textarea id="descripcion" required="required"
+                                                              class="form-control col-md-7 col-xs-12" name="descripcion" >                                                  
                                                     </textarea>
                                                 </div>
                                             </div>
@@ -253,10 +251,7 @@
                 </div>
             </div>    
         </div>
-        <!-- form validation -->
-        <script type="text/javascript" src="js/parsley/parsley.min.js"></script>
-        <!-- textarea resize -->
-        <script src="js/textarea/autosize.min.js"></script>        
+        <script src="js/bootstrap.min.js"></script>
         
     </body>
 </html>
