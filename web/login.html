@@ -34,17 +34,7 @@
                 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
               <![endif]-->
 
-    </head>
-    <script language="javaScript">
- function accionar(f)
-        {
-                    
-                 f.action = "SolicitudController?accion=clienteSolicitud";
-                    f.target = "";
-                    f.submit();
-                    return true;
-            }
-    </script>
+    </head>    
     <body class="nav-sm" style="background:#F7F7F7;">
         <div class="">  
             <div class="container">
@@ -180,7 +170,7 @@
                                     </div>
                                     <div class="x_content">
                                         <br />
-                                        <form name="f" method="post" id="form-solicitud" data-parsley-validate class="form-horizontal form-label-left">
+                                        <form action="SolicitudController?accion=clienteSolicitud" method="post" id="form-solicitud" data-parsley-validate class="form-horizontal form-label-left">
 
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dni">DNI <span class="required">*</span>
@@ -249,8 +239,8 @@
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                    <button type="" class="btn btn-primary">Limpiar</button>
-                                                    <input type="button" value="Grabar6 " class="btn btn-success" onclick="accionar(this.form)">
+                                                    <input type="reset" class="btn btn-primary" name="btn-limpiar" value="Limpiar">
+                                                    <input type="submit" class="btn btn-success" name="btn-enviar" value="Guardar">
                                                 </div>
                                             </div>
 
@@ -266,9 +256,7 @@
         <!-- form validation -->
         <script type="text/javascript" src="js/parsley/parsley.min.js"></script>
         <!-- textarea resize -->
-        <script src="js/textarea/autosize.min.js"></script>
-        <script>
-          autosize($('.resizable_textarea'));
-        </script>
+        <script src="js/textarea/autosize.min.js"></script>        
+        
     </body>
 </html>

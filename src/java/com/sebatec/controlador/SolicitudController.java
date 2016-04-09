@@ -8,10 +8,8 @@ package com.sebatec.controlador;
 import com.sebatec.dao.DAOException;
 import com.sebatec.dao.SolicitudDAO;
 import com.sebatec.dao.SolicitudDAOFactory;
-import com.sebatec.modelo.Cliente;
 import com.sebatec.modelo.Solicitud;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -28,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SolicitudController extends HttpServlet {
 
 private Solicitud objSo; 
-SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
-SolicitudDAO daote= fabricate.metodoDAO();
+private SolicitudDAOFactory fabricate;//= new SolicitudDAOFactory();
+private SolicitudDAO daote;//= fabricate.metodoDAO();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,6 +53,8 @@ SolicitudDAO daote= fabricate.metodoDAO();
                 break;
             
         }
+        
+        //response.sendRedirect("http://www.google.com.pe");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -123,8 +123,8 @@ SolicitudDAO daote= fabricate.metodoDAO();
     
     }
 
-    private void idclienteSolicitud(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void idclienteSolicitud(HttpServletRequest request, HttpServletResponse response) throws IOException {
+         response.sendRedirect("http://www.google.com.pe");
     }
 
 }
