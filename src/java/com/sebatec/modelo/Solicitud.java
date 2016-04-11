@@ -31,11 +31,11 @@ public class Solicitud
         this.observacion = observacion;
         this.estado = estado;
     }
-    
+    /////////////////crear cliente
     public Solicitud() {
         this.cliente=new Cliente();
     }
-
+////////////////////////////////////////////
     public Solicitud(int idSolicitud) {
         this.idSolicitud = idSolicitud;
     }

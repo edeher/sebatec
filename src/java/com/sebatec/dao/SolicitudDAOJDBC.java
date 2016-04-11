@@ -162,14 +162,14 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
     public boolean crear(Solicitud objsoli, int idCliente) throws DAOException {
      try  
 	        {
-	          CallableStatement st=con.prepareCall("{call sp_solicitud_n(?,?,?,?)}");
+	          CallableStatement st=con.prepareCall("{call sp_solicitud_n(?,?,?)}");
 	                   
                             st.setInt(1, idCliente);
 	                   
                              
 	                     st.setString(2 ,objsoli.getDescripcion());
 	                     st.setString(3,objsoli.getObservacion());
-	                     st.setString(4,objsoli.getEstado().name());
+	                     
 	            
 	            if (st.execute()) //devuelve verdadero si fallo
             {
@@ -213,6 +213,132 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             throw new DAOException("Error obteniedo todos las solicitudes en DAO: " 
                     + se.getMessage(), se);
         }   
+    }
+
+    @Override
+    public Solicitud crearLeer(Solicitud objsoli) throws DAOException {
+       try  {
+           CallableStatement st=con.prepareCall("{call sp_solicitud_n3(?,?,?,?,?,?,?,?,?)}");
+            st.setString(1,objsoli.getCliente().getNombre());
+            st.setString(2,objsoli.getCliente().getApellido());
+            st.setString(3,objsoli.getCliente().getDni());
+            st.setString(4, objsoli.getCliente().getDireccion());
+            st.setString(5, objsoli.getCliente().getTelefono());
+	    st.setString(6, objsoli.getCliente().getEmail());
+                            
+            st.setString(7, objsoli.getCliente().getRuc());
+            st.setString(8, objsoli.getCliente().getRazonSocial());
+	                   
+	    st.setString(9 ,objsoli.getDescripcion());
+	    
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Solicitud(
+                            rs.getInt("idSolicitud"),
+                            new Cliente(
+                            rs.getString("nombre")),
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            )
+                    );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error CREANDO Y buscando solicitud en DAO", se);
+        }
+    }
+
+    @Override
+    public Solicitud crearLeer(Solicitud objsoli, int idCliente) throws DAOException {
+        try  {
+            CallableStatement st = con.prepareCall("{call sp_solicitud_n4(?,?)}");
+            st.setInt(1, idCliente);
+            st.setString(2, objsoli.getDescripcion());
+            
+           
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Solicitud(
+                            rs.getInt("idSolicitud"),
+                            new Cliente(
+                            rs.getString("nombre")),
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            )
+                    );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error CREANDO Y buscando solicitud en DAO", se);
+        }
+    }
+
+    @Override
+    public Solicitud modificarLeer(Solicitud objsoli) throws DAOException {
+         try  {
+            CallableStatement st = con.prepareCall("{call sp_solicitud_m2(?,?,?,?)}");
+            st.setInt(1, objsoli.getIdSolicitud());
+            st.setInt(2, objsoli.getCliente().getIdCliente());
+            st.setString(3, objsoli.getDescripcion());
+            st.setString(4, objsoli.getObservacion());
+            
+           
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Solicitud(
+                            rs.getInt("idSolicitud"),
+                            new Cliente(
+                            rs.getString("nombre")),
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            )
+                    );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error modificando Y buscando solicitud en DAO", se);
+        } 
+    }
+
+    @Override
+    public Solicitud modificarLeer(int idSolicitud) throws DAOException {
+        try  {
+            CallableStatement st = con.prepareCall("{call sp_solicitud_m3(?)}");
+            st.setInt(1, idSolicitud);
+            
+            
+           
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Solicitud(
+                            rs.getInt("idSolicitud"),
+                            new Cliente(
+                            rs.getString("nombre")),
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            )
+                    );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error modificando Y buscando solicitud en DAO", se);
+        } 
     }
     
 }

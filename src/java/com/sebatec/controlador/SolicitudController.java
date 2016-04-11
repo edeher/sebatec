@@ -31,13 +31,25 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     String accion=request.getParameter("accion");
     fabricate=new SolicitudDAOFactory();
     daote=fabricate.metodoDAO();
-    switch(accion){
-        case "clienteSolicitud": 
-            clienteSolicitud(request,response);                
+    switch (accion) {
+        case "crearSolicitudConCliente":
+            crearSolicitudConCliente(request, response);
             break;
-        case "idClienteSolicitud":
-            idclienteSolicitud(request,response);
-            break;            
+        case "crearSolicitudSinCliente":
+            crearSolicitudSinCliente(request, response);
+            break;
+        case "obtenerTodasSolicitudes":
+            obtenerTodasSolicitudes(request, response);
+            break;
+        case "obtenerSolicitud":
+            obtenerSolicitud(request, response);
+            break;
+        case "modificarSolicitud":
+            modificarSolicitud(request, response);
+            break;
+        case "rechazarSolicitud":
+            rechazarSolicitud(request, response);
+            break;
     }        
 }
 
@@ -88,7 +100,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         return "Short description";
     }// </editor-fold>
 
-    private void clienteSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+    private void crearSolicitudConCliente(HttpServletRequest request, HttpServletResponse response) throws DAOException {
         objSo = new Solicitud();
         objSo.getCliente().setNombre(request.getParameter("nombres"));
         objSo.getCliente().setApellido(request.getParameter("apellidos"));
@@ -99,11 +111,44 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         objSo.getCliente().setTelefono(request.getParameter("telefono"));
         objSo.getCliente().setEmail(request.getParameter("email"));
         objSo.setDescripcion(request.getParameter("descripcion"));
-        daote.crear(objSo);    
+        
+         Solicitud Soli=daote.crearLeer(objSo);
+        
     }
 
-    private void idclienteSolicitud(HttpServletRequest request, HttpServletResponse response) throws IOException {
-         
+    private void crearSolicitudSinCliente(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+        objSo= new Solicitud();  
+        int idCliente=Integer.parseInt(request.getParameter("idcliente"));
+        objSo.setDescripcion(request.getParameter("descripcion"));
+                
+            Solicitud per=daote.crearLeer(objSo,idCliente);
+    }
+
+    private void obtenerTodasSolicitudes(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        Solicitud[] solv=daote.leertodo();
+    }
+
+    private void obtenerSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+          int idSolicitud=Integer.parseInt(request.getParameter("idSolicitud"));
+          Solicitud per=daote.leerxid(idSolicitud);
+    }
+
+    private void modificarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        objSo= new Solicitud();  
+                 
+                objSo.setIdSolicitud(Integer.parseInt(request.getParameter("idSolicitud")));
+		objSo.getCliente().setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+                objSo.setDescripcion(request.getParameter("descripcion"));
+                objSo.setObservacion(request.getParameter("observacion"));
+               
+		Solicitud per= daote.modificarLeer(objSo);
+                
+    }
+
+    private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        
+               int idSolicitud=Integer.parseInt(request.getParameter("idSolicitud"));
+		Solicitud per= daote.modificarLeer(idSolicitud);
     }
 
 }

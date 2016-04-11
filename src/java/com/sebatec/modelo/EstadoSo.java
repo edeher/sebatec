@@ -12,7 +12,7 @@ package com.sebatec.modelo;
 public enum EstadoSo {
     A("Atendido"),
     N("No Atendido"),
-    E("En espera");
+    R("rechazado");
     
     private String nom;
 

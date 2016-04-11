@@ -12,7 +12,7 @@ package com.sebatec.modelo;
 public enum EstadoSev {
     A("Asignado"),
     C("Concluido"),
-    E("En espera");
+    R("Rechazado");
     
     private String nom;
 

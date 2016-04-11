@@ -28,12 +28,16 @@ public class SolicitudTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-        crearsolicitud();
+//        crearsolicitud();
 //        modificarsolicitud();
       //  eliminarsolicitud();
 //        leersolicitud();
 //        leertodo();
 //        leertodo2();
+//crearLEERsolicitud();
+//crearLEERsolicitud2();
+//modificarsolicitudleer();
+modificarsolicitudleer2();
     }
     public static void crearsolicitud() throws DAOException
 	{
@@ -64,6 +68,25 @@ public class SolicitudTest {
 		   
 		
 		}
+    public static void crearsolicitud2() throws DAOException
+	{
+		 SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
+		 SolicitudDAO daote= fabricate.metodoDAO();
+                
+		Solicitud soli= new Solicitud();
+		
+                int idCliente=4;
+               
+               
+                soli.setDescripcion("aca pes ");
+                soli.setObservacion("ddfgdfg");
+                
+                
+		 
+		 daote.crear(soli,idCliente);
+		   
+		
+		}
 	public static void modificarsolicitud()throws DAOException
 	{
 		SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
@@ -75,8 +98,8 @@ public class SolicitudTest {
                  
                 soli.setIdSolicitud(14);
 		soli.setCliente(objCli);
-                soli.setDescripcion("aca pes pes");
-                soli.setObservacion("ddfgdfg");
+                soli.setDescripcion("aca pes pes solo se cambio este");
+//                soli.setObservacion("ddfgdfg");
                
 		 
 		 daote.modificar(soli);
@@ -140,6 +163,79 @@ public class SolicitudTest {
 	  }
 	 
 	 
+	    
+	}
+          public static void crearLEERsolicitud() throws DAOException
+	{
+		 SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
+		 SolicitudDAO daote= fabricate.metodoDAO();
+                
+		Solicitud soli= new Solicitud();
+		
+                
+                soli.getCliente().setNombre("pancracio FUCIONADO");
+                 soli.getCliente().setApellido("telesforo");
+                soli.getCliente().setDni("45632112");
+                 soli.getCliente().setRazonSocial("softponce");
+                 soli.getCliente().setRuc("12345678978");
+                 soli.getCliente().setDireccion("mi casita");
+                 soli.getCliente().setTelefono("942154007");
+                 soli.getCliente().setEmail("vpisistemas@unia.pe FUCIONADO");
+                
+                soli.setDescripcion("aca pes FUCIONADO");
+                soli.setObservacion("ningunaw");
+                
+                	 
+		 
+		   Solicitud per=daote.crearLeer(soli);
+	         System.out.println(" "+per.toString());
+		
+		}
+          public static void crearLEERsolicitud2() throws DAOException
+	{
+		 SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
+		 SolicitudDAO daote= fabricate.metodoDAO();
+                
+		Solicitud soli= new Solicitud();
+		
+                
+                int idCliente=3;
+                
+                soli.setDescripcion("aca pes FUCIONADO");
+                
+                
+                	 
+		 
+		   Solicitud per=daote.crearLeer(soli,idCliente);
+	         System.out.println(" "+per.toString());
+		
+		}
+          public static void modificarsolicitudleer()throws DAOException
+	{
+		SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
+		 SolicitudDAO daote= fabricate.metodoDAO();
+		 
+		 Solicitud soli= new Solicitud();
+                 
+                 
+                soli.setIdSolicitud(14);
+		soli.getCliente().setIdCliente(14);
+                soli.setDescripcion("aca pes pes cambio leyo");
+                soli.setObservacion("leeeo");
+               
+		 
+		Solicitud per= daote.modificarLeer(soli);
+                  System.out.println(" "+per.toString());
+	    
+	}
+           public static void modificarsolicitudleer2()throws DAOException
+	{
+		SolicitudDAOFactory fabricate= new SolicitudDAOFactory();
+		 SolicitudDAO daote= fabricate.metodoDAO();
+		 
+		int idSolicitud=25;
+		Solicitud per= daote.modificarLeer(idSolicitud);
+                  System.out.println(" "+per.toString());
 	    
 	}
 }

@@ -20,6 +20,10 @@ public interface SolicitudDAO {
     public boolean modificar(Solicitud objsoli)throws DAOException;
     public boolean eliminar(int idSolicitud)throws DAOException;
     public Solicitud leerxid(int idSolicitud)throws DAOException;
+    public Solicitud crearLeer(Solicitud objsoli)throws DAOException;
+    public Solicitud crearLeer(Solicitud objsoli,int idCliente)throws DAOException;
+    public Solicitud modificarLeer(Solicitud objsoli)throws DAOException;
+    public Solicitud modificarLeer(int idSolicitud)throws DAOException;
     public Solicitud[] leertodo()throws DAOException;
     public Solicitud[] leertodo(int idCliente)throws DAOException;
 }
