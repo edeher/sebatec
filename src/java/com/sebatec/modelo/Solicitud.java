@@ -35,6 +35,7 @@ public class Solicitud
     public Solicitud() {
         this.cliente=new Cliente();
     }
+
 ////////////////////////////////////////////
     public Solicitud(int idSolicitud) {
         this.idSolicitud = idSolicitud;
@@ -45,9 +46,6 @@ public class Solicitud
         return "Solicitud{" + "idSolicitud=" + idSolicitud + ", cliente=" + cliente + ", descripcion=" + descripcion + ", observacion=" + observacion + ", estado=" + estado.getNom() + '}';
     }
 
-   
-   
-   
     public int getIdSolicitud() {
         return idSolicitud;
     }
