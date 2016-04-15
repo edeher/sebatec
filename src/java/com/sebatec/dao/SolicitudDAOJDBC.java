@@ -340,5 +340,36 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             throw new DAOException("Error modificando Y buscando solicitud en DAO", se);
         } 
     }
+
+    @Override
+    public Solicitud[] leerxxid(int idCliente) throws DAOException {
+        try  {
+            CallableStatement stm=con.prepareCall("{call sp_solicitud_bco(?)}");
+            stm.setInt(1,idCliente);
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Solicitud> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                        
+                        new Solicitud(
+                            rs.getInt("idSolicitud"),
+                            new Cliente(
+                            rs.getString("nombre")),
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            )
+                    );
+            }
+            return tribs.toArray(new Solicitud[0]);
+        } catch (SQLException se) {
+            //se.printStackTrace();
+            throw new DAOException("Error obteniedo todos las solicitudes en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
     
 }
