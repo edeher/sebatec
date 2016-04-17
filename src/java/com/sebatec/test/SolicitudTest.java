@@ -34,7 +34,7 @@ public class SolicitudTest {
 //        leersolicitud();
 //        leertodo();
 //        leertodo2();
-//crearLEERsolicitud();
+crearLEERsolicitud();
 //crearLEERsolicitud2();
 //modificarsolicitudleer();
 modificarsolicitudleer2();

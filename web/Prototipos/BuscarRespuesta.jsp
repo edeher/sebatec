@@ -14,7 +14,7 @@
         <script language="javaScript">
             function creaaa(f,codigo)
             {
-                javascript:window.open('modificar.jsp?val=mod&codigo='+codigo, '', 'width=550,height=850,left=750,top=400,resizable=0,toolsbar=1,scrollbars=1');
+                javascript:window.open('Prototipos/modificar.jsp?val=mod&codigo='+codigo, '', 'width=550,height=850,left=750,top=400,resizable=0,toolsbar=1,scrollbars=1');
                
             }
         </script>

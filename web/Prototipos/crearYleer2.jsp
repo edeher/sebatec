@@ -33,7 +33,7 @@
                 }
                 else
                 {
-                       f.action="SolicitudController?accion=crearSolicitudConCliente";
+                       f.action="../SolicitudController?accion=crearSolicitudConCliente";
                         f.target="";
                         f.submit();
                         f.reset();

@@ -120,7 +120,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         System.out.println("solicitud:" + Soli.toString());
         request.setAttribute("Soli", Soli);
 
-        rd = getServletContext().getRequestDispatcher("/CRearYLeerREspuesta.jsp");
+        rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
         rd.forward(request, response);
         
     }
@@ -134,7 +134,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             System.out.println("solicitud:" + Soli.toString());
         request.setAttribute("Soli", Soli);
 
-        rd = getServletContext().getRequestDispatcher("/CRearYLeerREspuesta.jsp");
+        rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
         rd.forward(request, response);
     }
 
@@ -142,7 +142,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         Solicitud[] solv=daote.leertodo();
           request.setAttribute("solv", solv);
 
-        rd = getServletContext().getRequestDispatcher("/BuscarRespuesta.jsp");
+        rd = getServletContext().getRequestDispatcher("/Prototipos/BuscarRespuesta.jsp");
         rd.forward(request, response);
     }
 
@@ -153,26 +153,30 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
               
           request.setAttribute("solv",solv);
 
-        rd = getServletContext().getRequestDispatcher("/BuscarRespuesta.jsp");
+        rd = getServletContext().getRequestDispatcher("/Prototipos/BuscarRespuesta.jsp");
         rd.forward(request, response);
     }
 
     private void modificarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
-                          System.out.println("entrando al servlet");
-                objSo= new Solicitud(); 
-                objSo.setIdSolicitud(Integer.parseInt(request.getParameter("idSolicitud")));
-		objSo.getCliente().setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
-                objSo.setDescripcion(request.getParameter("descripcion"));
-                objSo.setObservacion(request.getParameter("observacion"));
-               
-              
-		Solicitud Soli= daote.modificarLeer(objSo);
-                System.out.println(""+Soli.toString());
-                request.setAttribute("Soli", Soli);
+        System.out.println("entrando al servlet");
+        objSo = new Solicitud();
+        objSo.setIdSolicitud(Integer.parseInt(request.getParameter("idSolicitud")));
 
-        rd = getServletContext().getRequestDispatcher("/CRearYLeerREspuesta.jsp");
+        objSo.getCliente().setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+        objSo.setDescripcion(request.getParameter("descripcion"));
+        objSo.setObservacion(request.getParameter("observacion"));
+        System.out.println("codigo 1 " + objSo.getIdSolicitud());
+
+        System.out.println("objeto " + objSo.getCliente().getIdCliente());
+
+        Solicitud Soli = daote.modificarLeer(objSo);
+        System.out.println("codigo 2 " + objSo.getIdSolicitud());
+        System.out.println("objeto " + Soli.toString());
+        request.setAttribute("Soli", Soli);
+
+        rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
         rd.forward(request, response);
-                
+
     }
 
     private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {

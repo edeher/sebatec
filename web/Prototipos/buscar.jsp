@@ -26,7 +26,7 @@
             }
             else
             {
-                 f.action="SolicitudController?accion=obtenerSolicitud";
+                 f.action="../SolicitudController?accion=obtenerSolicitud";
                         f.target="cuerpito";
                         f.submit();
                         f.reset();
@@ -35,7 +35,7 @@
         }
         function vertodo()
         {
-            f.action="SolicitudController?accion=obtenerTodasSolicitudes";
+            f.action="../SolicitudController?accion=obtenerTodasSolicitudes";
                         f.target="cuerpito";
                         f.submit();
                         f.reset();

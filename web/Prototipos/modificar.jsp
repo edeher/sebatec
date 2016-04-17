@@ -36,8 +36,8 @@
                 }
                 else
                 {
-                       f.action="SolicitudController?accion=modificarSolicitud";
-                        f.target="";
+                       f.action="../SolicitudController?accion=modificarSolicitud";
+                        f.target="cuerpito";
                         f.submit();
                         f.reset();
                         return true;
@@ -60,7 +60,9 @@
 
                 <tr>
                     <td>codigo</td>
-                    <td><input type="text" name="idSolicitud" value="<%=idSolicitud%>" disabled="disabled" /></td>
+                    
+                    <td><input type="text" name="idSolicitud1" value="<%=idSolicitud%>" disabled="disabled" /></td>
+                    <td><input type="hidden" name="idSolicitud" value="<%=idSolicitud%>" /></td>
                 </tr>
                 <tr>
                     <td>cliente </td>
@@ -69,7 +71,7 @@
                             <%for (Cliente cliA1 : cliA) {
 
                             %>
-                            <option value="<%=cliA1.getIdPersona()%>"><%=cliA1.getNombre()%></option>
+                            <option value="<%=cliA1.getIdCliente() %>"><%=cliA1.getNombre() %></option>
                             <%}%>
                         </select></td>
                 </tr>
