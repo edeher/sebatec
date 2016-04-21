@@ -1,3 +1,4 @@
+
 package com.sebatec.controlador;
 
 
@@ -6,16 +7,20 @@ import com.sebatec.dao.SolicitudDAO;
 import com.sebatec.dao.SolicitudDAOFactory;
 import com.sebatec.modelo.Solicitud;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  *
@@ -44,6 +49,9 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             break;
         case "obtenerTodasSolicitudes":
             obtenerTodasSolicitudes(request, response);
+            break;
+        case "obtenerTodasSolicitudesJson":
+            obtenerTodasSolicitudesJson(request, response);
             break;
         case "obtenerSolicitud":
             obtenerSolicitud(request, response);
@@ -140,10 +148,33 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
     private void obtenerTodasSolicitudes(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
         Solicitud[] solv=daote.leertodo();
-          request.setAttribute("solv", solv);
-
+        request.setAttribute("solv", solv);
         rd = getServletContext().getRequestDispatcher("/Prototipos/BuscarRespuesta.jsp");
         rd.forward(request, response);
+    }
+    
+    private void obtenerTodasSolicitudesJson(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
+        Solicitud[] solv = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arraySolicitudes = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosSolicitudes;        
+        for (Solicitud solicitud : solv) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosSolicitudes = Json.createArrayBuilder();
+            arrayDatosSolicitudes.add(solicitud.getIdSolicitud());
+            arrayDatosSolicitudes.add(solicitud.getCliente().getNombre());
+            arrayDatosSolicitudes.add("DXNXIX!!");
+            arrayDatosSolicitudes.add(solicitud.getDescripcion());
+            arrayDatosSolicitudes.add("XCXEXLXUX");                        
+            arraySolicitudes.add(arrayDatosSolicitudes);
+        }
+        objbuilder.add("data", arraySolicitudes);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
     }
 
     private void obtenerSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
@@ -165,12 +196,13 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         objSo.getCliente().setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
         objSo.setDescripcion(request.getParameter("descripcion"));
         objSo.setObservacion(request.getParameter("observacion"));
-        
+        System.out.println("codigo 1 " + objSo.getIdSolicitud());
 
-        System.out.println("CODIGO CLIENTE" + objSo.getCliente().getIdCliente());
+        System.out.println("objeto " + objSo.getCliente().getIdCliente());
 
         Solicitud Soli = daote.modificarLeer(objSo);
-        
+        System.out.println("codigo 2 " + objSo.getIdSolicitud());
+        System.out.println("objeto " + Soli.toString());
         request.setAttribute("Soli", Soli);
 
         rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
@@ -178,16 +210,10 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
     }
 
-    private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
+    private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
         
                int idSolicitud=Integer.parseInt(request.getParameter("idSolicitud"));
-               System.out.println("entro y el idsolicitud:" + idSolicitud);
-		Solicitud Soli= daote.modificarLeer(idSolicitud);
-                 
-                request.setAttribute("Soli", Soli);
-
-        rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
-        rd.forward(request, response);
+		Solicitud per= daote.modificarLeer(idSolicitud);
     }
 
 }
