@@ -18,4 +18,9 @@ public interface ServicioDAO {
     public boolean eliminar(int idServicio)throws DAOException;
     public Servicio leerxid(int idServicio)throws DAOException;
     public Servicio[] leertodo()throws DAOException;
+    public Servicio[] leerxxid(int idServicio)throws DAOException;
+     public Servicio[] leerTodoTecnico(int idTecnico)throws DAOException;
+    public Servicio crearLeer(Servicio objSer)throws DAOException;
+    public Servicio modificarLeer(Servicio objSer)throws DAOException;
+    
 }

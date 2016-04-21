@@ -6,6 +6,7 @@
 package com.sebatec.dao;
 
 import com.sebatec.modelo.EstadoSev;
+import com.sebatec.modelo.EstadoSo;
 import com.sebatec.modelo.Estados;
 import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Servicio;
@@ -110,14 +111,29 @@ private final Connection con;
                     new Servicio(
                             rs.getInt("idServicio"),
                             new Solicitud(
-                            rs.getInt("idSolicitud")),
-                            new Tecnico(
-                            rs.getString("nombre")),
+                            rs.getInt("idSolicitud"),       
                             rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            ),
+                                 
+                            new Tecnico(
+                             rs.getInt("idTecnico"),
+                            rs.getString("profesion"),
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
+                                 
+                            rs.getString("descripcion1"),
                             rs.getDate("fechaEmision"),
                             rs.getDate("fechaGestion"),
                             rs.getDouble("monto"),
-                            EstadoSev.valueOf(rs.getString("estado"))
+                            EstadoSev.valueOf(rs.getString("estado1"))
                     )
                      );
         } catch (SQLException se) {
@@ -130,6 +146,7 @@ private final Connection con;
     public Servicio[] leertodo() throws DAOException {
        try  {
              CallableStatement stm=con.prepareCall("{call sp_servicio_all}");
+             
             ResultSet rs=stm.executeQuery();
                       
             ArrayList<Servicio> tribs = new ArrayList<>(); 
@@ -140,14 +157,29 @@ private final Connection con;
                          new Servicio(
                             rs.getInt("idServicio"),
                             new Solicitud(
-                            rs.getInt("idSolicitud")),
-                            new Tecnico(
-                            rs.getString("nombre")),
+                            rs.getInt("idSolicitud"),       
                             rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            ),
+                                 
+                            new Tecnico(
+                             rs.getInt("idTecnico"),
+                            rs.getString("profesion"),
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
+                                 
+                            rs.getString("descripcion1"),
                             rs.getDate("fechaEmision"),
                             rs.getDate("fechaGestion"),
                             rs.getDouble("monto"),
-                            EstadoSev.valueOf(rs.getString("estado"))
+                            EstadoSev.valueOf(rs.getString("estado1"))
                     )
                      );
             }
@@ -157,6 +189,200 @@ private final Connection con;
             throw new DAOException("Error obteniedo todos los servicios en DAO: " 
                     + se.getMessage(), se);
         }   
+    }
+
+    @Override
+    public Servicio[] leerxxid(int idServicio) throws DAOException {
+        try  {
+             CallableStatement stm=con.prepareCall("{call sp_servicio_bco(?)}");
+             stm.setInt(1,idServicio);
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Servicio> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                         new Servicio(
+                            rs.getInt("idServicio"),
+                            new Solicitud(
+                            rs.getInt("idSolicitud"),       
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            ),
+                                 
+                            new Tecnico(
+                             rs.getInt("idTecnico"),
+                            rs.getString("profesion"),
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
+                                 
+                            rs.getString("descripcion1"),
+                            rs.getDate("fechaEmision"),
+                            rs.getDate("fechaGestion"),
+                            rs.getDouble("monto"),
+                            EstadoSev.valueOf(rs.getString("estado1"))
+                    )
+                     );
+            }
+            return tribs.toArray(new Servicio[0]);
+        } catch (SQLException se) {
+            //se.printStackTrace();
+            throw new DAOException("Error obteniedo todos los servicios en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
+
+    @Override
+    public Servicio[] leerTodoTecnico(int idTecnico) throws DAOException {
+        try  {
+             CallableStatement stm=con.prepareCall("{call sp_servicio_bco2(?)}");
+             stm.setInt(1,idTecnico);
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Servicio> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                         new Servicio(
+                            rs.getInt("idServicio"),
+                            new Solicitud(
+                            rs.getInt("idSolicitud"),       
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            ),
+                                 
+                            new Tecnico(
+                             rs.getInt("idTecnico"),
+                            rs.getString("profesion"),
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
+                                 
+                            rs.getString("descripcion1"),
+                            rs.getDate("fechaEmision"),
+                            rs.getDate("fechaGestion"),
+                            rs.getDouble("monto"),
+                            EstadoSev.valueOf(rs.getString("estado1"))
+                    )
+                     );
+            }
+            return tribs.toArray(new Servicio[0]);
+        } catch (SQLException se) {
+            //se.printStackTrace();
+            throw new DAOException("Error obteniedo todos los servicios en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
+
+    @Override
+    public Servicio crearLeer(Servicio objSer) throws DAOException {
+       try  {
+            CallableStatement st=con.prepareCall("{call sp_servicio_n1(?,?,?)}");
+            st.setInt(1,objSer.getSolicitud().getIdSolicitud());
+            st.setInt(2,objSer.getTecnico().getIdTecnico());
+            st.setString(3,objSer.getDescripcion());
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return (
+                    new Servicio(
+                            rs.getInt("idServicio"),
+                            new Solicitud(
+                            rs.getInt("idSolicitud"),       
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            ),
+                                 
+                            new Tecnico(
+                             rs.getInt("idTecnico"),
+                            rs.getString("profesion"),
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
+                                 
+                            rs.getString("descripcion1"),
+                            rs.getDate("fechaEmision"),
+                            rs.getDate("fechaGestion"),
+                            rs.getDouble("monto"),
+                            EstadoSev.valueOf(rs.getString("estado1"))
+                    )
+                     );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando servicio en DAO", se);
+        }
+    }
+
+    @Override
+    public Servicio modificarLeer(Servicio objSer) throws DAOException {
+        
+    try  {
+            CallableStatement st=con.prepareCall("{call sp_servicio_m2(?,?,?,?,?)}");
+             st.setInt(1,objSer.getIdServicio());
+             st.setInt(2,objSer.getTecnico().getIdTecnico());
+             st.setString(3,objSer.getDescripcion());
+            st.setDouble(4,objSer.getMonto());
+            st.setString(5,objSer.getEstado().name());
+                       
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return (
+                    new Servicio(
+                            rs.getInt("idServicio"),
+                            new Solicitud(
+                            rs.getInt("idSolicitud"),       
+                            rs.getString("descripcion"),
+                            rs.getString("observacion"),
+                            EstadoSo.valueOf(rs.getString("estado"))
+                            ),
+                                 
+                            new Tecnico(
+                             rs.getInt("idTecnico"),
+                            rs.getString("profesion"),
+                             rs.getString("especialidad"),
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
+                                 
+                            rs.getString("descripcion1"),
+                            rs.getDate("fechaEmision"),
+                            rs.getDate("fechaGestion"),
+                            rs.getDouble("monto"),
+                            EstadoSev.valueOf(rs.getString("estado1"))
+                    )
+                     );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando servicio en DAO", se);
+        }
     }
     
 }

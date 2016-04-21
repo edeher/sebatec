@@ -14,6 +14,7 @@ public enum EstadoSev {
     C("Concluido"),
     R("Rechazado");
     
+    
     private String nom;
 
     private EstadoSev(String nom) {

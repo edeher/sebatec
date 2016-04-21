@@ -31,6 +31,14 @@ public class Solicitud
         this.observacion = observacion;
         this.estado = estado;
     }
+
+    public Solicitud(int idSolicitud, String descripcion, String observacion, EstadoSo estado) {
+        this.idSolicitud = idSolicitud;
+        this.descripcion = descripcion;
+        this.observacion = observacion;
+        this.estado = estado;
+    }
+    
     /////////////////crear cliente
     public Solicitud() {
         this.cliente=new Cliente();

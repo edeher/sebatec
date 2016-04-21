@@ -32,8 +32,13 @@ public class ServicioTest {
 //        crearservicio();
 //        modificarservicio();
 //        eliminarservicio();
-        leerservicio();
+//        leerservicio();
 //        leertodo();
+        leerxidLista();
+//        leerssidtecnicoLista();
+//       crearLeer();
+//        modificarLeer();
+        
     }
     public static void crearservicio() throws DAOException
 	{
@@ -98,7 +103,7 @@ public class ServicioTest {
 		ServicioDAOFactory fabricate= new ServicioDAOFactory();
 		 ServicioDAO daote= fabricate.metodoDAO();
 	 
-	   Servicio per=daote.leerxid(3);
+	   Servicio per=daote.leerxid(14);
 	 System.out.println(" "+per.toString());
 	    
 	}
@@ -118,5 +123,64 @@ public class ServicioTest {
 	 
 	 
 	    
+	}
+        public static void leerxidLista()throws DAOException
+	{
+		ServicioDAOFactory fabricate= new ServicioDAOFactory();
+		 ServicioDAO daote= fabricate.metodoDAO();
+	 
+	  Servicio[] perv=daote.leerxxid(3);
+	  
+	  for(Servicio perv1:perv)
+	  {
+	      
+	      System.out.println(" "+perv1.toString());
+	  
+	  }
+	 
+	}
+        public static void leerssidtecnicoLista()throws DAOException
+	{
+		ServicioDAOFactory fabricate= new ServicioDAOFactory();
+		 ServicioDAO daote= fabricate.metodoDAO();
+	 
+	  Servicio[] perv=daote.leerTodoTecnico(3);
+	  
+	  for(Servicio perv1:perv)
+	  {
+	      
+	      System.out.println(" "+perv1.toString());
+	  
+	  }
+	 
+	}
+        public static void crearLeer()throws DAOException
+	{
+		ServicioDAOFactory fabricate= new ServicioDAOFactory();
+		 ServicioDAO daote= fabricate.metodoDAO();
+                  Servicio servi= new Servicio();
+                
+		 servi.getSolicitud().setIdSolicitud(1);
+                 servi.getTecnico().setIdTecnico(3);
+                 servi.setDescripcion("se arreglo porrr no queria");
+                
+	  Servicio per=daote.crearLeer(servi);
+	 System.out.println(" "+per.toString());
+	 
+	}
+        public static void modificarLeer()throws DAOException
+	{
+		ServicioDAOFactory fabricate= new ServicioDAOFactory();
+		 ServicioDAO daote= fabricate.metodoDAO();
+                 Servicio servi= new Servicio();
+                 servi.setIdServicio(15);
+		 servi.getTecnico().setIdTecnico(3);
+                 servi.setDescripcion("se arreglo porrr no queria");
+                 servi.setMonto(25.5);
+                 servi.setEstado(EstadoSev.C);
+                
+	  Servicio per=daote.modificarLeer(servi);
+	 System.out.println(" "+per.toString());
+	 
 	}
 }

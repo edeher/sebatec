@@ -33,6 +33,8 @@ public class Servicio {
     }
 
     public Servicio() {
+        this.solicitud=new Solicitud();
+        this.tecnico=new Tecnico();
     }
 
     public Servicio(int idServicio, Solicitud solicitud, Tecnico tecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, EstadoSev estado) {

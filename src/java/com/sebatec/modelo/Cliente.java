@@ -20,13 +20,10 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", nombre=" + nombre + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", ruc=" + ruc + ", razonSocial=" + razonSocial + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + '}';
     }
 
-    
-
-    
-    
+  
     
     public Cliente(int idCliente, String ruc, String razonSocial, int idPersona, String nombre, String apellido, String dni, String direccion, String telefono, String email) {
         super(idPersona, nombre, apellido, dni, direccion, telefono, email);

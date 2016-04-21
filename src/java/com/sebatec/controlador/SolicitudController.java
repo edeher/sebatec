@@ -165,13 +165,12 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         objSo.getCliente().setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
         objSo.setDescripcion(request.getParameter("descripcion"));
         objSo.setObservacion(request.getParameter("observacion"));
-        System.out.println("codigo 1 " + objSo.getIdSolicitud());
+        
 
-        System.out.println("objeto " + objSo.getCliente().getIdCliente());
+        System.out.println("CODIGO CLIENTE" + objSo.getCliente().getIdCliente());
 
         Solicitud Soli = daote.modificarLeer(objSo);
-        System.out.println("codigo 2 " + objSo.getIdSolicitud());
-        System.out.println("objeto " + Soli.toString());
+        
         request.setAttribute("Soli", Soli);
 
         rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
@@ -179,10 +178,16 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
     }
 
-    private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+    private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
         
                int idSolicitud=Integer.parseInt(request.getParameter("idSolicitud"));
-		Solicitud per= daote.modificarLeer(idSolicitud);
+               System.out.println("entro y el idsolicitud:" + idSolicitud);
+		Solicitud Soli= daote.modificarLeer(idSolicitud);
+                 
+                request.setAttribute("Soli", Soli);
+
+        rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
+        rd.forward(request, response);
     }
 
 }

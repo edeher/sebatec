@@ -116,7 +116,18 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                     new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -143,7 +154,18 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                         new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -200,7 +222,18 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                         new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -240,7 +273,18 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                     new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -266,10 +310,21 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             }
            
             return (
-                    new Solicitud(
+                     new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -297,10 +352,21 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             }
            
             return (
-                    new Solicitud(
+                   new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -326,10 +392,21 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
             }
            
             return (
-                    new Solicitud(
+                     new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
@@ -357,7 +434,18 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
                         new Solicitud(
                             rs.getInt("idSolicitud"),
                             new Cliente(
-                            rs.getString("nombre")),
+                                    
+                            rs.getInt("idCliente"),
+                              rs.getString("ruc"),
+                              rs.getString("razonSocial"),
+                            
+                             rs.getString("nombre"),
+                             rs.getString("apellido"),
+                             rs.getString("dni"),
+                             rs.getString("direccion"),
+                             rs.getString("telefono"),
+                             rs.getString("email")
+                            ),
                             rs.getString("descripcion"),
                             rs.getString("observacion"),
                             EstadoSo.valueOf(rs.getString("estado"))
