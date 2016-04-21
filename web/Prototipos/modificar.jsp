@@ -4,6 +4,9 @@
     Author     : Mi Laptop
 --%>
 
+<%@page import="com.sebatec.dao.SolicitudDAO"%>
+<%@page import="com.sebatec.dao.SolicitudDAOFactory"%>
+<%@page import="com.sebatec.modelo.Solicitud"%>
 <%@page import="com.sebatec.dao.ClienteDAO"%>
 <%@page import="com.sebatec.modelo.Cliente"%>
 <%@page import="com.sebatec.dao.ClienteDAOFactory"%>
@@ -43,14 +46,24 @@
                         return true;
                 }
             }
+             function cerrarse()
+            {
+                window.close();
+            } 
             
         </script>
     </head>
     <%
-     ClienteDAOFactory fabricate = new ClienteDAOFactory();
+        SolicitudDAOFactory fabricate1 =new SolicitudDAOFactory();
+        SolicitudDAO daote1=fabricate1.metodoDAO();
+        
+        ClienteDAOFactory fabricate = new ClienteDAOFactory();
         ClienteDAO daote = fabricate.metodoDAO();
         Cliente[] cliA = daote.leertodo();
+        
     int idSolicitud=Integer.parseInt(request.getParameter("codigo"));
+    Solicitud soli1=daote1.leerxid(idSolicitud);
+         
     
     
     %>
@@ -67,11 +80,18 @@
                 <tr>
                     <td>cliente </td>
                     <td><select name="idCliente" >
-                            <option value="--">--</option>
+                           
+                            
                             <%for (Cliente cliA1 : cliA) {
 
                             %>
-                            <option value="<%=cliA1.getIdCliente() %>"><%=cliA1.getNombre() %></option>
+                            <option value="<%=cliA1.getIdCliente() %>"
+                                     <%if(soli1.getCliente().getIdCliente()==cliA1.getIdCliente())
+                                            
+                                            out.print("selected");
+                                     %>>
+                                
+                                <%=cliA1.getNombre() %></option>
                             <%}%>
                         </select></td>
                 </tr>
@@ -87,7 +107,9 @@
 
                 <tr>
                     <td><input type="reset" value="limpiar" name="limpiar" /></td>
+                    
                     <td><input type="button" value="Grabar " onclick="verificar(this.form)"/></td>
+                    <td colspan="2"><input type="button" value="CERRAR" onclick="cerrarse()"/></td>
                 </tr>
             </table>
 

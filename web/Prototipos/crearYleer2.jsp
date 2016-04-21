@@ -62,7 +62,7 @@
                              <%for (Cliente cliA1: cliA) {
                                 
                         %>
-                            <option value="<%=cliA1.getIdPersona() %>"><%=cliA1.getNombre()%></option>
+                            <option value="<%=cliA1.getIdCliente() %>"><%=cliA1.getNombre()%></option>
                              <%}%>
                         </select></td>
                 </tr>
