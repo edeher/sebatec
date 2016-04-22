@@ -24,7 +24,7 @@ public class DBManager {
     static private final String url="jdbc:mysql://localhost:3306/sebatec";
     static private final String driver="com.mysql.jdbc.Driver";
     static private final String user="root";
-    static private final String pass="123456";
+    static private final String pass="poderoso";
     
     static private String error;
     

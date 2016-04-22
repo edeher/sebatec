@@ -80,24 +80,7 @@
 					</div>
 					<!-- /sidebar menu -->
 
-					<!-- /menu footer buttons -->
-                                        <!-- 
-					<div class="sidebar-footer hidden-small">
-						<a data-toggle="tooltip" data-placement="top" title="Settings">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-						<a data-toggle="tooltip" data-placement="top" title="FullScreen">
-							<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-						</a>
-						<a data-toggle="tooltip" data-placement="top" title="Lock">
-							<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-						</a>
-						<a data-toggle="tooltip" data-placement="top" title="Logout">
-							<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-						</a>
-					</div>
-                                        -->
-					<!-- /menu footer buttons -->
+					
 				</div>
 			</div>
                         <!-- /menu lateral -->
@@ -165,6 +148,16 @@
 				<!-- /footer content -->
 			</div>
 			<!-- /page content -->
+                        
+                        <div id="miModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                              
+
+                            </div>
+                          </div>
+                        </div>
 
 		</div>
 	</div>	        
@@ -213,7 +206,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<a><i class="fa fa-pencil"></i></a>&nbsp&nbsp <a><i class="fa fa-remove"></i></a>&nbsp&nbsp <a><i class="fa fa-mail-forward"></i></a>'}
+                    "defaultContent": '<button name="btnEditar" data-toggle="modal" data-target=".bs-example-modal-lg"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
                 ],
                 "ajax": "SolicitudController?accion=obtenerTodasSolicitudesJson",
                 "initComplete": function() {
@@ -222,8 +215,19 @@
             });  
             
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
+                var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                alert( data[0] +"'s salary is: "+ data[ 3 ] );
+                if(nombre=='btnEditar'){
+                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
+                        
+                        $('#miModal').modal('show');s
+                    });
+                }
+                                    
+                if(nombre=='btnRechazar')
+                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
+                if(nombre=='btnAsignar')
+                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
             } );
             
         });        

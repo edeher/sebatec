@@ -163,9 +163,9 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             arrayDatosSolicitudes = Json.createArrayBuilder();
             arrayDatosSolicitudes.add(solicitud.getIdSolicitud());
             arrayDatosSolicitudes.add(solicitud.getCliente().getNombre());
-            arrayDatosSolicitudes.add("DXNXIX!!");
+            arrayDatosSolicitudes.add(solicitud.getCliente().getDni());
             arrayDatosSolicitudes.add(solicitud.getDescripcion());
-            arrayDatosSolicitudes.add("XCXEXLXUX");                        
+            arrayDatosSolicitudes.add(solicitud.getCliente().getTelefono());                        
             arraySolicitudes.add(arrayDatosSolicitudes);
         }
         objbuilder.add("data", arraySolicitudes);
