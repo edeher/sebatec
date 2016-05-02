@@ -190,24 +190,25 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
 
     private void modificarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
         System.out.println("entrando al servlet");
+        
         objSo = new Solicitud();
+        
         objSo.setIdSolicitud(Integer.parseInt(request.getParameter("idSolicitud")));
-
-        objSo.getCliente().setIdCliente(Integer.parseInt(request.getParameter("idCliente")));
+       
         objSo.setDescripcion(request.getParameter("descripcion"));
         objSo.setObservacion(request.getParameter("observacion"));
+        
+        
+        
         System.out.println("codigo 1 " + objSo.getIdSolicitud());
-
         System.out.println("objeto " + objSo.getCliente().getIdCliente());
 
+        
+        
         Solicitud Soli = daote.modificarLeer(objSo);
         System.out.println("codigo 2 " + objSo.getIdSolicitud());
         System.out.println("objeto " + Soli.toString());
-        request.setAttribute("Soli", Soli);
-
-        rd = getServletContext().getRequestDispatcher("/Prototipos/CRearYLeerREspuesta.jsp");
-        rd.forward(request, response);
-
+        
     }
 
     private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
