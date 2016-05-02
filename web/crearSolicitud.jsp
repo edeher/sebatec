@@ -28,37 +28,37 @@
         <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        <h4 class="modal-title" id="myModalLabel">Editar Solicitud N° <%=soli.getIdSolicitud()%> </h4>
                       </div>
-                      <div class="modal-body">
-                        <h4>modificando jsp</h4>
-                         <table border="1">           
-                             <tr>
-                                 <td>codigo</td>
-                                 <td><%=soli.getIdSolicitud()%></td>
-                             </tr>
-                             <tr>
-                                 <td>cliente</td>
-                                 <td><%=soli.getCliente().getNombre()%></td>
-                             </tr>
-                             <tr>
-                                 <td>dni</td>
-                                 <td><%=soli.getCliente().getDni()%></td>
-                             </tr>
-                             <tr>
-                                 <td>descripcion</td>
-                                 <td><%=soli.getDescripcion()%></td>
-                             </tr>
-                             <tr>
-                                 <td>telefono</td>
-                                 <td><%=soli.getCliente().getTelefono()%></td>
-                             </tr>
+                      <div class="modal-body">     
+                         
+                          <form class="form-horizontal form-label-left input_mask">
 
-                         </table>
+                              <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                  <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=soli.getCliente().getNombre()%> <%=soli.getCliente().getApellido()%>">
+                                  <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                              </div>                               
+
+                              <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion</label>
+                                  <div class="col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" class="form-control" value="<%=soli.getDescripcion()%>">
+                                  </div>
+                              </div>
+                                  
+                              <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Observacion</label>
+                                  <div class="col-md-9 col-sm-9 col-xs-12">
+                                      <input type="text" class="form-control" value="<%=soli.getObservacion()%>">
+                                  </div>
+                              </div>
+                                  
+                              <div class="ln_solid"></div>
+                          </form>                          
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
                       </div>
         
         
