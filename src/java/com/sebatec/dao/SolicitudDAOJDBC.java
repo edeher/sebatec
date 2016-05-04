@@ -339,11 +339,11 @@ public class SolicitudDAOJDBC implements SolicitudDAO{
     @Override
     public Solicitud modificarLeer(Solicitud objsoli) throws DAOException {
          try  {
-            CallableStatement st = con.prepareCall("{call sp_solicitud_m2(?,?,?,?)}");
+            CallableStatement st = con.prepareCall("{call sp_solicitud_m2(?,?,?)}");
             st.setInt(1, objsoli.getIdSolicitud());
-            st.setInt(2, objsoli.getCliente().getIdCliente());
-            st.setString(3, objsoli.getDescripcion());
-            st.setString(4, objsoli.getObservacion());
+            
+            st.setString(2, objsoli.getDescripcion());
+            st.setString(3, objsoli.getObservacion());
             
            
               ResultSet rs = st.executeQuery();

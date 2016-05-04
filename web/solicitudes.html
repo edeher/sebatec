@@ -191,65 +191,107 @@
         
         <script type="text/javascript">
         var table,band,msj;
-        $(document).ready(function() {            
-             table =$('#datatable-responsive').DataTable({
-                "language": {
-                    "url": "css/datatables/Spanish.json"
-                },
-                "columns": [{ "title": "Codigo" },
-                            { "title": "Cliente" },
-                           
-                            { "title": "Descripción" },
-                            { "title": "Observacion" },                                                                                    
-                            { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
-                "columnDefs": [                         
-                   {"targets": [ 4 ],
-                    "orderable": false,
-                    "className": 'text-center'},
-                   {"targets": -1,
-                    "data": null,
-                    "defaultContent": '<button name="btnVerCliente"><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
-                ],
-                "ajax": "SolicitudController?accion=obtenerTodasSolicitudesJson",
-                "initComplete": function() {
+        /*funciones que se ejecutan CUANDO CORRE EL ARCHIVO  DOCUMENT.READY*/
+        $(document).ready(function() 
+        {            
+            table =$('#datatable-responsive').DataTable(
+                     {
+                        "language": {"url": "css/datatables/Spanish.json"},
+                        "columns": [{ "title": "Codigo" },
+                                    { "title": "Cliente" },
+
+                                    { "title": "Descripción" },
+                                    { "title": "Observacion" }, 
+                                    { "title": "Estado" }, 
+                                    { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
+                        "columnDefs": [                         
+                           {"targets": [ 5 ],
+                            "orderable": false,
+                            "className": 'text-center'},
+                           {"targets": -1,
+                            "data": null,
+                            "defaultContent": '<button name="btnVerCliente"><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                        ],
+                        "ajax": "SolicitudController?accion=obtenerTodasSolicitudesJson",
+                        "initComplete": function() {}
+                     });  
+                            /* INCIALIZA LOS BOTONES AL CORRER EL ARCHIVO DENTRO DEL dUCMENT.READY*/
+            $('#datatable-responsive tbody').on( 'click', 'button', function () 
+                {
+                    var nombre = $(this).attr('name');
                     
-                }
-            });  
-            
-            $('#datatable-responsive tbody').on( 'click', 'button', function () {
-                var nombre = $(this).attr('name');
-                var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                    mostrarModal('crearSolicitud.jsp?codigo='+data[0]);
-                }
-                if(nombre=='btnVerCliente'){
-                    mostrarModal('vercliente.jsp');
-                }        
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
-            } );
-            
-            
-            
+                    var data = table.row( $(this).parents('tr') ).data();
+                    
+                    if(nombre=='btnEditar'){
+                        mostrarModal('ModificarSolicitud.jsp?codigo='+data[0]);
+                    }
+                    if(nombre=='btnVerCliente'){
+                        mostrarModal('vercliente.jsp?codigo='+data[0]);
+                    }    
+                    
+                    
+                    
+                    
+                    if(nombre=='btnRechazar')
+                    {
+                       if(confirm("seguro que desea eliminar Miembro")==true)
+                        {
+                                $.ajax(
+                                       {
+                                            url:"SolicitudController?accion=rechazarSolicitud&idSolicitud="+data[0],
+                                        }
+                                       )
+                                    /* .fail(function(){alert("aca si 2")})
+                                      .done(function(){alert("aca si 1")})*/
+                                       
+                                .always(function()
+                                    {
+                                        actualizar();
+                                        alerta("Solicitud modificada",true);
+                                    });  
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    if(nombre=='btnAsignar')
+                        alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                } );
         });        
+         /*-------------------------------------------------------------*/
          
-         function mostrarModal(url){     
+         
+         /*funcion independiete que MUESTRA EL MODAL*/
+         function mostrarModal(url)
+         {     
                 $('#miModal .modal-content').load(url, function(){                        
                    $('#miModal').modal('show');
                 });
-            }
+         }
+         /*-------------------------------------------------------------*/
          
-          function actualizar(){     
+         
+         /*funcion independiete que ACTUALIZA LA TABLA*/
+          function actualizar()
+          {     
             table.ajax.reload(function(){
                 table.columns.adjust().draw();                  
             },false);              
           }
+          /*-------------------------------------------------------------*/
           
-          function ocultarmodal(){
+          
+          /*funcion independiete que OCULTA EL MODAL*/
+          function ocultarmodal()
+          {
               $('#miModal').modal('hide');
           }
+          
+          /*-------------------------------------------------------------*/
+          
+          /*funcion independiete que ENVIA EL MENSAJE DE CONFIRMACION*/
           function alerta(msj,band){
               $("#div-alerta").fadeOut(0,function() {
                     band===true ? 
@@ -261,6 +303,7 @@
                     $("#div-alerta").fadeIn();                    
                 }); 
           }
+          /*-------------------------------------------------------------*/
         </script>
 </body>
 

@@ -8,6 +8,7 @@ import com.sebatec.dao.SolicitudDAOFactory;
 import com.sebatec.modelo.Solicitud;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
@@ -16,6 +17,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "SolicitudController", urlPatterns = {"/SolicitudController"})
+@MultipartConfig
 public class SolicitudController extends HttpServlet {
 
 private Solicitud objSo; 
@@ -36,8 +39,9 @@ private SolicitudDAO daote;
 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, DAOException {
     response.setContentType("text/html;charset=UTF-8");
-  
+    System.out.println("wellcome to solicitudController!");    
     String accion=request.getParameter("accion");
+    System.out.println(accion);
     fabricate=new SolicitudDAOFactory();
     daote=fabricate.metodoDAO();
     switch (accion) {
@@ -62,6 +66,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         case "rechazarSolicitud":
             rechazarSolicitud(request, response);
             break;
+           
     }        
 }
 
@@ -162,10 +167,11 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             //System.out.println(solicitud.toString());            
             arrayDatosSolicitudes = Json.createArrayBuilder();
             arrayDatosSolicitudes.add(solicitud.getIdSolicitud());
-            arrayDatosSolicitudes.add(solicitud.getCliente().getNombre());
-            arrayDatosSolicitudes.add(solicitud.getCliente().getDni());
+            arrayDatosSolicitudes.add(solicitud.getCliente().getRazonSocial());
+            
             arrayDatosSolicitudes.add(solicitud.getDescripcion());
-            arrayDatosSolicitudes.add(solicitud.getCliente().getTelefono());                        
+            arrayDatosSolicitudes.add(solicitud.getObservacion());  
+            arrayDatosSolicitudes.add(solicitud.getEstado().getNom());  
             arraySolicitudes.add(arrayDatosSolicitudes);
         }
         objbuilder.add("data", arraySolicitudes);
@@ -191,6 +197,12 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     private void modificarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
         System.out.println("entrando al servlet");
         
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        
         objSo = new Solicitud();
         
         objSo.setIdSolicitud(Integer.parseInt(request.getParameter("idSolicitud")));
@@ -200,20 +212,20 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         
         
         
-        System.out.println("codigo 1 " + objSo.getIdSolicitud());
-        System.out.println("objeto " + objSo.getCliente().getIdCliente());
-
-        
-        
         Solicitud Soli = daote.modificarLeer(objSo);
-        System.out.println("codigo 2 " + objSo.getIdSolicitud());
-        System.out.println("objeto " + Soli.toString());
-        
+       
     }
 
     private void rechazarSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException {
         
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        System.out.println("entro  ");
                int idSolicitud=Integer.parseInt(request.getParameter("idSolicitud"));
+                System.out.println("codigo  "+idSolicitud);
 		Solicitud per= daote.modificarLeer(idSolicitud);
     }
 
