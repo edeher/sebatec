@@ -1,5 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,60 +31,7 @@
 		<div class="main_container">
                     
                         <!-- menu lateral -->
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-                                    
-                                        <!-- nombre y logo -->
-					<div class="navbar nav_title" style="border: 0;">
-						<a href="" class="site_title"><i class="fa fa-laptop"></i> <span>SEBATEC</span></a>
-					</div>
-					<div class="clearfix"></div>
-                                        <!-- /nombre y logo -->
-                                        
-					<!-- foto y msj de bienvenida -->
-					<div class="profile">
-						<div class="profile_pic">
-							<img src="images/img.jpg" alt="..." class="img-circle profile_img">
-						</div>
-						<div class="profile_info">
-							<span>Bienvenido,</span>
-							<h2>Edeher Ponce</h2>
-						</div>
-					</div>
-					<!-- /foto y msj de bienvenida -->
-                                        
-					<br />
-                                        
-					<!-- sidebar menu -->
-					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-						<div class="menu_section">
-							<h3>ADMIN</h3>
-							<ul class="nav side-menu">
-                                                                <li><a href="solicitudes.html"><i class="fa fa-file"></i> Solicitudes </a></li>
-								<li><a><i class="fa fa-wrench"></i> Servicios </a></li>
-								<li><a><i class="fa fa-group"></i> Tecnicos </a></li>
-								<li><a><i class="fa fa-group"></i> Clientes </a></li>
-								<li><a><i class="fa fa-gears"></i> Tipo de Servicios </a></li>
-                                                                <!--
-								<li><a><i class="fa fa-edit"></i>Mantenimientos <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu" style="display: none">
-										<li><a href="">Tecnicos</a>
-										</li>
-										<li><a href="">Clientes</a>
-										</li>
-										<li><a href="">Tipo de Servicios</a>
-										</li>
-									</ul>
-								</li>
-                                                                -->
-							</ul>
-						</div>
-					</div>
-					<!-- /sidebar menu -->
-
-					
-				</div>
-			</div>
+			<%@include file="../WEB-INF\jspf\menu.jspf" %>
                         <!-- /menu lateral -->
                         
 			<!-- top navigation -->
@@ -200,7 +148,7 @@
                         "columns": [{ "title": "Codigo" },
                                     { "title": "Cliente" },
 
-                                    { "title": "Descripción" },
+                                    { "title": "Descripcion" },
                                     { "title": "Observacion" }, 
                                     { "title": "Estado" }, 
                                     { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],

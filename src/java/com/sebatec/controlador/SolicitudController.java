@@ -41,33 +41,37 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
     response.setContentType("text/html;charset=UTF-8");
     System.out.println("wellcome to solicitudController!");    
     String accion=request.getParameter("accion");
-    System.out.println(accion);
-    fabricate=new SolicitudDAOFactory();
-    daote=fabricate.metodoDAO();
-    switch (accion) {
-        case "crearSolicitudConCliente":
-            crearSolicitudConCliente(request, response);
-            break;
-        case "crearSolicitudSinCliente":
-            crearSolicitudSinCliente(request, response);
-            break;
-        case "obtenerTodasSolicitudes":
-            obtenerTodasSolicitudes(request, response);
-            break;
-        case "obtenerTodasSolicitudesJson":
-            obtenerTodasSolicitudesJson(request, response);
-            break;
-        case "obtenerSolicitud":
-            obtenerSolicitud(request, response);
-            break;
-        case "modificarSolicitud":
-            modificarSolicitud(request, response);
-            break;
-        case "rechazarSolicitud":
-            rechazarSolicitud(request, response);
-            break;
-           
-    }        
+    if(accion!=null){
+        System.out.println(accion);
+        fabricate=new SolicitudDAOFactory();
+        daote=fabricate.metodoDAO();    
+        switch (accion) {        
+            case "crearSolicitudConCliente":
+                crearSolicitudConCliente(request, response);
+                break;
+            case "crearSolicitudSinCliente":
+                crearSolicitudSinCliente(request, response);
+                break;
+            case "obtenerTodasSolicitudes":
+                obtenerTodasSolicitudes(request, response);
+                break;
+            case "obtenerTodasSolicitudesJson":
+                obtenerTodasSolicitudesJson(request, response);
+                break;
+            case "obtenerSolicitud":
+                obtenerSolicitud(request, response);
+                break;
+            case "modificarSolicitud":
+                modificarSolicitud(request, response);
+                break;
+            case "rechazarSolicitud":
+                rechazarSolicitud(request, response);
+                break;           
+        }   
+    }
+    else{
+        getServletContext().getRequestDispatcher( "/solicitudes.jsp" ).forward(request, response);
+    }
 }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -10,8 +10,6 @@ import com.sebatec.dao.DAOException;
 import com.sebatec.dao.SolicitudDAO;
 import com.sebatec.dao.SolicitudDAOFactory;
 import com.sebatec.modelo.Cliente;
-import com.sebatec.modelo.EstadoSo;
-import com.sebatec.modelo.Estados;
 
 import com.sebatec.modelo.Solicitud;
 
@@ -32,7 +30,7 @@ public class SolicitudTest {
 //        modificarsolicitud();
       //  eliminarsolicitud();
 //        leersolicitud();
-//        leertodo();
+        leertodo();
 //        leertodo2();
 //crearLEERsolicitud();
 //crearLEERsolicitud2();
