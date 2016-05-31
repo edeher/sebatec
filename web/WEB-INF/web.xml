@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+
+    <!-- General description of your web application -->
+
+    <display-name>My Web Application</display-name>
+    <description>
+      This is version X.X of an application to perform
+      a wild and wonderful task, based on servlets and
+      JSP pages.  It was written by Dave Developer
+      (dave@mycompany.com), who should be contacted for
+      more information.
+    </description>
+
+    <servlet>
+    <servlet-name>Tiles</servlet-name>
+    <servlet-class>com.sebatec.controlador.TilesController</servlet-class>    
+    <load-on-startup>2</load-on-startup>
+    </servlet>
+
+
+    <listener>
+        <listener-class>com.sebatec.tiles.MyApacheTilesListener</listener-class>
+    </listener>  
+
+   
+
+</web-app>

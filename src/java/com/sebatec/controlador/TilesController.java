@@ -17,7 +17,7 @@ import com.sebatec.config.BaseHTTPServlet;
  *
  * @author fn
  */
-@WebServlet(name = "TilesController", urlPatterns = {"/TilesController"})
+@WebServlet(name = "TilesController", urlPatterns = {"/Tiles"})
 public class TilesController extends BaseHTTPServlet {
 
     /**
