@@ -1,18 +1,15 @@
-<%-- 
-    Document   : crearSolicitud
-    Created on : 21/04/2016, 11:46:47 PM
-    Author     : Mi Laptop
---%>
-
 <%@page import="com.sebatec.modelo.Solicitud"%>
 <%@page import="com.sebatec.dao.SolicitudDAO"%>
 <%@page import="com.sebatec.dao.SolicitudDAOFactory"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        
     </head>
     <%
         SolicitudDAOFactory fabricate=new SolicitudDAOFactory();
@@ -24,9 +21,9 @@
     <body>
         
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editar Solicitud NÂ° <%=soli.getIdSolicitud()%> </h4>
+            <h4 class="modal-title" id="myModalLabel">Editar Solicitud N° <%=soli.getIdSolicitud()%> </h4>
 
         </div>
         <div class="modal-body">     
@@ -55,7 +52,6 @@
                         <input name="observacion" type="text" class="form-control" value="<%=soli.getObservacion()%>">
                     </div>
                 </div>
-
                 <div class="ln_solid"></div>
             </form>                          
         </div>
@@ -64,9 +60,9 @@
           <button type="button" class="btn btn-primary" id="btnguardar" >Guardar Cambios</button>
       </div>
     </body>
-  <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
+    <script src="${context}/js/jquery.min.js" type="text/javascript"></script>
+    <script src="${context}/js/bootstrap.min.js" type="text/javascript"></script>
     <!-------------------------------------------------------------------->
     <script type="text/javascript">
         $(document).ready( function (){   
@@ -76,7 +72,7 @@
         $('#btnguardar').click(function(){        
             var formdata=new FormData($("#modificaform")[0]);
             $.ajax({
-                url:"SolicitudController?accion=modificarSolicitud",
+                url:"${context}/solicitudes?accion=modificarSolicitud",
                 type:"post",
                 contentType:false,
                 data:formdata,

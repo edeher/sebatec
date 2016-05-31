@@ -1,5 +1,11 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
 
@@ -13,7 +19,7 @@
         <!-- foto y msj de bienvenida -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="${context}/images/img.jpg" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Bienvenido,</span>
@@ -29,7 +35,7 @@
             <div class="menu_section">
                 <h3>ADMIN</h3>
                 <ul class="nav side-menu">
-                    <li><a href="solicitudes.html"><i class="fa fa-file"></i> Solicitudes </a></li>
+                    <li><a href="<%=request.getContextPath()%>/solicitudes"><i class="fa fa-file"></i> Solicitudes </a></li>
                     <li><a><i class="fa fa-wrench"></i> Servicios </a></li>
                     <li><a><i class="fa fa-group"></i> Tecnicos </a></li>
                     <li><a><i class="fa fa-group"></i> Clientes </a></li>

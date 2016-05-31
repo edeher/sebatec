@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mi Laptop
  */
-@WebServlet(name = "SolicitudController", urlPatterns = {"/SolicitudController"})
+@WebServlet(name = "SolicitudController", urlPatterns = {"/solicitudes"})
 @MultipartConfig
 public class SolicitudController extends HttpServlet {
 
@@ -70,7 +70,8 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         }   
     }
     else{
-        getServletContext().getRequestDispatcher( "/solicitudes.jsp" ).forward(request, response);
+        getServletContext().getRequestDispatcher( "/solicitudes/solicitudes.jsp" ).forward(request, response);
+        //response.sendRedirect("solicitudes.jsp");  
     }
 }
 

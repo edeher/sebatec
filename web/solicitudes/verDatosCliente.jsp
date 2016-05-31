@@ -1,14 +1,11 @@
-<%-- 
-    Document   : vercliente
-    Created on : 02/05/2016, 08:04:17 PM
-    Author     : Mi Laptop
---%>
-
 <%@page import="com.sebatec.modelo.Solicitud"%>
 <%@page import="com.sebatec.dao.SolicitudDAO"%>
 <%@page import="com.sebatec.dao.SolicitudDAOFactory"%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
     
@@ -27,17 +24,17 @@
 
   <!-- Bootstrap core CSS -->
 
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="${context}/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/animate.min.css" rel="stylesheet">
+  <link href="${context}/fonts/css/font-awesome.min.css" rel="stylesheet">
+  <link href="${context}/css/animate.min.css" rel="stylesheet">
 
   <!-- Custom styling plus plugins -->
-  <link href="css/custom.css" rel="stylesheet">
-  <link href="css/icheck/flat/green.css" rel="stylesheet">
+  <link href="${context}/css/custom.css" rel="stylesheet">
+  <link href="${context}/css/icheck/flat/green.css" rel="stylesheet">
   
 
-  <script src="js/jquery.min.js"></script>
+  <script src="${context}/js/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -52,9 +49,9 @@
     <body>
         
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">CODIGO DE CLIENTE NÂ° <%=soli.getCliente().getIdCliente() %> </h4>
+            <h4 class="modal-title" id="myModalLabel">CODIGO DE CLIENTE N° <%=soli.getCliente().getIdCliente() %> </h4>
 
         </div>  
         
@@ -97,7 +94,7 @@
         
     </body>
     <!-- LIBRERIAS NECESARIAS PARA QUE SE EJECUTE EL JQUERY-->
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${context}/js/jquery.min.js" type="text/javascript"></script>
+    <script src="${context}/js/bootstrap.min.js" type="text/javascript"></script>
     
 </html>
