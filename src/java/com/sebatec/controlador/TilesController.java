@@ -6,12 +6,13 @@
 
 package com.sebatec.controlador;
 
+import com.sebatec.config.BaseHTTPServlet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.sebatec.config.BaseHTTPServlet;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,8 +32,9 @@ public class TilesController extends BaseHTTPServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+                
         setupTiles(request, response);
+        HttpSession session = request.getSession(true);
         container.render("portal/index", request, response);
     	container.endContext(request, response);   
     }
