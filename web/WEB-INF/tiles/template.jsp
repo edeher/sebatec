@@ -32,16 +32,20 @@
     <div class="container body">
         <div class="main_container">
             
-            <div id="menu">
-                <tiles:insertAttribute name="menu" />
-            </div>				
-            <div id="main">                    		
-                <div id="content">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">            
+                    <tiles:insertAttribute name="menu" />
+                </div>
+            </div>
+                
+            <div class="right_col" role="main">  
+                <div class="row">
                     <tiles:insertAttribute name="body"/>
                 </div>
-                <div id="footer">
+                <br>
+                <footer>
                     <tiles:insertAttribute name="footer" />
-                </div>
+                </footer>
             </div>            
             
             
