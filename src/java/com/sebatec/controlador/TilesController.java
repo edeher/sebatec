@@ -35,7 +35,7 @@ public class TilesController extends BaseHTTPServlet {
                 
         setupTiles(request, response);
         HttpSession session = request.getSession(true);
-        container.render("portal/index2", request, response);
+        container.render("sebatec.homepage", request, response);
     	container.endContext(request, response);   
     }
 

@@ -131,7 +131,7 @@
                         "data": null,
                         "defaultContent": '<button name="btnVerCliente"><a><i class="fa fa-user"></i></a></button> &nbsp&nbsp <button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button> &nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button> &nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
                     ],
-                    "ajax": "${context}/solicitudes?accion=obtenerTodasSolicitudesJson",
+                    "ajax": "${context}/solicitudes2?accion=obtenerTodasSolicitudesJson",
                     "initComplete": function() {}
                  });  
         /* INCIALIZA LOS BOTONES AL CORRER EL ARCHIVO DENTRO DEL dUCMENT.READY*/

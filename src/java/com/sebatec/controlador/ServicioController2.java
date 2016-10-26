@@ -24,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mi Laptop
  */
-@WebServlet(name = "ServicioController", urlPatterns = {"/ServicioController"})
-public class ServicioController extends HttpServlet {
+@WebServlet(name = "ServicioController2", urlPatterns = {"/ServicioController2"})
+public class ServicioController2 extends HttpServlet {
 private ServicioDAOFactory fabricate;
 private ServicioDAO daote;
 private Servicio objSer;
@@ -82,7 +82,7 @@ private RequestDispatcher rd=null;
     try {
         processRequest(request, response);
     } catch (DAOException ex) {
-        Logger.getLogger(ServicioController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(ServicioController2.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 
@@ -100,7 +100,7 @@ private RequestDispatcher rd=null;
     try {
         processRequest(request, response);
     } catch (DAOException ex) {
-        Logger.getLogger(ServicioController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(ServicioController2.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 

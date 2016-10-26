@@ -21,15 +21,6 @@
         <!-- Custom styling plus plugins -->
         <link href="${context}/css/custom.css" rel="stylesheet">
         <link href="${context}/css/icheck/flat/green.css" rel="stylesheet">
-        <!-- DataTables -->
-        <link href="${context}/js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-        <link href="${context}/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="${context}/js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="${context}/js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="${context}/js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-
-
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -56,28 +47,28 @@
         </div>     
     </body>
     <!-- Javascript -->
-    <script src="/sebatec/js/jquery.min.js"></script>	
-    <script src="/sebatec/js/bootstrap.min.js"></script>
+    <script src="${context}/js/jquery.min.js"></script>	
+    <script src="${context}/js/bootstrap.min.js"></script>
     <!-- bootstrap progress js -->
-    <script src="/sebatec/js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="/sebatec/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="${context}/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="${context}/js/nicescroll/jquery.nicescroll.min.js"></script>
     <!-- icheck -->
-    <script src="/sebatec/js/icheck/icheck.min.js"></script>
+    <script src="${context}/js/icheck/icheck.min.js"></script>
     <!-- custom-->
-    <script src="/sebatec/js/custom.js"></script>
+    <script src="${context}/js/custom.js"></script>
     <!-- Datatables-->
-    <script src="/sebatec/js/datatables/jquery.dataTables.min.js"></script>
-    <script src="/sebatec/js/datatables/dataTables.bootstrap.js"></script>
-    <script src="/sebatec/js/datatables/dataTables.buttons.min.js"></script>
-    <script src="/sebatec/js/datatables/buttons.bootstrap.min.js"></script>
-    <script src="/sebatec/js/datatables/jszip.min.js"></script>
-    <script src="/sebatec/js/datatables/pdfmake.min.js"></script>
-    <script src="/sebatec/js/datatables/vfs_fonts.js"></script>
-    <script src="/sebatec/js/datatables/buttons.html5.min.js"></script>
-    <script src="/sebatec/js/datatables/buttons.print.min.js"></script>
-    <script src="/sebatec/js/datatables/dataTables.fixedHeader.min.js"></script>
-    <script src="/sebatec/js/datatables/dataTables.keyTable.min.js"></script>
-    <script src="/sebatec/js/datatables/dataTables.responsive.min.js"></script>
-    <script src="/sebatec/js/datatables/responsive.bootstrap.min.js"></script>
-    <script src="/sebatec/js/datatables/dataTables.scroller.min.js"></script> 
+    <script src="${context}/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="${context}/js/datatables/dataTables.bootstrap.js"></script>
+    <script src="${context}/js/datatables/dataTables.buttons.min.js"></script>
+    <script src="${context}/js/datatables/buttons.bootstrap.min.js"></script>
+    <script src="${context}/js/datatables/jszip.min.js"></script>
+    <script src="${context}/js/datatables/pdfmake.min.js"></script>
+    <script src="${context}/js/datatables/vfs_fonts.js"></script>
+    <script src="${context}/js/datatables/buttons.html5.min.js"></script>
+    <script src="${context}/js/datatables/buttons.print.min.js"></script>
+    <script src="${context}/js/datatables/dataTables.fixedHeader.min.js"></script>
+    <script src="${context}/js/datatables/dataTables.keyTable.min.js"></script>
+    <script src="${context}/js/datatables/dataTables.responsive.min.js"></script>
+    <script src="${context}/js/datatables/responsive.bootstrap.min.js"></script>
+    <script src="${context}/js/datatables/dataTables.scroller.min.js"></script>   
 </html>

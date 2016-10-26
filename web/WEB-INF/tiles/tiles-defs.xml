@@ -15,19 +15,19 @@
   </definition>
   <!-- 
   ==============================================================================
-  Index Template
-  ==============================================================================  
-   -->
-  <definition name="portal/index" extends="sebatec.homepage">
-		<put-attribute name="body"
-			value="/WEB-INF/views/welcome.jsp" />
-  </definition>
-  <!-- 
-  ==============================================================================
   Solicitud Template
   ==============================================================================  
    -->
-  <definition name="portal/index2" extends="sebatec.homepage">
+  <definition name="portal/solicitud" extends="sebatec.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/solicitudes/lista.jsp" />
+  </definition>
+  <!-- 
+  ==============================================================================
+   Servicio Template
+  ==============================================================================  
+   -->
+  <definition name="portal/servicio" extends="sebatec.homepage">
 		<put-attribute name="body"
 			value="/WEB-INF/views/welcome2.jsp" />
   </definition>
