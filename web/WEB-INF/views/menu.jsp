@@ -34,7 +34,7 @@
         <h3>ADMIN</h3>
         <ul class="nav side-menu">
             <li><a href="<%=request.getContextPath()%>/Solicitudes"><i class="fa fa-file"></i> Solicitudes </a></li>
-            <li><a><i class="fa fa-wrench"></i> Servicios </a></li>
+            <li><a href="<%=request.getContextPath()%>/Servicios"><i class="fa fa-wrench"></i> Servicios </a></li>
             <li><a><i class="fa fa-group"></i> Tecnicos </a></li>
             <li><a><i class="fa fa-group"></i> Clientes </a></li>
             <li><a><i class="fa fa-gears"></i> Tipo de Servicios </a></li>                    

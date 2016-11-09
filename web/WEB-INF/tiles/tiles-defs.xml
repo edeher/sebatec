@@ -18,7 +18,7 @@
   Solicitud Template
   ==============================================================================  
    -->
-  <definition name="portal/solicitud" extends="sebatec.homepage">
+  <definition name="portal/solicitudes" extends="sebatec.homepage">
 		<put-attribute name="body"
 			value="/WEB-INF/views/solicitudes/lista.jsp" />
   </definition>
@@ -27,9 +27,9 @@
    Servicio Template
   ==============================================================================  
    -->
-  <definition name="portal/servicio" extends="sebatec.homepage">
+  <definition name="portal/servicios" extends="sebatec.homepage">
 		<put-attribute name="body"
-			value="/WEB-INF/views/welcome2.jsp" />
+			value="/WEB-INF/views/welcome.jsp" />
   </definition>
   
 </tiles-definitions>

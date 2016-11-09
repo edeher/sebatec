@@ -1,17 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE web-app 
-    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
-    "http://java.sun.com/dtd/web-app_2_3.dtd">
-
-<web-app 
-  xmlns="http://java.sun.com/xml/ns/javaee" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <!-- General description of your web application -->
-
     <display-name>My Web Application</display-name>
     <description>
       This is version X.X of an application to perform
@@ -20,19 +10,12 @@
       (dave@mycompany.com), who should be contacted for
       more information.
     </description>
-    
-  
-    
     <servlet>
         <servlet-name>Tiles</servlet-name>
-        <servlet-class>com.sebatec.controlador.TilesController</servlet-class>    
-         <load-on-startup>2</load-on-startup>
+        <servlet-class>com.sebatec.controlador.ServiciosController</servlet-class>
+        <load-on-startup>2</load-on-startup>
     </servlet>
-
     <listener>
         <listener-class>com.sebatec.tiles.MyApacheTilesListener</listener-class>
-    </listener>  
-    
-
-    
+    </listener>
 </web-app>

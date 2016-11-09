@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author fn
  */
-@WebServlet(name = "TilesController", urlPatterns = {"/Tiles"})
-public class TilesController extends BaseHTTPServlet {
+@WebServlet(name = "SolicitudesController", urlPatterns = {"/Solicitudes"})
+public class SolicitudesController extends BaseHTTPServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,11 +32,10 @@ public class TilesController extends BaseHTTPServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
         setupTiles(request, response);
         HttpSession session = request.getSession(true);
-        container.render("sebatec.homepage", request, response);
-    	container.endContext(request, response);   
+        container.render("portal/solicitudes", request, response);
+    	container.endContext(request, response); 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

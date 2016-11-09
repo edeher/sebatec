@@ -21,6 +21,32 @@
         <!-- Custom styling plus plugins -->
         <link href="${context}/css/custom.css" rel="stylesheet">
         <link href="${context}/css/icheck/flat/green.css" rel="stylesheet">
+
+        <!-- Javascript -->
+        <script src="${context}/js/jquery.min.js"></script>	
+        <script src="${context}/js/bootstrap.min.js"></script>
+        <!-- bootstrap progress js -->
+        <script src="${context}/js/progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="${context}/js/nicescroll/jquery.nicescroll.min.js"></script>
+        <!-- icheck -->
+        <script src="${context}/js/icheck/icheck.min.js"></script>
+        <!-- custom-->
+        <script src="${context}/js/custom.js"></script>
+        <!-- Datatables-->
+        <script src="${context}/js/datatables/jquery.dataTables.min.js"></script>
+        <script src="${context}/js/datatables/dataTables.bootstrap.js"></script>
+        <script src="${context}/js/datatables/dataTables.buttons.min.js"></script>
+        <script src="${context}/js/datatables/buttons.bootstrap.min.js"></script>
+        <script src="${context}/js/datatables/jszip.min.js"></script>
+        <script src="${context}/js/datatables/pdfmake.min.js"></script>
+        <script src="${context}/js/datatables/vfs_fonts.js"></script>
+        <script src="${context}/js/datatables/buttons.html5.min.js"></script>
+        <script src="${context}/js/datatables/buttons.print.min.js"></script>
+        <script src="${context}/js/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="${context}/js/datatables/dataTables.keyTable.min.js"></script>
+        <script src="${context}/js/datatables/dataTables.responsive.min.js"></script>
+        <script src="${context}/js/datatables/responsive.bootstrap.min.js"></script>
+        <script src="${context}/js/datatables/dataTables.scroller.min.js"></script>
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -40,35 +66,14 @@
                     <footer>
                         <tiles:insertAttribute name="footer" />
                     </footer>
-                </div>            
-
+                </div>  
 
             </div>
         </div>     
-    </body>
+    </body>  
+    
     <!-- Javascript -->
-    <script src="${context}/js/jquery.min.js"></script>	
-    <script src="${context}/js/bootstrap.min.js"></script>
-    <!-- bootstrap progress js -->
-    <script src="${context}/js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="${context}/js/nicescroll/jquery.nicescroll.min.js"></script>
-    <!-- icheck -->
-    <script src="${context}/js/icheck/icheck.min.js"></script>
     <!-- custom-->
     <script src="${context}/js/custom.js"></script>
-    <!-- Datatables-->
-    <script src="${context}/js/datatables/jquery.dataTables.min.js"></script>
-    <script src="${context}/js/datatables/dataTables.bootstrap.js"></script>
-    <script src="${context}/js/datatables/dataTables.buttons.min.js"></script>
-    <script src="${context}/js/datatables/buttons.bootstrap.min.js"></script>
-    <script src="${context}/js/datatables/jszip.min.js"></script>
-    <script src="${context}/js/datatables/pdfmake.min.js"></script>
-    <script src="${context}/js/datatables/vfs_fonts.js"></script>
-    <script src="${context}/js/datatables/buttons.html5.min.js"></script>
-    <script src="${context}/js/datatables/buttons.print.min.js"></script>
-    <script src="${context}/js/datatables/dataTables.fixedHeader.min.js"></script>
-    <script src="${context}/js/datatables/dataTables.keyTable.min.js"></script>
-    <script src="${context}/js/datatables/dataTables.responsive.min.js"></script>
-    <script src="${context}/js/datatables/responsive.bootstrap.min.js"></script>
-    <script src="${context}/js/datatables/dataTables.scroller.min.js"></script>   
+    
 </html>

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<c:set var="context" value="${pageContext.request.contextPath}" />
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="dashboard_graph">
@@ -33,9 +33,8 @@
     table =$('#datatable-responsive').DataTable(
              {
                 "language": {"url": "${context}/css/datatables/Spanish.json"},
-                "columns": [{ "title": "Codigo" },
+                "columns": [{ "title": "Cod" },
                             { "title": "Cliente" },
-
                             { "title": "Descripcion" },
                             { "title": "Observacion" }, 
                             { "title": "Estado" }, 
