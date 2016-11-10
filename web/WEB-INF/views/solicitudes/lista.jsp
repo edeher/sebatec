@@ -27,30 +27,77 @@
     </div>
 </div>
 
+<div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     $(document).ready(function(){ 
     var table;
-    table =$('#datatable-responsive').DataTable(
-             {
+    table =$('#datatable-responsive').DataTable({
                 "language": {"url": "${context}/css/datatables/Spanish.json"},
                 "columns": [{ "title": "Cod" },
                             { "title": "Cliente" },
                             { "title": "Descripcion" },
                             { "title": "Observacion" }, 
                             { "title": "Estado" }, 
-                            { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<button id='btnNuevo'><a><i class='fa fa-plus'></i></a></button>" }],
                 "columnDefs": [                         
                    {"targets": [ 5 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnVerCliente"><a><i class="fa fa-user"></i></a></button> &nbsp&nbsp <button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button> &nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button> &nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent":   '<button name="btnVerCliente"><a><i class="fa fa-user"></i></a></button> &nbsp&nbsp \n\
+                                        <button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button> &nbsp&nbsp \n\
+                                        <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button> &nbsp&nbsp \n\
+                                        <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
                 ],
                 "ajax": "${context}/solicitudes2?accion=obtenerTodasSolicitudesJson",
-                "initComplete": function() {}
-             });  
-    /* INCIALIZA LOS BOTONES AL CORRER EL ARCHIVO DENTRO DEL dUCMENT.READY*/
-       
-    });  
+                "initComplete": function() {
+                    $('#btnNuevo').click(function (){  
+                        alert("btnnu");
+                        mostrarModal('${context}/Solicitudes');
+                    });
+                }
+            });  
+        
+            
+        
+        /* INCIALIZA LOS BOTONES AL CORRER EL ARCHIVO DENTRO DEL dUCMENT.READY*/     
+        $('#datatable-responsive tbody').on( 'click', 'button', function (){
+            var nombre = $(this).attr('name');
+            var data = table.row( $(this).parents('tr') ).data();
+            if(nombre=='btnEditar'){
+                mostrarModal('${context}/solicitudes/modificarSolicitud.jsp?codigo='+data[0]);
+            }
+            if(nombre=='btnVerCliente'){
+                mostrarModal('${context}/solicitudes/verDatosCliente.jsp?codigo='+data[0]);
+            } 
+            if(nombre=='btnAsignar'){
+                alert( "modal ASIGNAR con codigo: "+ data[ 0 ] ); 
+            }            
+            if(nombre=='btnRechazar'){
+               if(confirm("seguro que desea eliminar Miembro")==true){
+                        $.ajax({url:"${context}/solicitudes?accion=rechazarSolicitud&idSolicitud="+data[0],})                            
+                        .always(function(){
+                            actualizar();
+                            alerta("Solicitud modificada",true);
+                            });  
+                }
+            }
+                           
+        });   
+    }); 
+    
+    /*funcion independiete que MUESTRA EL MODAL*/
+    function mostrarModal(url){     
+        $('#miModal .modal-content').load(url, function(){                        
+           $('#miModal').modal('show');
+        });
+    }
+    /*-------------------------------------------------------------*/
 </script>
