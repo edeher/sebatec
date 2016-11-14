@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sebatec.dao;
+package com.sebatec.dao.factory;
+
+import com.sebatec.dao.interfaces.SolicitudDAO;
+import com.sebatec.dao.jdbc.SolicitudDAOJDBC;
 
 /**
  *
  * @author Mi Laptop
  */
-public class TecnicoDAOFactory {
-    public TecnicoDAO metodoDAO()
+public class SolicitudDAOFactory {
+     public SolicitudDAO metodoDAO()
 	   {
-	    return new TecnicoDAOJDBC();
+	    return new SolicitudDAOJDBC();
 	   }
 }

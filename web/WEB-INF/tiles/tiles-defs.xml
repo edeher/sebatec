@@ -15,12 +15,16 @@
   </definition>
   <!-- 
   ==============================================================================
-  Solicitud Template
+  Solicitud Templates
   ==============================================================================  
    -->
-  <definition name="portal/solicitudes" extends="sebatec.homepage">
+  <definition name="solicitudes/lista" extends="sebatec.homepage">
 		<put-attribute name="body"
 			value="/WEB-INF/views/solicitudes/lista.jsp" />
+  </definition>
+  <definition name="solicitudes/nuevo" extends="sebatec.homepage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/solicitudes/nuevo.jsp" />
   </definition>
   <!-- 
   ==============================================================================

@@ -34,8 +34,17 @@ public class SolicitudesController extends BaseHTTPServlet {
             throws ServletException, IOException {
         setupTiles(request, response);
         HttpSession session = request.getSession(true);
-        container.render("portal/solicitudes", request, response);
-    	container.endContext(request, response); 
+        String action = request.getParameter("action");
+        if(action!=null){
+            switch(action){
+                case "nuevo":
+                    crear(request,response);
+                    break;
+            }        
+        }else{
+            container.render("solicitudes/lista", request, response);
+            container.endContext(request, response); 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,5 +85,10 @@ public class SolicitudesController extends BaseHTTPServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void crear(HttpServletRequest request, HttpServletResponse response) {
+        container.render("solicitudes/nuevo", request, response);
+        container.endContext(request, response);
+    }
 
 }

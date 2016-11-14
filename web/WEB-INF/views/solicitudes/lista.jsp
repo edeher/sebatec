@@ -26,14 +26,6 @@
         </div>
     </div>
 </div>
-
-<div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        </div>
-    </div>
-</div>
-
 <script type="text/javascript">
     $(document).ready(function(){ 
     var table;
@@ -44,7 +36,7 @@
                             { "title": "Descripcion" },
                             { "title": "Observacion" }, 
                             { "title": "Estado" }, 
-                            { "title": "<button id='btnNuevo'><a><i class='fa fa-plus'></i></a></button>" }],
+                            { "title": "<button id='btnNuevo'><a href='${context}/Solicitudes?action=nuevo'><i class='fa fa-plus'></i></a></button>" }],
                 "columnDefs": [                         
                    {"targets": [ 5 ],
                     "orderable": false,
@@ -56,12 +48,9 @@
                                         <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button> &nbsp&nbsp \n\
                                         <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
                 ],
-                "ajax": "${context}/solicitudes2?accion=obtenerTodasSolicitudesJson",
+                "ajax": "",
                 "initComplete": function() {
-                    $('#btnNuevo').click(function (){  
-                        alert("btnnu");
-                        mostrarModal('${context}/Solicitudes');
-                    });
+                    
                 }
             });  
         
@@ -93,11 +82,5 @@
         });   
     }); 
     
-    /*funcion independiete que MUESTRA EL MODAL*/
-    function mostrarModal(url){     
-        $('#miModal .modal-content').load(url, function(){                        
-           $('#miModal').modal('show');
-        });
-    }
-    /*-------------------------------------------------------------*/
+    
 </script>

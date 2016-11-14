@@ -5,6 +5,10 @@
  */
 package com.sebatec.modelo;
 
+import com.sebatec.enums.Estados;
+
+
+
 /**
  *
  * @author Mi Laptop

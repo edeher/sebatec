@@ -6,51 +6,47 @@
 package com.sebatec.modelo;
 
 
-import java.util.Date;
+import com.sebatec.enums.EstadoServicio;
+import java.sql.Date;
 
 /**
  *
  * @author Mi Laptop
  */
 public class Servicio {
+
+    
     private int idServicio;
     private Solicitud solicitud;
     private Tecnico tecnico;
+    private TipoServicio tiposervicio;
     private String descripcion;
-    private Date fechaEmimsion;
+    private Date fechaAsignacion;
     private Date fechaGestion;
     private double monto;
-    private EstadoSev estado;
+    private EstadoServicio estadoservicio;
 
-    public Servicio(int idServicio, Solicitud solicitud, Tecnico tecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto) {
+    public Servicio(int idServicio, Solicitud solicitud, Tecnico tecnico, TipoServicio tiposervicio, String descripcion, Date fechaAsignacion, Date fechaGestion, double monto, EstadoServicio estado) {
         this.idServicio = idServicio;
         this.solicitud = solicitud;
         this.tecnico = tecnico;
+        this.tiposervicio = tiposervicio;
         this.descripcion = descripcion;
-        this.fechaEmimsion = fechaEmimsion;
+        this.fechaAsignacion = fechaAsignacion;
         this.fechaGestion = fechaGestion;
         this.monto = monto;
+        this.estadoservicio = estado;
     }
 
     public Servicio() {
         this.solicitud=new Solicitud();
         this.tecnico=new Tecnico();
-    }
-
-    public Servicio(int idServicio, Solicitud solicitud, Tecnico tecnico, String descripcion, Date fechaEmimsion, Date fechaGestion, double monto, EstadoSev estado) {
-        this.idServicio = idServicio;
-        this.solicitud = solicitud;
-        this.tecnico = tecnico;
-        this.descripcion = descripcion;
-        this.fechaEmimsion = fechaEmimsion;
-        this.fechaGestion = fechaGestion;
-        this.monto = monto;
-        this.estado = estado;
+        this.tiposervicio=new TipoServicio();
     }
 
     @Override
     public String toString() {
-        return "Servicio{" + "idServicio=" + idServicio + ", solicitud=" + solicitud + ", tecnico=" + tecnico + ", descripcion=" + descripcion + ", fechaEmimsion=" + fechaEmimsion + ", fechaGestion=" + fechaGestion + ", monto=" + monto + ", estado=" + estado.getNom() + '}';
+        return "Servicio{" + "idServicio=" + idServicio + ", solicitud=" + solicitud + ", tecnico=" + tecnico + ", tiposervicio=" + tiposervicio + ", descripcion=" + descripcion + ", fechaAsignacion=" + fechaAsignacion + ", fechaGestion=" + fechaGestion + ", monto=" + monto + ", estado=" + getEstadoservicio() + '}';
     }
     
     
@@ -79,6 +75,14 @@ public class Servicio {
         this.tecnico = tecnico;
     }
 
+    public TipoServicio getTiposervicio() {
+        return tiposervicio;
+    }
+
+    public void setTiposervicio(TipoServicio tiposervicio) {
+        this.tiposervicio = tiposervicio;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -87,12 +91,12 @@ public class Servicio {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaEmimsion() {
-        return fechaEmimsion;
+    public Date getFechaAsignacion() {
+        return fechaAsignacion;
     }
 
-    public void setFechaEmimsion(Date fechaEmimsion) {
-        this.fechaEmimsion = fechaEmimsion;
+    public void setFechaAsignacion(Date fechaAsignacion) {
+        this.fechaAsignacion = fechaAsignacion;
     }
 
     public Date getFechaGestion() {
@@ -110,14 +114,22 @@ public class Servicio {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-
-    public EstadoSev getEstado() {
-        return estado;
+/**
+     * @return the estadoservicio
+     */
+    public EstadoServicio getEstadoservicio() {
+        return estadoservicio;
     }
 
-    public void setEstado(EstadoSev estado) {
-        this.estado = estado;
+    /**
+     * @param estadoservicio the estadoservicio to set
+     */
+    public void setEstadoservicio(EstadoServicio estadoservicio) {
+        this.estadoservicio = estadoservicio;
     }
+   
 
+    
+    
     
 }

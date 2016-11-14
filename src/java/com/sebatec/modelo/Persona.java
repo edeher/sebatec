@@ -5,6 +5,8 @@
  */
 package com.sebatec.modelo;
 
+import com.sebatec.enums.Estados;
+
 /**
  *
  * @author Mi Laptop
@@ -21,13 +23,11 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", direccion=" + direccion + ", telefono=" + telefono + ", email=" + email + ", estado=" + estado + '}';
     }
 
    
 
-    
-    
     public Persona(int idPersona, String nombre, String apellido, String dni, String direccion, String telefono, String email, Estados estado) {
         this.idPersona = idPersona;
         this.nombre = nombre;
@@ -39,33 +39,12 @@ public class Persona {
         this.estado = estado;
     }
 
-    public Persona(String nombre, String apellido, String dni, String direccion, String telefono, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-    }
-
+   
+   
     public Persona() {
     }
 
-    public Persona(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Persona(int idPersona, String nombre, String apellido, String dni, String direccion, String telefono, String email) {
-        this.idPersona = idPersona;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-    }
-
-    
+   
     public int getIdPersona() {
         return idPersona;
     }

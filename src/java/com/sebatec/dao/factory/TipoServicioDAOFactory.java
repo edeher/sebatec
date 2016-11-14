@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sebatec.dao;
+package com.sebatec.dao.factory;
+
+import com.sebatec.dao.interfaces.TipoServicioDAO;
+import com.sebatec.dao.jdbc.TipoServicioDAOJDBC;
 
 /**
  *
@@ -11,16 +14,11 @@ package com.sebatec.dao;
  */
 public class TipoServicioDAOFactory {
 
-   public TipoServicioDAO crearTiposervicioDAO()
+   public TipoServicioDAO metodoDAO()
    {
     return new TipoServicioDAOJDBC();
    }
    
-   public TipoServicioDAO modificaTipoServicio()
-   {
-       return new TipoServicioDAOJDBC();
    
-   }
-     
     
 }

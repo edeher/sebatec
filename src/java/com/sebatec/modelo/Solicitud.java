@@ -5,6 +5,9 @@
  */
 package com.sebatec.modelo;
 
+import com.sebatec.enums.EstadoSolicitud;
+import java.sql.Date;
+
 /**
  *
  * @author Mi Laptop
@@ -14,46 +17,32 @@ public class Solicitud
    private int idSolicitud;
    private Cliente cliente;
    private String descripcion;
+   private Date fecha;
    private String observacion;
-   private EstadoSo estado;
+   private EstadoSolicitud estadoSolicitud;
 
-    public Solicitud(int idSolicitud, Cliente cliente, String descripcion, String observacion) {
-        this.idSolicitud = idSolicitud;
-        this.cliente = cliente;
-        this.descripcion = descripcion;
-        this.observacion = observacion;
-    }
-
-    public Solicitud(int idSolicitud, Cliente cliente, String descripcion, String observacion, EstadoSo estado) {
-        this.idSolicitud = idSolicitud;
-        this.cliente = cliente;
-        this.descripcion = descripcion;
-        this.observacion = observacion;
-        this.estado = estado;
-    }
-
-    public Solicitud(int idSolicitud, String descripcion, String observacion, EstadoSo estado) {
-        this.idSolicitud = idSolicitud;
-        this.descripcion = descripcion;
-        this.observacion = observacion;
-        this.estado = estado;
-    }
-    
-    /////////////////crear cliente
-    public Solicitud() {
+   
+   public Solicitud() {
         this.cliente=new Cliente();
     }
-
-////////////////////////////////////////////
-    public Solicitud(int idSolicitud) {
+   
+    public Solicitud(int idSolicitud, Cliente cliente, String descripcion, Date fecha, String observacion, EstadoSolicitud estadoSolicitud) {
         this.idSolicitud = idSolicitud;
+        this.cliente = cliente;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.observacion = observacion;
+        this.estadoSolicitud = estadoSolicitud;
     }
 
     @Override
     public String toString() {
-        return "Solicitud{" + "idSolicitud=" + idSolicitud + ", cliente=" + cliente + ", descripcion=" + descripcion + ", observacion=" + observacion + ", estado=" + estado.getNom() + '}';
+        return "Solicitud{" + "idSolicitud=" + idSolicitud + ", cliente=" + cliente + ", descripcion=" + descripcion + ", fecha=" + fecha + ", observacion=" + observacion + ", estadoSolicitud=" + estadoSolicitud + '}';
     }
 
+   
+   
+   
     public int getIdSolicitud() {
         return idSolicitud;
     }
@@ -78,6 +67,14 @@ public class Solicitud
         this.descripcion = descripcion;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     public String getObservacion() {
         return observacion;
     }
@@ -86,14 +83,17 @@ public class Solicitud
         this.observacion = observacion;
     }
 
-    public EstadoSo getEstado() {
-        return estado;
+    public EstadoSolicitud getEstadoSolicitud() {
+        return estadoSolicitud;
     }
 
-    public void setEstado(EstadoSo estado) {
-        this.estado = estado;
+    public void setEstadoSolicitud(EstadoSolicitud estadoSolicitud) {
+        this.estadoSolicitud = estadoSolicitud;
     }
 
+    
+
+    
    
     }
     

@@ -3,36 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sebatec.modelo;
+package com.sebatec.enums;
 
 /**
  *
  * @author Mi Laptop
  */
-public enum Estados {
-    A("Activo"),
-    N("Noactivo"),
-    E("Enespera");
+public enum EstadoSolicitud {
+    ES("ESPERA"),
+   AS("ASIGANADO"),
+    AN("ANULADO");
     
     private String nom;
 
-    private Estados(String nom) {
+    private EstadoSolicitud(String nom) {
         this.nom = nom;
     }
 
-    /**
-     * @return the nom
-     */
     public String getNom() {
         return nom;
     }
 
-    /**
-     * @param nom the nom to set
-     */
     public void setNom(String nom) {
         this.nom = nom;
     }
-    
     
 }

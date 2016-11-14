@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sebatec.modelo;
+package com.sebatec.enums;
 
 /**
  *
  * @author Mi Laptop
  */
-public enum EstadoSo {
-    A("Atendido"),
-    N("No Atendido"),
-    R("rechazado");
+public enum EstadoServicio {
+    AS("ASIGNADO"),
+    AC("ACEPTADO"),
+    AT("ATENDIDO"),
+    RE("RECHAZADO");
+    
     
     private String nom;
 
-    private EstadoSo(String nom) {
+    private EstadoServicio(String nom) {
         this.nom = nom;
     }
 
