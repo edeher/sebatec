@@ -5,27 +5,27 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
-
-<div class="col-md-12 col-sm-12 col-xs-12">
-    <div class="dashboard_graph">
-        <div class="row x_title">
-            <div class="col-md-6">
-                <h3>Solicitudes <small></small></h3>
-            </div>
-            <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right">
-
-            </div>
-        </div>
-        <div class="x_content">
-            <p class="text-muted font-13 m-b-30">
-            </p>
-            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-            </table>
-        </div>
-        <div class="clearfix">
-        </div>
-    </div>
+<div class="page-title">
+    <div class="title_left">
+        <h3>
+            Solicitudes
+            <small>
+                
+            </small>
+        </h3>
+    </div>    
 </div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">            
+            <div class="x_content">  
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                </table>
+            </div>
+        </div>        
+    </div>
+</div>    
 <script type="text/javascript">
     $(document).ready(function(){ 
     var table;
@@ -36,7 +36,7 @@
                             { "title": "Descripcion" },
                             { "title": "Observacion" }, 
                             { "title": "Estado" }, 
-                            { "title": "<button id='btnNuevo'><a href='${context}/Solicitudes?action=nuevo'><i class='fa fa-plus'></i></a></button>" }],
+                            { "title": "<a href='${context}/Solicitudes?action=nuevo'><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 5 ],
                     "orderable": false,

@@ -58,10 +58,8 @@
                     </div>
                 </div>
 
-                <div class="right_col" role="main">  
-                    <div class="row">
-                        <tiles:insertAttribute name="body"/>
-                    </div>
+                <div class="right_col" role="main">                    
+                    <tiles:insertAttribute name="body"/>                    
                     <br>
                     <footer>
                         <tiles:insertAttribute name="footer" />
