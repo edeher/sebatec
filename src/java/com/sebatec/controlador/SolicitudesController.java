@@ -38,7 +38,10 @@ public class SolicitudesController extends BaseHTTPServlet {
         if(action!=null){
             switch(action){
                 case "nuevo":
-                    crear(request,response);
+                    create(request,response);
+                    break;
+                case "crear":
+                    update(request,response);
                     break;
             }        
         }else{
@@ -86,7 +89,12 @@ public class SolicitudesController extends BaseHTTPServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void crear(HttpServletRequest request, HttpServletResponse response) {
+    private void create(HttpServletRequest request, HttpServletResponse response) {
+        container.render("solicitudes/nuevo", request, response);
+        container.endContext(request, response);
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) {
         container.render("solicitudes/nuevo", request, response);
         container.endContext(request, response);
     }
