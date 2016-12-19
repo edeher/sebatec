@@ -15,20 +15,19 @@ import java.sql.Date;
 public class Solicitud 
 {
    private int idSolicitud;
-   private Cliente cliente;
+   private Solicitante solicitante;
    private String descripcion;
    private Date fecha;
    private String observacion;
    private EstadoSolicitud estadoSolicitud;
 
-   
-   public Solicitud() {
-        this.cliente=new Cliente();
+    public Solicitud() {
+        this.solicitante=new Solicitante();
     }
-   
-    public Solicitud(int idSolicitud, Cliente cliente, String descripcion, Date fecha, String observacion, EstadoSolicitud estadoSolicitud) {
+
+    public Solicitud(int idSolicitud, Solicitante solicitante, String descripcion, Date fecha, String observacion, EstadoSolicitud estadoSolicitud) {
         this.idSolicitud = idSolicitud;
-        this.cliente = cliente;
+        this.solicitante = solicitante;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.observacion = observacion;
@@ -37,12 +36,11 @@ public class Solicitud
 
     @Override
     public String toString() {
-        return "Solicitud{" + "idSolicitud=" + idSolicitud + ", cliente=" + cliente + ", descripcion=" + descripcion + ", fecha=" + fecha + ", observacion=" + observacion + ", estadoSolicitud=" + estadoSolicitud + '}';
+        return "Solicitud{" + "idSolicitud=" + idSolicitud + ", solicitante=" + solicitante + ", descripcion=" + descripcion + ", fecha=" + fecha + ", observacion=" + observacion + ", estadoSolicitud=" + estadoSolicitud + '}';
     }
+   
+   
 
-   
-   
-   
     public int getIdSolicitud() {
         return idSolicitud;
     }
@@ -51,12 +49,12 @@ public class Solicitud
         this.idSolicitud = idSolicitud;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Solicitante getSolicitante() {
+        return solicitante;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
     }
 
     public String getDescripcion() {
@@ -90,11 +88,7 @@ public class Solicitud
     public void setEstadoSolicitud(EstadoSolicitud estadoSolicitud) {
         this.estadoSolicitud = estadoSolicitud;
     }
-
-    
-
-    
    
-    }
-    
+   
 
+    }

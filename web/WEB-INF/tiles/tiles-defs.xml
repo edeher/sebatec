@@ -22,9 +22,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/solicitudes/lista.jsp" />
   </definition>
-  <definition name="solicitudes/nuevo" extends="sebatec.homepage">
+  <definition name="solicitudes/form" extends="sebatec.homepage">
 		<put-attribute name="body"
-			value="/WEB-INF/views/solicitudes/nuevo.jsp" />
+			value="/WEB-INF/views/solicitudes/form.jsp" />
   </definition>
   <!-- 
   ==============================================================================

@@ -5,18 +5,18 @@
  */
 package com.sebatec.dao.factory;
 
-import com.sebatec.dao.interfaces.ClienteDAO;
-import com.sebatec.dao.jdbc.ClienteDAOJDBC;
+import com.sebatec.dao.interfaces.SolicitanteDAO;
+
+import com.sebatec.dao.jdbc.SolicitanteDAOJDBC;
+
 
 /**
  *
  * @author Mi Laptop
  */
-public class ClienteDAOFactory {
-    
-    public ClienteDAO metodoDAO()
-   {
-    return new ClienteDAOJDBC();
-   }
-    
+public class SolicitanteDAOFactory {
+    public SolicitanteDAO metodoDAO()
+	   {
+	    return new SolicitanteDAOJDBC();
+	   }
 }

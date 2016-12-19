@@ -12,10 +12,11 @@ import com.sebatec.enums.EstadoServicio;
 import com.sebatec.enums.EstadoSolicitud;
 import com.sebatec.enums.Estados;
 import com.sebatec.enums.TipoUsuario;
-import com.sebatec.modelo.Cliente;
+import com.sebatec.modelo.Empresa;
 
 import com.sebatec.modelo.Persona;
 import com.sebatec.modelo.Servicio;
+import com.sebatec.modelo.Solicitante;
 import com.sebatec.modelo.Solicitud;
 import com.sebatec.modelo.Tecnico;
 import com.sebatec.modelo.TipoServicio;
@@ -55,24 +56,30 @@ private final Connection con;
             return (
                     new Servicio(
                             rs.getInt("idServicio"),
-                      new Solicitud(  
+                     new Solicitud(  
                               rs.getInt("idSolicitud"),
-                     new Cliente(
-                            rs.getInt("idCliente"),
+                            new Solicitante(
+                            rs.getInt("idSolicitante"),
+                            new Empresa(
+                            rs.getInt("idEmpresa"),
+                            rs.getString("razon"),
                             rs.getString("ruc"),
-                            rs.getString("razonsocial"),
-                            
-                            rs.getInt("idPersona1"),
-                            rs.getString("nombre1"),
-                            rs.getString("apellido1"),
-                            rs.getString("dni1"),
+                            rs.getString("direccion")
+                            ),
+                            rs.getString("cargo"),
+                             
+                            rs.getInt("idPersona"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("dni"),
                             rs.getString("direccion1"),
-                            rs.getString("telefono1"),
-                            rs.getString("email1"),
-                            Estados.valueOf(rs.getString("estado1"))
+                            rs.getString("telefono"),
+                            rs.getString("email"),
+                            Estados.valueOf(rs.getString("estado"))
+                            
                            
                      ),
-                              rs.getString("descripcion1"),
+                              rs.getString("descripcion"),
                               rs.getDate("fecha"),
                               rs.getString("observacion"),
                               EstadoSolicitud.valueOf(rs.getString("estadoSolicitud"))
@@ -139,24 +146,30 @@ private final Connection con;
             return (
                     new Servicio(
                             rs.getInt("idServicio"),
-                      new Solicitud(  
+                     new Solicitud(  
                               rs.getInt("idSolicitud"),
-                     new Cliente(
-                            rs.getInt("idCliente"),
+                            new Solicitante(
+                            rs.getInt("idSolicitante"),
+                            new Empresa(
+                            rs.getInt("idEmpresa"),
+                            rs.getString("razon"),
                             rs.getString("ruc"),
-                            rs.getString("razonsocial"),
-                            
-                            rs.getInt("idPersona1"),
-                            rs.getString("nombre1"),
-                            rs.getString("apellido1"),
-                            rs.getString("dni1"),
+                            rs.getString("direccion")
+                            ),
+                            rs.getString("cargo"),
+                             
+                            rs.getInt("idPersona"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("dni"),
                             rs.getString("direccion1"),
-                            rs.getString("telefono1"),
-                            rs.getString("email1"),
-                            Estados.valueOf(rs.getString("estado1"))
+                            rs.getString("telefono"),
+                            rs.getString("email"),
+                            Estados.valueOf(rs.getString("estado"))
+                            
                            
                      ),
-                              rs.getString("descripcion1"),
+                              rs.getString("descripcion"),
                               rs.getDate("fecha"),
                               rs.getString("observacion"),
                               EstadoSolicitud.valueOf(rs.getString("estadoSolicitud"))
@@ -237,24 +250,30 @@ private final Connection con;
             return (
                     new Servicio(
                             rs.getInt("idServicio"),
-                      new Solicitud(  
+                     new Solicitud(  
                               rs.getInt("idSolicitud"),
-                     new Cliente(
-                            rs.getInt("idCliente"),
+                            new Solicitante(
+                            rs.getInt("idSolicitante"),
+                            new Empresa(
+                            rs.getInt("idEmpresa"),
+                            rs.getString("razon"),
                             rs.getString("ruc"),
-                            rs.getString("razonsocial"),
-                            
-                            rs.getInt("idPersona1"),
-                            rs.getString("nombre1"),
-                            rs.getString("apellido1"),
-                            rs.getString("dni1"),
+                            rs.getString("direccion")
+                            ),
+                            rs.getString("cargo"),
+                             
+                            rs.getInt("idPersona"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("dni"),
                             rs.getString("direccion1"),
-                            rs.getString("telefono1"),
-                            rs.getString("email1"),
-                            Estados.valueOf(rs.getString("estado1"))
+                            rs.getString("telefono"),
+                            rs.getString("email"),
+                            Estados.valueOf(rs.getString("estado"))
+                            
                            
                      ),
-                              rs.getString("descripcion1"),
+                              rs.getString("descripcion"),
                               rs.getDate("fecha"),
                               rs.getString("observacion"),
                               EstadoSolicitud.valueOf(rs.getString("estadoSolicitud"))
@@ -308,28 +327,32 @@ private final Connection con;
             ArrayList<Servicio> tribs = new ArrayList<>(); 
             
             while (rs.next()) {
-                tribs.add(
-                        
-                      new Servicio(
+                tribs.add(new Servicio(
                             rs.getInt("idServicio"),
-                      new Solicitud(  
+                     new Solicitud(  
                               rs.getInt("idSolicitud"),
-                     new Cliente(
-                            rs.getInt("idCliente"),
+                            new Solicitante(
+                            rs.getInt("idSolicitante"),
+                            new Empresa(
+                            rs.getInt("idEmpresa"),
+                            rs.getString("razon"),
                             rs.getString("ruc"),
-                            rs.getString("razonsocial"),
-                            
-                            rs.getInt("idPersona1"),
-                            rs.getString("nombre1"),
-                            rs.getString("apellido1"),
-                            rs.getString("dni1"),
+                            rs.getString("direccion")
+                            ),
+                            rs.getString("cargo"),
+                             
+                            rs.getInt("idPersona"),
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getString("dni"),
                             rs.getString("direccion1"),
-                            rs.getString("telefono1"),
-                            rs.getString("email1"),
-                            Estados.valueOf(rs.getString("estado1"))
+                            rs.getString("telefono"),
+                            rs.getString("email"),
+                            Estados.valueOf(rs.getString("estado"))
+                            
                            
                      ),
-                              rs.getString("descripcion1"),
+                              rs.getString("descripcion"),
                               rs.getDate("fecha"),
                               rs.getString("observacion"),
                               EstadoSolicitud.valueOf(rs.getString("estadoSolicitud"))

@@ -21,6 +21,7 @@ public class Tecnico extends Persona{
     private TipoUsuario tipousuario;
 
     public Tecnico() {
+        
     }
 
     public Tecnico(int idTecnico, String profesion, String especialidad, String usuario, String password, TipoUsuario tipousuario , int idPersona, String nombre, String apellido, String dni, String direccion, String telefono, String email, Estados estado) {

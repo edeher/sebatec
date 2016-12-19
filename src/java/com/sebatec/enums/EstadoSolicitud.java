@@ -10,9 +10,9 @@ package com.sebatec.enums;
  * @author Mi Laptop
  */
 public enum EstadoSolicitud {
-    ES("ESPERA"),
-   AS("ASIGANADO"),
-    AN("ANULADO");
+    ES("EN ESPERA"),
+    AS("ASIGNADO"),
+    RE("RECHAZADO");
     
     private String nom;
 

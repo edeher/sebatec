@@ -7,7 +7,25 @@
 package com.sebatec.controlador;
 
 import com.sebatec.config.BaseHTTPServlet;
+import com.sebatec.config.Message;
+import com.sebatec.dao.factory.ClienteDAOFactory;
+import com.sebatec.dao.factory.DAOException;
+import com.sebatec.dao.factory.SolicitudDAOFactory;
+import com.sebatec.dao.interfaces.ClienteDAO;
+import com.sebatec.dao.interfaces.SolicitudDAO;
+import com.sebatec.enums.EstadoSolicitud;
+import com.sebatec.modelo.Solicitud;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,22 +49,34 @@ public class SolicitudesController extends BaseHTTPServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         setupTiles(request, response);
-        HttpSession session = request.getSession(true);
-        String action = request.getParameter("action");
-        if(action!=null){
-            switch(action){
-                case "nuevo":
-                    create(request,response);
-                    break;
-                case "crear":
-                    update(request,response);
-                    break;
-            }        
+        HttpSession sesion = request.getSession(true);
+        String accion = request.getParameter("accion");
+        if(accion!=null){
+            if (accion.equals("lista")) {
+                listar(request, response);
+            } 
+            if (accion.equals("nuevo")) {
+                nuevo(request, response);
+            } 
+            if (accion.equals("editar")) {
+                editar(request, response);
+            } 
+            if (accion.equals("crear")) {
+                actualizar(request, response);
+            }  
+            if (accion.equals("modificar")) {
+                actualizar(request, response);
+            }  
+            if (accion.equals("listaJson")) {
+                listaJson(request, response);
+            } 
+            if (accion.equals("info")) {
+                verInfo(request, response);
+            } 
         }else{
-            container.render("solicitudes/lista", request, response);
-            container.endContext(request, response); 
+            listar(request, response);
         }
     }
 
@@ -62,7 +92,11 @@ public class SolicitudesController extends BaseHTTPServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(SolicitudesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -76,7 +110,11 @@ public class SolicitudesController extends BaseHTTPServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(SolicitudesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -89,14 +127,118 @@ public class SolicitudesController extends BaseHTTPServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void create(HttpServletRequest request, HttpServletResponse response) {
-        container.render("solicitudes/nuevo", request, response);
+    private void nuevo(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("titulo", "Nuevo Registro");
+    	request.setAttribute("accion", "crear");
+        container.render("solicitudes/form", request, response);
+        container.endContext(request, response);
+    }
+    private void editar(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("titulo", "Editar Registro");
+    	request.setAttribute("accion", "modificar");
+        container.render("solicitudes/form", request, response);
         container.endContext(request, response);
     }
 
-    private void update(HttpServletRequest request, HttpServletResponse response) {
-        container.render("solicitudes/nuevo", request, response);
-        container.endContext(request, response);
+    private void actualizar(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
+        String idsol = request.getParameter("param_idsol");
+        //String idcli = request.getParameter("param_idcli");
+        //String idper = request.getParameter("param_idper");
+        String descripcion = request.getParameter("param_descripcion");
+        //date solicitud
+        //String observacion = request.getParameter("param_observacion");
+        //String estadosol = request.getParameter("param_estadosol");        
+        String razonsocial = request.getParameter("param_razonsocial");
+        String ruc = request.getParameter("param_ruc");   
+        //estado cliente
+        String nombre = request.getParameter("param_nombre");
+        String apellido = request.getParameter("param_apellido");  
+        String dni = request.getParameter("param_dni");
+        String direccion = request.getParameter("param_direccion");
+        String telefono = request.getParameter("param_telefono");
+        String email = request.getParameter("param_email");       
+        if (idsol == null || idsol.equals("")) { // crear    			
+            SolicitudDAOFactory sdf = new SolicitudDAOFactory();
+            SolicitudDAO sold = sdf.metodoDAO();            
+            Solicitud sol = new Solicitud();            
+            sol.setDescripcion(descripcion);
+            //sol.setObservacion(observacion);
+            sol.setEstadoSolicitud(EstadoSolicitud.ES);
+            sol.getSolicitante().getEmpresa().setRazon(razonsocial);
+            sol.getSolicitante().getEmpresa().setRuc(ruc);
+            sol.getSolicitante().setNombre(nombre);
+            sol.getSolicitante().setApellido(apellido);
+            sol.getSolicitante().setDni(dni);                			
+            sol.getSolicitante().setDireccion(direccion);                			
+            sol.getSolicitante().setTelefono(telefono);                			
+            sol.getSolicitante().setEmail(email);             
+            sol = sold.crear(sol);            
+            // mensaje
+            Message message = new Message("success", "Exito al registrar la solicitud");
+            request.setAttribute("message", message);     
+            // redirect             
+            getServletContext().getRequestDispatcher( "/Solicitudes?accion=lista" ).forward(request, response);            
+        }/* else { 
+            // update            
+            Book book = bookService.findById(Integer.parseInt(id));
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setIsbn(isbn);
+            book.setDescription(description);
+            book.setYear(year);
+            book.setPages(pages);
+            book.setPrice(price);
+            book.setPicture(picture);
+            book.setFormat(format);    			
+            Category category = categoryService.findById(categoryId);
+            book.setCategory(category);    			
+            bookService.save(book);    			
+            // mensaje
+            Message message = new Message("success", "Exito al actualizar el libro");
+            request.setAttribute("message", message);     
+            // redirect
+            getServletContext().getRequestDispatcher( "/book?action=edit&id=" + id ).forward(request, response);            
+        } 
+        */
     }
 
+    private void listar(HttpServletRequest request, HttpServletResponse response) {
+        container.render("solicitudes/lista", request, response);
+        container.endContext(request, response); 
+    }
+
+    private void listaJson(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        SolicitudDAOFactory sdf = new SolicitudDAOFactory();
+        SolicitudDAO sold = sdf.metodoDAO();
+        Solicitud[] solv = sold.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arraySolicitudes = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosSolicitudes;        
+        for (Solicitud solicitud : solv) {
+            arrayDatosSolicitudes = Json.createArrayBuilder();
+            arrayDatosSolicitudes.add(solicitud.getIdSolicitud());
+            arrayDatosSolicitudes.add(solicitud.getSolicitante().getNombre()+" "+solicitud.getSolicitante().getApellido());            
+            arrayDatosSolicitudes.add(solicitud.getSolicitante().getEmpresa().getRazon());              
+            arrayDatosSolicitudes.add(DateToString(solicitud.getFecha()));  
+            arrayDatosSolicitudes.add(solicitud.getEstadoSolicitud().getNom());  
+            arraySolicitudes.add(arrayDatosSolicitudes);
+        }
+        objbuilder.add("data", arraySolicitudes);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+    
+    private void verInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher( "/WEB-INF/views/solicitudes/info.jsp" ).forward(request, response);
+    }
+    
+    private String DateToString(Date fecha) {
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(fecha);
+    }
 }
