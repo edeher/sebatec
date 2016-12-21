@@ -8,10 +8,8 @@ package com.sebatec.controlador;
 
 import com.sebatec.config.BaseHTTPServlet;
 import com.sebatec.config.Message;
-import com.sebatec.dao.factory.ClienteDAOFactory;
 import com.sebatec.dao.factory.DAOException;
 import com.sebatec.dao.factory.SolicitudDAOFactory;
-import com.sebatec.dao.interfaces.ClienteDAO;
 import com.sebatec.dao.interfaces.SolicitudDAO;
 import com.sebatec.enums.EstadoSolicitud;
 import com.sebatec.modelo.Solicitud;
@@ -25,7 +23,6 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonValue;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -164,12 +161,16 @@ public class SolicitudesController extends BaseHTTPServlet {
             sol.setDescripcion(descripcion);
             //sol.setObservacion(observacion);
             sol.setEstadoSolicitud(EstadoSolicitud.ES);
-            sol.getSolicitante().getEmpresa().setRazon(razonsocial);
-            sol.getSolicitante().getEmpresa().setRuc(ruc);
+            if(ruc.equals("")){                
+                sol.getSolicitante().setDireccion(direccion);  
+            }else{
+                sol.getSolicitante().getEmpresa().setRuc(ruc);
+                sol.getSolicitante().getEmpresa().setRazon(razonsocial);
+                sol.getSolicitante().getEmpresa().setDireccion(direccion);
+            }  
             sol.getSolicitante().setNombre(nombre);
             sol.getSolicitante().setApellido(apellido);
-            sol.getSolicitante().setDni(dni);                			
-            sol.getSolicitante().setDireccion(direccion);                			
+            sol.getSolicitante().setDni(dni);                          			
             sol.getSolicitante().setTelefono(telefono);                			
             sol.getSolicitante().setEmail(email);             
             sol = sold.crear(sol);            
@@ -218,7 +219,12 @@ public class SolicitudesController extends BaseHTTPServlet {
             arrayDatosSolicitudes = Json.createArrayBuilder();
             arrayDatosSolicitudes.add(solicitud.getIdSolicitud());
             arrayDatosSolicitudes.add(solicitud.getSolicitante().getNombre()+" "+solicitud.getSolicitante().getApellido());            
-            arrayDatosSolicitudes.add(solicitud.getSolicitante().getEmpresa().getRazon());              
+            if(solicitud.getSolicitante().getEmpresa().getRazon()==null){
+                arrayDatosSolicitudes.add("");              
+            }  
+            else{
+                arrayDatosSolicitudes.add(solicitud.getSolicitante().getEmpresa().getRazon());
+            }
             arrayDatosSolicitudes.add(DateToString(solicitud.getFecha()));  
             arrayDatosSolicitudes.add(solicitud.getEstadoSolicitud().getNom());  
             arraySolicitudes.add(arrayDatosSolicitudes);

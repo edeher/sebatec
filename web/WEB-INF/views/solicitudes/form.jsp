@@ -81,7 +81,7 @@
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12 text-right">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12"> Opcional *</label>
-                            <input  type="reset"class="btn btn-primary" value="Reset" />
+                            <input type="reset"class="btn btn-primary" value="Reset" />
                             <input type="submit" class="btn btn-success" value="Guardar" />
                         </div>
                     </div>                    
